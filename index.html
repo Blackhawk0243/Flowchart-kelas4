@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Flowchart! - Belajar Coding Kelas 4</title>
+    
+    <!-- Tailwind CSS untuk styling responsif dan cantik -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Nunito (Ramah anak dan mudah dibaca) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tone.js untuk Efek Suara di Kuis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        kiddie: {
+                            blue: '#4facfe',
+                            green: '#43e97b',
+                            yellow: '#f6d365',
+                            pink: '#ff0844',
+                            purple: '#b185db'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animasi mengambang untuk elemen hiasan */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float-delayed {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float-delayed {
+            animation: float-delayed 4s ease-in-out 2s infinite;
+        }
+
+        /* Gaya Tombol ala Game */
+        .btn-game {
+            transition: all 0.1s ease;
+        }
+        .btn-game:active {
+            transform: translateY(4px);
+            border-bottom-width: 0px;
+            margin-top: 4px;
+        }
+
+        body {
+            background-color: #f0f9ff;
+            background-image: radial-gradient(#bae6fd 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased font-sans">
+
+    <!-- Header / Navigasi -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl shadow-lg">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h1 class="text-2xl font-extrabold text-blue-600 tracking-wide">Flowchart<span class="text-yellow-500">Fun!</span></h1>
+            </div>
+            <div class="hidden md:flex gap-6 font-bold text-gray-600">
+                <a href="#belajar" class="hover:text-blue-500 transition-colors">Belajar</a>
+                <a href="#contoh" class="hover:text-blue-500 transition-colors">Contoh</a>
+                <a href="#video" class="hover:text-blue-500 transition-colors">Video</a>
+                <a href="#kuis" class="text-purple-600 hover:text-purple-800 transition-colors">Kuis Seru!</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="max-w-5xl mx-auto px-4 py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-10 text-yellow-400 text-5xl animate-float opacity-50"><i class="fas fa-star"></i></div>
+        <div class="absolute bottom-10 right-10 text-pink-400 text-5xl animate-float-delayed opacity-50"><i class="fas fa-heart"></i></div>
+        
+        <h2 class="text-4xl md:text-6xl font-black text-gray-800 mb-6 drop-shadow-sm">
+            Halo Kawan! Mari Belajar <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Flowchart Coding</span>
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto font-semibold">
+            Sebelum komputer bisa menjalankan game atau aplikasi, mereka butuh "Peta Harta Karun" lho! Peta itu namanya Flowchart! 🚀
+        </p>
+        <a href="#belajar" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-xl py-4 px-10 rounded-full shadow-lg border-b-4 border-yellow-600 btn-game">
+            Mulai Petualangan! <i class="fas fa-rocket ml-2"></i>
+        </a>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto px-4 space-y-24 pb-24">
+
+        <!-- Bagian 1: Apa itu Flowchart? -->
+        <section id="belajar" class="scroll-mt-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Pengertian -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-blue-400 relative group hover:-translate-y-2 transition-transform">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl text-blue-500 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold mb-4 text-gray-800">Apa itu Flowchart?</h3>
+                    <p class="text-lg text-gray-600">
+                        <strong>Flowchart (Bagan Alir)</strong> adalah gambar yang berisi bentuk-bentuk ajaib untuk menunjukkan langkah-langkah menyelesaikan masalah. Mirip seperti resep masakan untuk komputer!
+                    </p>
+                </div>
+
+                <!-- Fungsi -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-green-400 relative group hover:-translate-y-2 transition-transform">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-3xl text-green-500 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold mb-4 text-gray-800">Fungsinya Apa?</h3>
+                    <p class="text-lg text-gray-600">
+                        Fungsinya untuk menyusun rencana sebelum kita menulis kode (coding). Dengan flowchart, kita tahu persis urutan apa yang harus dilakukan dari awal sampai akhir tanpa bingung.
+                    </p>
+                </div>
+
+                <!-- Tujuan -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-purple-400 relative group hover:-translate-y-2 transition-transform">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-3xl text-purple-500 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold mb-4 text-gray-800">Tujuannya?</h3>
+                    <p class="text-lg text-gray-600">
+                        Supaya kode yang kita buat rapi dan tidak error! Komputer itu pintar tapi harus diberi perintah yang sangat jelas. Flowchart melatih kita berpikir logis dan urut.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bagian 2: Bentuk-Bentuk Flowchart -->
+        <section class="bg-blue-600 rounded-[3rem] p-8 md:p-12 shadow-2xl text-white">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">Mengenal Bentuk Ajaib Flowchart 🪄</h2>
+                <p class="text-xl text-blue-100">Setiap bentuk punya tugas masing-masing, lho!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                
+                <!-- Terminal (Oval) -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
+                    <div class="w-32 h-16 bg-green-400 rounded-full border-4 border-green-300 shadow-inner mb-4 flex items-center justify-center">
+                        <span class="text-green-900 font-bold">Mulai/Selesai</span>
+                    </div>
+                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Terminal (Oval)</h4>
+                    <p class="text-sm text-blue-50">Digunakan HANYA saat program <b>Mulai</b> (Start) dan <b>Selesai</b> (End).</p>
+                </div>
+
+                <!-- Proses (Kotak) -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
+                    <div class="w-32 h-16 bg-blue-400 rounded-lg border-4 border-blue-300 shadow-inner mb-4 flex items-center justify-center">
+                        <span class="text-blue-900 font-bold">Proses Kegiatan</span>
+                    </div>
+                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Proses (Kotak)</h4>
+                    <p class="text-sm text-blue-50">Menggambarkan <b>tindakan</b> atau kegiatan yang sedang dilakukan.</p>
+                </div>
+
+                <!-- Input/Output (Jajargenjang) -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
+                    <div class="w-32 h-16 bg-yellow-400 transform -skew-x-12 border-4 border-yellow-300 shadow-inner mb-4 flex items-center justify-center">
+                        <span class="transform skew-x-12 text-yellow-900 font-bold">Data Masuk/Keluar</span>
+                    </div>
+                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Jajargenjang</h4>
+                    <p class="text-sm text-blue-50">Untuk <b>Input</b> (masukkan data) dan <b>Output</b> (tampilkan hasil).</p>
+                </div>
+
+                <!-- Keputusan (Belah Ketupat) -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
+                    <div class="w-24 h-24 bg-pink-400 transform rotate-45 border-4 border-pink-300 shadow-inner mb-4 flex items-center justify-center mt-2">
+                        <span class="transform -rotate-45 text-pink-900 font-bold leading-tight">Ada<br>Pilihan?</span>
+                    </div>
+                    <h4 class="font-bold text-xl text-yellow-300 mb-2 mt-2">Keputusan</h4>
+                    <p class="text-sm text-blue-50">Untuk sebuah <b>pilihan</b> atau pertanyaan (Ya / Tidak).</p>
+                </div>
+
+                <!-- Garis Alir (Panah) -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
+                    <div class="h-24 flex items-center justify-center mb-4">
+                        <i class="fas fa-long-arrow-alt-right text-6xl text-white animate-pulse"></i>
+                    </div>
+                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Garis Alir</h4>
+                    <p class="text-sm text-blue-50">Tanda panah menunjukkan <b>arah</b> dan urutan langkah yang harus diikuti.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bagian 3: Contoh Flowchart Sehari-hari -->
+        <section id="contoh" class="scroll-mt-24">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border-4 border-dashed border-gray-200">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-800 mb-4">Contoh: Membuat Teh Manis ☕</h2>
+                    <p class="text-lg text-gray-600">Mari kita baca peta petunjuk pembuatan teh manis ini dari atas ke bawah!</p>
+                </div>
+
+                <!-- Flowchart Diagram -->
+                <div class="flex flex-col items-center space-y-3 relative">
+                    <!-- Mulai -->
+                    <div class="w-40 py-3 bg-green-400 rounded-full text-center font-bold text-white shadow-md border-4 border-green-500 z-10">Mulai</div>
+                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
+                    
+                    <!-- Input -->
+                    <div class="w-64 py-4 bg-yellow-400 transform -skew-x-12 text-center shadow-md border-4 border-yellow-500 z-10">
+                        <span class="transform skew-x-12 block font-bold text-yellow-900 px-4">Siapkan Gelas, Air Panas, Teh, dan Gula</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
+                    
+                    <!-- Proses 1 -->
+                    <div class="w-64 py-4 bg-blue-400 text-center font-bold text-white shadow-md border-4 border-blue-500 rounded-lg z-10">Masukkan Teh & Gula ke Gelas</div>
+                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
+                    
+                    <!-- Proses 2 -->
+                    <div class="w-64 py-4 bg-blue-400 text-center font-bold text-white shadow-md border-4 border-blue-500 rounded-lg z-10">Tuang Air Panas & Aduk Rata</div>
+                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
+                    
+                    <!-- Output -->
+                    <div class="w-64 py-4 bg-yellow-400 transform -skew-x-12 text-center shadow-md border-4 border-yellow-500 z-10">
+                        <span class="transform skew-x-12 block font-bold text-yellow-900">Teh Manis Siap Diminum!</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
+                    
+                    <!-- Selesai -->
+                    <div class="w-40 py-3 bg-red-400 rounded-full text-center font-bold text-white shadow-md border-4 border-red-500 z-10">Selesai</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian 4: Video Edukasi -->
+        <section id="video" class="scroll-mt-24">
+            <div class="bg-purple-100 rounded-3xl p-8 md:p-12 shadow-xl text-center border-t-8 border-purple-400">
+                <h2 class="text-3xl md:text-4xl font-black text-purple-800 mb-6">Nonton Video Dulu Yuk! 🎥</h2>
+                <p class="text-lg text-purple-700 mb-8 max-w-2xl mx-auto">
+                    Untuk lebih paham, mari tonton video penjelasan singkat tentang flowchart ini. Perhatikan bentuk dan contohnya ya!
+                </p>
+                
+                <div class="max-w-3xl mx-auto bg-white p-3 rounded-2xl shadow-lg transform rotate-1 hover:rotate-0 transition-transform">
+                    <div class="aspect-w-16 aspect-h-9 overflow-hidden rounded-xl bg-gray-200" style="position: relative; padding-bottom: 56.25%; height: 0;">
+                        <!-- Embed Video YouTube (Berbahasa Indonesia, penjelasan mudah) -->
+                        <iframe src="https://www.youtube.com/embed/B1q2q3aDnRY" 
+                                title="Video Pembelajaran Flowchart" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian 5: Kuis Interaktif -->
+        <section id="kuis" class="scroll-mt-24">
+            <div class="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-yellow-400 relative overflow-hidden">
+                <!-- Hiasan Background Kuis -->
+                <div class="absolute -top-10 -right-10 text-yellow-200 text-9xl opacity-30 pointer-events-none"><i class="fas fa-gamepad"></i></div>
+                
+                <div id="quiz-intro" class="text-center relative z-10">
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">Waktunya Kuis Seru! 🏆</h2>
+                    <p class="text-xl text-gray-600 mb-8">Uji pengetahuanmu dengan 15 pertanyaan seru. Siap menjadi Master Flowchart?</p>
+                    <button onclick="startQuiz()" class="bg-blue-500 hover:bg-blue-600 text-white font-extrabold text-2xl py-4 px-12 rounded-full shadow-lg border-b-8 border-blue-700 btn-game">
+                        Mulai Kuis <i class="fas fa-play ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Area Kuis (Disembunyikan pada awalnya) -->
+                <div id="quiz-area" class="hidden relative z-10 max-w-3xl mx-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="bg-yellow-200 text-yellow-800 font-bold py-1 px-4 rounded-full text-sm" id="question-tracker">Soal 1 / 15</span>
+                        <span class="bg-green-200 text-green-800 font-bold py-1 px-4 rounded-full text-sm"><i class="fas fa-star text-yellow-500"></i> Skor: <span id="score-display">0</span></span>
+                    </div>
+
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-3xl p-6 md:p-10 mb-8 shadow-inner">
+                        <h3 id="question-text" class="text-2xl md:text-3xl font-extrabold text-gray-800 text-center leading-relaxed">
+                            <!-- Teks Pertanyaan akan muncul di sini -->
+                        </h3>
+                    </div>
+
+                    <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Pilihan jawaban akan di-generate JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Area Hasil Kuis -->
+                <div id="result-area" class="hidden text-center relative z-10">
+                    <div class="text-8xl mb-6" id="result-emoji">🤩</div>
+                    <h3 class="text-4xl font-black text-gray-800 mb-2" id="result-title">Luar Biasa!</h3>
+                    <p class="text-2xl text-gray-600 mb-8">Skor Akhir Kamu: <strong class="text-blue-600 text-4xl" id="final-score">15</strong> / 15</p>
+                    <p id="result-message" class="text-xl text-gray-500 mb-8 font-semibold"></p>
+                    
+                    <button onclick="resetQuiz()" class="bg-green-500 hover:bg-green-600 text-white font-extrabold text-xl py-4 px-10 rounded-full shadow-lg border-b-6 border-green-700 btn-game">
+                        Main Lagi <i class="fas fa-redo ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-8">
+        <p class="font-semibold">© 2026 Belajar Coding Kelas 4 - Flowchart Fun.</p>
+        <p class="text-sm mt-2">Dibuat khusus untuk calon programmer hebat masa depan!</p>
+    </footer>
+
+    <!-- Logika JavaScript untuk Kuis -->
+    <script>
+        // Data Soal (15 Pertanyaan)
+        const quizData = [
+            {
+                question: "Apa arti dari 'Flowchart'?",
+                options: ["Menggambar bunga di buku", "Bagan alir untuk langkah-langkah program", "Sebuah Game Komputer", "Mainan robot-robotan"],
+                answer: 1
+            },
+            {
+                question: "Bentuk Oval (Kapsul) dalam flowchart digunakan untuk...",
+                options: ["Mulai dan Selesai", "Proses Kegiatan", "Tanya Jawab", "Arah Jalan"],
+                answer: 0
+            },
+            {
+                question: "Bentuk Kotak (Persegi Panjang) digunakan untuk...",
+                options: ["Selesai", "Pilihan Ya/Tidak", "Melakukan Kegiatan / Proses", "Mulai"],
+                answer: 2
+            },
+            {
+                question: "Bentuk Jajargenjang berguna untuk...",
+                options: ["Proses Masak", "Input (memasukkan) dan Output (mengeluarkan) data", "Mengakhiri Program", "Mulai Program"],
+                answer: 1
+            },
+            {
+                question: "Jika ada sebuah 'Pilihan' atau 'Keputusan' (Misal: Apakah air sudah mendidih?), kita menggunakan bentuk...",
+                options: ["Belah Ketupat (Diamond)", "Bulat", "Kotak", "Jajargenjang"],
+                answer: 0
+            },
+            {
+                question: "Garis dengan tanda panah berguna untuk...",
+                options: ["Menghias flowchart biar bagus", "Menunjukkan arah urutan langkah", "Menghapus kode program", "Membingungkan orang lain"],
+                answer: 1
+            },
+            {
+                question: "Mengapa kita perlu membuat flowchart sebelum mulai coding?",
+                options: ["Biar komputer menjadi lambat", "Tidak ada fungsinya sama sekali", "Biar gambarnya bisa diwarnai", "Biar langkahnya jelas dan kita tidak bingung saat coding"],
+                answer: 3
+            },
+            {
+                question: "'Memasukkan gula ke dalam gelas' adalah contoh dari kegiatan. Dalam flowchart digambar menggunakan...",
+                options: ["Kotak (Persegi Panjang)", "Oval (Kapsul)", "Belah Ketupat", "Bintang"],
+                answer: 0
+            },
+            {
+                question: "Flowchart biasanya dibaca dan mengalir dari arah mana?",
+                options: ["Bawah ke Atas", "Kanan ke Kiri", "Atas ke Bawah", "Bebas dari mana saja"],
+                answer: 2
+            },
+            {
+                question: "Apa sebutan lain dari Flowchart dalam bahasa Indonesia?",
+                options: ["Bagan Warna", "Peta Harta Karun", "Bagan Alir", "Buku Cerita"],
+                answer: 2
+            },
+            {
+                question: "Kalau cuaca 'Hujan' -> pakai payung. Kalau 'Tidak Hujan' -> pakai topi. Bentuk yang cocok untuk logika 'Hujan atau Tidak?' ini adalah...",
+                options: ["Kotak", "Oval", "Belah Ketupat", "Tanda Panah"],
+                answer: 2
+            },
+            {
+                question: "'Masukkan kata sandimu'. Langkah ini adalah contoh Input data. Bentuk flowchartnya adalah...",
+                options: ["Jajargenjang", "Belah Ketupat", "Kotak", "Oval"],
+                answer: 0
+            },
+            {
+                question: "Kalau suatu proses ternyata salah dan harus diulang ke langkah sebelumnya, kita menunjukkannya dengan...",
+                options: ["Menghapus kotak yang salah", "Menarik garis panah ke langkah sebelumnya (ke atas)", "Menggambar kotak baru lagi", "Menulis kata 'Salah' dengan besar"],
+                answer: 1
+            },
+            {
+                question: "Siapa saja sih yang bisa membaca flowchart?",
+                options: ["Cuma komputer yang bisa", "Cuma orang dewasa", "Alien dari luar angkasa", "Programmer dan semua orang, karena mudah dipahami"],
+                answer: 3
+            },
+            {
+                question: "Tujuan utama anak kelas 4 belajar flowchart adalah untuk melatih...",
+                options: ["Berpikir logis dan berurutan", "Berlari sangat kencang", "Menghafal angka jutaan", "Menggambar pemandangan alam"],
+                answer: 0
+            }
+        ];
+
+        // Variabel State Kuis
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let synth; // Untuk efek suara Tone.js
+        let audioInitialized = false;
+
+        // Elemen DOM
+        const introArea = document.getElementById('quiz-intro');
+        const quizArea = document.getElementById('quiz-area');
+        const resultArea = document.getElementById('result-area');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionTracker = document.getElementById('question-tracker');
+        const scoreDisplay = document.getElementById('score-display');
+
+        // Fungsi Memulai Kuis
+        async function startQuiz() {
+            // Inisialisasi Audio Context Tone.js (harus dari gesture user)
+            if (!audioInitialized) {
+                await Tone.start();
+                synth = new Tone.Synth().toDestination();
+                audioInitialized = true;
+            }
+
+            // Mainkan suara mulai
+            synth.triggerAttackRelease("C5", "8n");
+
+            currentQuestionIndex = 0;
+            score = 0;
+            updateScore();
+            
+            introArea.classList.add('hidden');
+            resultArea.classList.add('hidden');
+            quizArea.classList.remove('hidden');
+            
+            loadQuestion();
+        }
+
+        // Fungsi Load Pertanyaan
+        function loadQuestion() {
+            const currentQ = quizData[currentQuestionIndex];
+            
+            // Update Tracker
+            questionTracker.innerText = `Soal ${currentQuestionIndex + 1} / ${quizData.length}`;
+            questionText.innerText = currentQ.question;
+            
+            // Bersihkan opsi sebelumnya
+            optionsContainer.innerHTML = '';
+            
+            // Render tombol pilihan
+            currentQ.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left bg-white hover:bg-blue-50 border-2 border-gray-300 hover:border-blue-500 rounded-2xl p-4 font-bold text-gray-700 transition-all shadow-sm btn-game text-lg md:text-xl";
+                btn.innerText = option;
+                btn.onclick = () => selectAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        // Fungsi Pilih Jawaban
+        function selectAnswer(selectedIndex, btnElement) {
+            // Nonaktifkan semua tombol agar tidak diklik dua kali
+            const allButtons = optionsContainer.querySelectorAll('button');
+            allButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('hover:bg-blue-50', 'hover:border-blue-500');
+            });
+
+            const correctIndex = quizData[currentQuestionIndex].answer;
+            
+            if (selectedIndex === correctIndex) {
+                // Jawaban Benar
+                btnElement.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
+                btnElement.innerHTML += ' <i class="fas fa-check-circle float-right text-2xl text-green-500"></i>';
+                score++;
+                updateScore();
+                // Efek suara benar (Nada ceria)
+                if(synth) {
+                    const now = Tone.now();
+                    synth.triggerAttackRelease("C4", "8n", now);
+                    synth.triggerAttackRelease("E4", "8n", now + 0.1);
+                    synth.triggerAttackRelease("G4", "4n", now + 0.2);
+                }
+            } else {
+                // Jawaban Salah
+                btnElement.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
+                btnElement.innerHTML += ' <i class="fas fa-times-circle float-right text-2xl text-red-500"></i>';
+                
+                // Tunjukkan yang benar
+                allButtons[correctIndex].classList.add('bg-green-100', 'border-green-500');
+                
+                // Efek suara salah (Nada rendah)
+                if(synth) synth.triggerAttackRelease("C3", "4n");
+            }
+
+            // Tunggu sebentar lalu lanjut soal
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) {
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
+        }
+
+        // Fungsi Update Skor Visual
+        function updateScore() {
+            scoreDisplay.innerText = score;
+        }
+
+        // Fungsi Tampilkan Hasil Akhir
+        function showResults() {
+            quizArea.classList.add('hidden');
+            resultArea.classList.remove('hidden');
+            
+            document.getElementById('final-score').innerText = score;
+            
+            const emoji = document.getElementById('result-emoji');
+            const title = document.getElementById('result-title');
+            const message = document.getElementById('result-message');
+            
+            // Kustomisasi pesan berdasarkan skor
+            if (score === 15) {
+                emoji.innerText = '🏆';
+                title.innerText = 'Sempurna!';
+                message.innerText = 'Kamu adalah Master Flowchart sejati! Siap untuk mulai coding nyata!';
+                // Suara kemenangan
+                if(synth){
+                    const now = Tone.now();
+                    synth.triggerAttackRelease("C4", "8n", now);
+                    synth.triggerAttackRelease("E4", "8n", now + 0.1);
+                    synth.triggerAttackRelease("G4", "8n", now + 0.2);
+                    synth.triggerAttackRelease("C5", "2n", now + 0.3);
+                }
+            } else if (score >= 10) {
+                emoji.innerText = '🌟';
+                title.innerText = 'Bagus Sekali!';
+                message.innerText = 'Kamu sudah sangat paham dasar-dasar flowchart. Sedikit lagi jadi sempurna!';
+                if(synth) synth.triggerAttackRelease("G4", "2n");
+            } else {
+                emoji.innerText = '💪';
+                title.innerText = 'Tetap Semangat!';
+                message.innerText = 'Mari baca materinya lagi dan coba kuisnya sekali lagi ya!';
+                if(synth) synth.triggerAttackRelease("E4", "4n");
+            }
+        }
+
+        // Fungsi Reset Kuis
+        function resetQuiz() {
+            if(synth) synth.triggerAttackRelease("C4", "8n");
+            introArea.classList.remove('hidden');
+            resultArea.classList.add('hidden');
+            quizArea.classList.add('hidden');
+            window.scrollTo({ top: document.getElementById('kuis').offsetTop - 50, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
