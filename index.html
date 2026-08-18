@@ -330,82 +330,157 @@
 
     <!-- Logika JavaScript untuk Kuis -->
     <script>
-        // Data Soal (15 Pertanyaan)
+        // Data Soal (15 Pertanyaan) dengan Pilihan HOTS
         const quizData = [
             {
-                question: "Apa arti dari 'Flowchart'?",
-                options: ["Menggambar bunga di buku", "Bagan alir untuk langkah-langkah program", "Sebuah Game Komputer", "Mainan robot-robotan"],
+                question: "Apa definisi paling tepat mengenai 'Flowchart' dalam pemrograman?",
+                options: [
+                    "Langkah-langkah penyelesaian masalah yang ditulis menggunakan kalimat paragraf panjang", 
+                    "Bagan alir yang menggunakan simbol khusus untuk menunjukkan urutan logis penyelesaian masalah", 
+                    "Kode bahasa pemrograman rumit yang diketik langsung ke dalam komputer", 
+                    "Kumpulan gambar bebas dan warna-warni untuk menghias tampilan sebuah aplikasi"
+                ],
                 answer: 1
             },
             {
-                question: "Bentuk Oval (Kapsul) dalam flowchart digunakan untuk...",
-                options: ["Mulai dan Selesai", "Proses Kegiatan", "Tanya Jawab", "Arah Jalan"],
+                question: "Mengapa kita menggunakan bentuk Oval (Kapsul) dalam flowchart?",
+                options: [
+                    "Hanya untuk menandai titik awal (Mulai) dan titik akhir (Selesai) dari sebuah program", 
+                    "Untuk menghitung angka atau memproses sebuah kegiatan yang berulang-ulang", 
+                    "Untuk menerima informasi dan data yang diketik oleh pengguna komputer", 
+                    "Sebagai penghubung jika flowchart terlalu panjang dan harus pindah ke halaman lain"
+                ],
                 answer: 0
             },
             {
-                question: "Bentuk Kotak (Persegi Panjang) digunakan untuk...",
-                options: ["Selesai", "Pilihan Ya/Tidak", "Melakukan Kegiatan / Proses", "Mulai"],
+                question: "Bentuk Kotak (Persegi Panjang) sangat penting dalam flowchart. Apa fungsinya?",
+                options: [
+                    "Menentukan apakah sebuah program harus berhenti atau lanjut ke tahap berikutnya", 
+                    "Memasukkan data dari luar, seperti mengetik password atau menekan tombol", 
+                    "Melakukan sebuah perhitungan atau tindakan / proses tertentu secara berurutan", 
+                    "Menandai awal dari sebuah urutan kegiatan agar komputer siap bekerja"
+                ],
                 answer: 2
             },
             {
-                question: "Bentuk Jajargenjang berguna untuk...",
-                options: ["Proses Masak", "Input (memasukkan) dan Output (mengeluarkan) data", "Mengakhiri Program", "Mulai Program"],
+                question: "Manakah pernyataan yang BENAR tentang penggunaan bentuk Jajargenjang?",
+                options: [
+                    "Menggambarkan kegiatan yang membutuhkan waktu sangat lama untuk diproses komputer", 
+                    "Menunjukkan proses Input (memasukkan data) dan Output (menampilkan hasil ke layar)", 
+                    "Mengevaluasi jawaban dari pertanyaan Ya atau Tidak untuk mengambil keputusan", 
+                    "Mengawali sebuah sistem sebelum data dimasukkan oleh programmer"
+                ],
                 answer: 1
             },
             {
-                question: "Jika ada sebuah 'Pilihan' atau 'Keputusan' (Misal: Apakah air sudah mendidih?), kita menggunakan bentuk...",
-                options: ["Belah Ketupat (Diamond)", "Bulat", "Kotak", "Jajargenjang"],
+                question: "Dalam membuat flowchart merebus air, kita harus mengecek: 'Apakah air sudah mendidih?'. Bentuk apa yang paling tepat untuk logika ini dan mengapa?",
+                options: [
+                    "Belah Ketupat, karena bentuk ini membagi jalan menjadi dua pilihan keputusan (Ya atau Tidak)", 
+                    "Kotak, karena mengecek air yang direbus adalah sebuah proses kegiatan fisik", 
+                    "Jajargenjang, karena kita sedang menunggu hasil (output) berupa air yang mendidih", 
+                    "Oval, karena jika air sudah mendidih maka proses merebus air otomatis selesai"
+                ],
                 answer: 0
             },
             {
-                question: "Garis dengan tanda panah berguna untuk...",
-                options: ["Menghias flowchart biar bagus", "Menunjukkan arah urutan langkah", "Menghapus kode program", "Membingungkan orang lain"],
+                question: "Garis alir (Tanda Panah) tidak boleh sembarangan digambar. Apa fungsi utamanya?",
+                options: [
+                    "Mengelompokkan bentuk-bentuk flowchart yang memiliki kemiripan fungsi", 
+                    "Menunjukkan arah urutan langkah eksekusi yang harus dipatuhi oleh sistem", 
+                    "Menandai proses mana yang paling penting dan harus dikerjakan paling pertama", 
+                    "Menghubungkan dua aplikasi yang berbeda agar bisa berjalan bersamaan tanpa error"
+                ],
                 answer: 1
             },
             {
-                question: "Mengapa kita perlu membuat flowchart sebelum mulai coding?",
-                options: ["Biar komputer menjadi lambat", "Tidak ada fungsinya sama sekali", "Biar gambarnya bisa diwarnai", "Biar langkahnya jelas dan kita tidak bingung saat coding"],
-                answer: 3
-            },
-            {
-                question: "'Memasukkan gula ke dalam gelas' adalah contoh dari kegiatan. Dalam flowchart digambar menggunakan...",
-                options: ["Kotak (Persegi Panjang)", "Oval (Kapsul)", "Belah Ketupat", "Bintang"],
-                answer: 0
-            },
-            {
-                question: "Flowchart biasanya dibaca dan mengalir dari arah mana?",
-                options: ["Bawah ke Atas", "Kanan ke Kiri", "Atas ke Bawah", "Bebas dari mana saja"],
-                answer: 2
-            },
-            {
-                question: "Apa sebutan lain dari Flowchart dalam bahasa Indonesia?",
-                options: ["Bagan Warna", "Peta Harta Karun", "Bagan Alir", "Buku Cerita"],
-                answer: 2
-            },
-            {
-                question: "Kalau cuaca 'Hujan' -> pakai payung. Kalau 'Tidak Hujan' -> pakai topi. Bentuk yang cocok untuk logika 'Hujan atau Tidak?' ini adalah...",
-                options: ["Kotak", "Oval", "Belah Ketupat", "Tanda Panah"],
-                answer: 2
-            },
-            {
-                question: "'Masukkan kata sandimu'. Langkah ini adalah contoh Input data. Bentuk flowchartnya adalah...",
-                options: ["Jajargenjang", "Belah Ketupat", "Kotak", "Oval"],
-                answer: 0
-            },
-            {
-                question: "Kalau suatu proses ternyata salah dan harus diulang ke langkah sebelumnya, kita menunjukkannya dengan...",
-                options: ["Menghapus kotak yang salah", "Menarik garis panah ke langkah sebelumnya (ke atas)", "Menggambar kotak baru lagi", "Menulis kata 'Salah' dengan besar"],
+                question: "Seorang programmer yang ahli selalu membuat flowchart sebelum mulai coding. Mengapa langkah ini krusial?",
+                options: [
+                    "Agar komputer bisa otomatis membuatkan program murni dari gambar bagan tersebut", 
+                    "Untuk merencanakan alur logika agar mencegah terjadinya kesalahan (error) saat menulis kode", 
+                    "Supaya kode program yang diketik nantinya menjadi lebih pendek dan tidak memakan memori", 
+                    "Karena bahasa pemrograman komputer hanya bisa mendeteksi bentuk gambar, bukan teks"
+                ],
                 answer: 1
             },
             {
-                question: "Siapa saja sih yang bisa membaca flowchart?",
-                options: ["Cuma komputer yang bisa", "Cuma orang dewasa", "Alien dari luar angkasa", "Programmer dan semua orang, karena mudah dipahami"],
-                answer: 3
+                question: "Aksi 'Aduk teh hingga gula larut' dalam flowchart pembuatan teh manis digambarkan menggunakan bentuk apa?",
+                options: [
+                    "Kotak, karena mengaduk adalah murni sebuah tindakan atau proses kegiatan", 
+                    "Jajargenjang, karena kita memberikan input (memasukkan) sendok ke dalam gelas", 
+                    "Belah Ketupat, karena kita harus mengambil keputusan berapa kali harus mengaduk", 
+                    "Oval, karena mengaduk adalah hal pertama yang harus dilakukan agar teh manis"
+                ],
+                answer: 0
             },
             {
-                question: "Tujuan utama anak kelas 4 belajar flowchart adalah untuk melatih...",
-                options: ["Berpikir logis dan berurutan", "Berlari sangat kencang", "Menghafal angka jutaan", "Menggambar pemandangan alam"],
+                question: "Bagaimana standar arah membaca alur sebuah flowchart yang baik dan benar?",
+                options: [
+                    "Dari bentuk yang ukurannya paling besar menuju ke bentuk yang paling kecil", 
+                    "Bebas dari mana saja asalkan mengikuti arah tanda panah dengan teliti dan runut", 
+                    "Umumnya terstruktur dari arah atas turun ke bawah, dan dari kiri ke kanan", 
+                    "Selalu bermula dari tengah (pusat) kemudian menyebar ke segala arah secara bersamaan"
+                ],
+                answer: 2
+            },
+            {
+                question: "Apa perbedaan paling mendasar antara bentuk Kotak (Proses) dan Belah Ketupat (Keputusan)?",
+                options: [
+                    "Kotak hanya memiliki 1 jalan keluar, sedangkan Belah Ketupat minimal memiliki 2 jalan keluar (misal: Ya/Tidak)", 
+                    "Kotak digunakan untuk menampilkan hasil perhitungan, sedangkan Belah Ketupat untuk memulai perhitungan", 
+                    "Kotak berisi perintah teks panjang, sedangkan Belah Ketupat hanya berisi angka matematika", 
+                    "Kotak digunakan hanya di awal pembuatan program, sedangkan Belah Ketupat khusus di akhir program"
+                ],
                 answer: 0
+            },
+            {
+                question: "Logika Program: 'Jika Hujan -> Bawa Payung', 'Jika Cerah -> Pakai Topi'. Bentuk flowchart yang cocok untuk menyeleksi kondisi cuaca tersebut adalah...",
+                options: [
+                    "Belah ketupat, karena sistem harus mengecek kondisi cuaca untuk memilih jalur tindakan selanjutnya", 
+                    "Kotak, karena aktivitas memakai payung atau memakai topi adalah sebuah kegiatan rutinitas", 
+                    "Jajargenjang, karena kondisi cuaca (hujan/cerah) adalah sebuah input dari alam semesta", 
+                    "Oval, karena jika cuaca terlalu buruk maka kita akan langsung mengakhiri rencana perjalanan"
+                ],
+                answer: 0
+            },
+            {
+                question: "Langkah 'Tampilkan nilai ujian di layar monitor' merupakan contoh proses Output. Maka digambar dengan bentuk...",
+                options: [
+                    "Jajargenjang, karena bentuk ini khusus digunakan untuk interaksi Input data dan Output informasi", 
+                    "Kotak, karena menampilkan nilai di layar monitor membutuhkan proses perhitungan yang rumit", 
+                    "Belah Ketupat, karena siswa harus mengecek apakah nilainya di atas KKM atau harus remidial", 
+                    "Oval, karena setelah nilai ujian ditampilkan maka program pendidikan tersebut pasti selesai"
+                ],
+                answer: 0
+            },
+            {
+                question: "Dalam sebuah sistem, jika password yang diinput ternyata 'Salah', maka pengguna disuruh mengetik ulang. Bagaimana menggambarnya di flowchart?",
+                options: [
+                    "Membuat bentuk Oval (Selesai) di tengah jalan untuk menghentikan paksa program", 
+                    "Menarik garis panah (dari opsi 'Tidak') berputar kembali ke langkah input password sebelumnya", 
+                    "Membuat dua gambar flowchart yang terpisah; satu untuk password benar, satu untuk salah", 
+                    "Mengubah bentuk Kotak input menjadi Belah Ketupat agar sistem mengabaikan password yang salah"
+                ],
+                answer: 1
+            },
+            {
+                question: "Analisis urutan flowchart memasak mie instan berikut. Manakah urutan yang secara logika paling tepat?",
+                options: [
+                    "Mulai -> Masukkan Mie -> Rebus Air -> Selesai", 
+                    "Mulai -> Rebus Air -> Air Mendidih? (Ya) -> Masukkan Mie -> Selesai", 
+                    "Mulai -> Air Mendidih? (Ya) -> Rebus Air -> Masukkan Mie -> Selesai", 
+                    "Mulai -> Makan Mie -> Rebus Air -> Buang Air -> Selesai"
+                ],
+                answer: 1
+            },
+            {
+                question: "Apa tujuan utama (kompetensi dasar) siswa kelas 4 SD belajar logika flowchart?",
+                options: [
+                    "Mampu menghafal puluhan bahasa pemrograman komputer tingkat tinggi seperti orang dewasa", 
+                    "Melatih cara berpikir komputasional yang logis, runtut, dan sistematis dalam memecahkan masalah", 
+                    "Agar keterampilan menggambar bentuk-bentuk geometri di buku tulis menjadi jauh lebih rapi", 
+                    "Untuk meningkatkan kecepatan komputer / laptop saat menjalankan game yang berukuran berat"
+                ],
+                answer: 1
             }
         ];
 
