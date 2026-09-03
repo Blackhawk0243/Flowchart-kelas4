@@ -3,1074 +3,898 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petualangan Flowchart! - Belajar Coding Kelas 4</title>
-    
-    <!-- Tailwind CSS untuk styling responsif dan cantik -->
+    <title>Petualangan Flowchart - Kelas 4</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Nunito (Ramah anak dan mudah dibaca) -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome untuk Icon -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tone.js untuk Efek Suara di Kuis -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Nunito', 'sans-serif'],
-                    },
-                    colors: {
-                        kiddie: {
-                            blue: '#4facfe',
-                            green: '#43e97b',
-                            yellow: '#f6d365',
-                            pink: '#ff0844',
-                            purple: '#b185db'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- SweetAlert2 (untuk popup cantik) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
-        /* Animasi mengambang untuk elemen hiasan */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #f0fdf4; overflow-x: hidden; }
+        h1, h2, h3, .font-kids { font-family: 'Fredoka', sans-serif; }
         
-        @keyframes float-delayed {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float-delayed {
-            animation: float-delayed 4s ease-in-out 2s infinite;
-        }
-
-        /* Gaya Tombol ala Game */
-        .btn-game {
-            transition: all 0.1s ease;
-        }
-        .btn-game:active {
-            transform: translateY(4px);
-            border-bottom-width: 0px;
-            margin-top: 4px;
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
-        body {
-            background-color: #f0f9ff;
-            background-image: radial-gradient(#bae6fd 2px, transparent 2px);
-            background-size: 30px 30px;
+        .btn-bounce:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .btn-bounce { transition: all 0.3s ease; }
+
+        /* Animasi Salah */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
         }
+        .shake-animation { animation: shake 0.5s ease-in-out; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #22c55e; }
+
+        /* Jajargenjang Custom */
+        .shape-btn-jajargenjang { clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%); }
     </style>
 </head>
-<body class="text-gray-800 antialiased font-sans">
+<body class="text-gray-800">
 
-    <!-- Header / Navigasi -->
-    <nav class="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl shadow-lg">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h1 class="text-2xl font-extrabold text-blue-600 tracking-wide">Flowchart<span class="text-yellow-500">Fun!</span></h1>
+    <!-- Navbar -->
+    <nav class="bg-green-500 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex flex-wrap justify-between items-center">
+            <div class="text-2xl font-bold font-kids flex items-center gap-2">
+                <i class="fa-solid fa-code"></i> KidsCoding
             </div>
-            <div class="hidden md:flex gap-6 font-bold text-gray-600">
-                <a href="#belajar" class="hover:text-blue-500 transition-colors">Belajar</a>
-                <a href="#contoh" class="hover:text-blue-500 transition-colors">Contoh</a>
-                <a href="#video" class="hover:text-blue-500 transition-colors">Video</a>
-                <a href="#puzzle" class="text-orange-500 hover:text-orange-700 transition-colors">Puzzle Game!</a>
-                <a href="#kuis" class="text-purple-600 hover:text-purple-800 transition-colors">Latihan HOTS</a>
+            <div class="flex gap-4 mt-2 sm:mt-0 overflow-x-auto text-sm sm:text-base font-semibold">
+                <a href="#materi" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-book-open"></i> Materi</a>
+                <a href="#video" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-play"></i> Video</a>
+                <a href="#puzzle" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-puzzle-piece"></i> Puzzle</a>
+                <a href="#kuis" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-gamepad"></i> Kuis</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="max-w-5xl mx-auto px-4 py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute top-0 left-10 text-yellow-400 text-5xl animate-float opacity-50"><i class="fas fa-star"></i></div>
-        <div class="absolute bottom-10 right-10 text-pink-400 text-5xl animate-float-delayed opacity-50"><i class="fas fa-heart"></i></div>
-        
-        <h2 class="text-4xl md:text-6xl font-black text-gray-800 mb-6 drop-shadow-sm">
-            Halo Kawan! Mari Belajar <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Flowchart Coding</span>
-        </h2>
-        <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto font-semibold">
-            Sebelum komputer bisa menjalankan game atau aplikasi, mereka butuh "Peta Harta Karun" lho! Peta itu namanya Flowchart! 🚀
-        </p>
-        <a href="#belajar" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-xl py-4 px-10 rounded-full shadow-lg border-b-4 border-yellow-600 btn-game">
-            Mulai Petualangan! <i class="fas fa-rocket ml-2"></i>
-        </a>
+    <!-- Header Hero -->
+    <header class="container mx-auto mt-10 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-green-600 mb-4 animate-bounce">Petualangan Flowchart! 🚀</h1>
+        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Mari belajar cara komputer berpikir menggunakan bentuk dan gambar yang seru. Cocok untuk programmer cilik kelas 4!</p>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-5xl mx-auto px-4 space-y-24 pb-24">
+    <!-- SECTION 1: MATERI -->
+    <section id="materi" class="container mx-auto mt-12 px-4">
+        <div class="glass-panel p-6 md:p-10">
+            <h2 class="text-3xl font-kids text-blue-600 mb-6 text-center"><i class="fa-solid fa-shapes"></i> Apa itu Flowchart?</h2>
+            
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-8">
+                <p class="text-lg"><strong>Flowchart (Diagram Alir)</strong> adalah peta jalan atau urutan langkah-langkah untuk menyelesaikan suatu masalah menggunakan bentuk-bentuk geometri. Komputer menggunakan flowchart agar tidak bingung saat menjalankan perintah kita!</p>
+            </div>
 
-        <!-- Bagian 1: Apa itu Flowchart? -->
-        <section id="belajar" class="scroll-mt-24">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <h3 class="text-2xl font-kids text-purple-600 mb-4"><i class="fa-solid fa-toolbox"></i> Bentuk dan Fungsinya</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <!-- Pengertian -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-blue-400 relative group hover:-translate-y-2 transition-transform">
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl text-blue-500 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3 class="text-2xl font-extrabold mb-4 text-gray-800">Apa itu Flowchart?</h3>
-                    <p class="text-lg text-gray-600">
-                        <strong>Flowchart (Bagan Alir)</strong> adalah gambar yang berisi bentuk-bentuk ajaib untuk menunjukkan langkah-langkah menyelesaikan masalah. Mirip seperti resep masakan untuk komputer!
-                    </p>
+                <!-- Oval -->
+                <div class="bg-white p-4 rounded-xl shadow-md border-2 border-red-200 text-center hover:shadow-lg transition">
+                    <div class="w-32 h-16 bg-red-200 border-2 border-red-500 rounded-[50px] mx-auto mb-4 flex items-center justify-center font-bold text-red-700">Mulai / Selesai</div>
+                    <h4 class="font-bold text-xl mb-2 text-red-600">Terminal (Oval)</h4>
+                    <p class="text-sm">Digunakan di paling <b>awal</b> (Mulai) dan di paling <b>akhir</b> (Selesai) sebuah cerita/program.</p>
                 </div>
 
-                <!-- Fungsi -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-green-400 relative group hover:-translate-y-2 transition-transform">
-                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-3xl text-green-500 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="text-2xl font-extrabold mb-4 text-gray-800">Fungsinya Apa?</h3>
-                    <p class="text-lg text-gray-600">
-                        Fungsinya untuk menyusun rencana sebelum kita menulis kode (coding). Dengan flowchart, kita tahu persis urutan apa yang harus dilakukan dari awal sampai akhir tanpa bingung.
-                    </p>
+                <!-- Jajargenjang -->
+                <div class="bg-white p-4 rounded-xl shadow-md border-2 border-blue-200 text-center hover:shadow-lg transition">
+                    <div class="w-32 h-16 bg-blue-200 border-2 border-blue-500 mx-auto mb-4 flex items-center justify-center font-bold text-blue-700 shape-btn-jajargenjang">Input / Output</div>
+                    <h4 class="font-bold text-xl mb-2 text-blue-600">Jajargenjang</h4>
+                    <p class="text-sm">Untuk <b>menyiapkan alat/bahan</b> (Input) atau <b>menampilkan hasil</b> (Output).</p>
                 </div>
 
-                <!-- Tujuan -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-purple-400 relative group hover:-translate-y-2 transition-transform">
-                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-3xl text-purple-500 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3 class="text-2xl font-extrabold mb-4 text-gray-800">Tujuannya?</h3>
-                    <p class="text-lg text-gray-600">
-                        Supaya kode yang kita buat rapi dan tidak error! Komputer itu pintar tapi harus diberi perintah yang sangat jelas. Flowchart melatih kita berpikir logis dan urut.
-                    </p>
+                <!-- Persegi -->
+                <div class="bg-white p-4 rounded-xl shadow-md border-2 border-green-200 text-center hover:shadow-lg transition">
+                    <div class="w-32 h-16 bg-green-200 border-2 border-green-500 rounded-md mx-auto mb-4 flex items-center justify-center font-bold text-green-700">Proses</div>
+                    <h4 class="font-bold text-xl mb-2 text-green-600">Persegi (Kotak)</h4>
+                    <p class="text-sm">Untuk menunjukkan sebuah <b>kegiatan, aksi, atau proses</b> yang sedang dilakukan.</p>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- Bagian 2: Bentuk-Bentuk Flowchart -->
-        <section class="bg-blue-600 rounded-[3rem] p-8 md:p-12 shadow-2xl text-white">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-black mb-4">Mengenal Bentuk Ajaib Flowchart 🪄</h2>
-                <p class="text-xl text-blue-100">Setiap bentuk punya tugas masing-masing, lho!</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                
-                <!-- Terminal (Oval) -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
-                    <div class="w-32 h-16 bg-green-400 rounded-full border-4 border-green-300 shadow-inner mb-4 flex items-center justify-center">
-                        <span class="text-green-900 font-bold">Mulai/Selesai</span>
+                <!-- Belah Ketupat -->
+                <div class="bg-white p-4 rounded-xl shadow-md border-2 border-yellow-200 text-center hover:shadow-lg transition">
+                    <div class="w-20 h-20 bg-yellow-200 border-2 border-yellow-500 mx-auto mb-4 flex items-center justify-center rotate-45">
+                        <span class="rotate-[-45deg] font-bold text-yellow-700 text-xs">Pilihan?</span>
                     </div>
-                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Terminal (Oval)</h4>
-                    <p class="text-sm text-blue-50">Digunakan HANYA saat program <b>Mulai</b> (Start) dan <b>Selesai</b> (End).</p>
-                </div>
-
-                <!-- Proses (Kotak) -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
-                    <div class="w-32 h-16 bg-blue-400 rounded-lg border-4 border-blue-300 shadow-inner mb-4 flex items-center justify-center">
-                        <span class="text-blue-900 font-bold">Proses Kegiatan</span>
-                    </div>
-                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Proses (Kotak)</h4>
-                    <p class="text-sm text-blue-50">Menggambarkan <b>tindakan</b> atau kegiatan yang sedang dilakukan.</p>
-                </div>
-
-                <!-- Input/Output (Jajargenjang) -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
-                    <div class="w-32 h-16 bg-yellow-400 transform -skew-x-12 border-4 border-yellow-300 shadow-inner mb-4 flex items-center justify-center">
-                        <span class="transform skew-x-12 text-yellow-900 font-bold">Data Masuk/Keluar</span>
-                    </div>
-                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Jajargenjang</h4>
-                    <p class="text-sm text-blue-50">Untuk <b>Input</b> (masukkan data) dan <b>Output</b> (tampilkan hasil).</p>
-                </div>
-
-                <!-- Keputusan (Belah Ketupat) -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
-                    <div class="w-24 h-24 bg-pink-400 transform rotate-45 border-4 border-pink-300 shadow-inner mb-4 flex items-center justify-center mt-2">
-                        <span class="transform -rotate-45 text-pink-900 font-bold leading-tight">Ada<br>Pilihan?</span>
-                    </div>
-                    <h4 class="font-bold text-xl text-yellow-300 mb-2 mt-2">Keputusan</h4>
-                    <p class="text-sm text-blue-50">Untuk sebuah <b>pilihan</b> atau pertanyaan (Ya / Tidak).</p>
-                </div>
-
-                <!-- Garis Alir (Panah) -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center text-center border border-white/20 hover:bg-white/20 transition-colors">
-                    <div class="h-24 flex items-center justify-center mb-4">
-                        <i class="fas fa-long-arrow-alt-right text-6xl text-white animate-pulse"></i>
-                    </div>
-                    <h4 class="font-bold text-xl text-yellow-300 mb-2">Garis Alir</h4>
-                    <p class="text-sm text-blue-50">Tanda panah menunjukkan <b>arah</b> dan urutan langkah yang harus diikuti.</p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Bagian 3: Contoh Flowchart Sehari-hari -->
-        <section id="contoh" class="scroll-mt-24">
-            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border-4 border-dashed border-gray-200">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-black text-gray-800 mb-4">Contoh: Membuat Teh Manis ☕</h2>
-                    <p class="text-lg text-gray-600">Mari kita baca peta petunjuk pembuatan teh manis ini dari atas ke bawah!</p>
-                </div>
-
-                <!-- Flowchart Diagram -->
-                <div class="flex flex-col items-center space-y-3 relative">
-                    <!-- Mulai -->
-                    <div class="w-40 py-3 bg-green-400 rounded-full text-center font-bold text-white shadow-md border-4 border-green-500 z-10">Mulai</div>
-                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
-                    
-                    <!-- Input -->
-                    <div class="w-64 py-4 bg-yellow-400 transform -skew-x-12 text-center shadow-md border-4 border-yellow-500 z-10">
-                        <span class="transform skew-x-12 block font-bold text-yellow-900 px-4">Siapkan Gelas, Air Panas, Teh, dan Gula</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
-                    
-                    <!-- Proses 1 -->
-                    <div class="w-64 py-4 bg-blue-400 text-center font-bold text-white shadow-md border-4 border-blue-500 rounded-lg z-10">Masukkan Teh & Gula ke Gelas</div>
-                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
-                    
-                    <!-- Proses 2 -->
-                    <div class="w-64 py-4 bg-blue-400 text-center font-bold text-white shadow-md border-4 border-blue-500 rounded-lg z-10">Tuang Air Panas & Aduk Rata</div>
-                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
-                    
-                    <!-- Output -->
-                    <div class="w-64 py-4 bg-yellow-400 transform -skew-x-12 text-center shadow-md border-4 border-yellow-500 z-10">
-                        <span class="transform skew-x-12 block font-bold text-yellow-900">Teh Manis Siap Diminum!</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-2xl text-gray-300"></i>
-                    
-                    <!-- Selesai -->
-                    <div class="w-40 py-3 bg-red-400 rounded-full text-center font-bold text-white shadow-md border-4 border-red-500 z-10">Selesai</div>
+                    <h4 class="font-bold text-xl mb-2 text-yellow-600">Belah Ketupat</h4>
+                    <p class="text-sm">Untuk membuat <b>keputusan atau pertanyaan</b> (Ya atau Tidak).</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Bagian 4: Video Edukasi -->
-        <section id="video" class="scroll-mt-24">
-            <div class="bg-purple-100 rounded-3xl p-8 md:p-12 shadow-xl text-center border-t-8 border-purple-400">
-                <h2 class="text-3xl md:text-4xl font-black text-purple-800 mb-6">Nonton Video Dulu Yuk! 🎥</h2>
-                <p class="text-lg text-purple-700 mb-8 max-w-2xl mx-auto">
-                    Untuk lebih paham, mari tonton video penjelasan singkat tentang flowchart ini. Perhatikan bentuk dan contohnya ya!
-                </p>
-                
-                <div class="max-w-3xl mx-auto bg-white p-3 rounded-2xl shadow-lg transform rotate-1 hover:rotate-0 transition-transform">
-                    <div class="aspect-w-16 aspect-h-9 overflow-hidden rounded-xl bg-gray-200" style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <!-- Embed Video YouTube (Berbahasa Indonesia, penjelasan mudah) -->
-                        <iframe src="https://www.youtube.com/embed/B1q2q3aDnRY" 
-                                title="Video Pembelajaran Flowchart" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen
-                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                        </iframe>
-                    </div>
+    <!-- SECTION 2: VIDEO -->
+    <section id="video" class="container mx-auto mt-12 px-4">
+        <div class="glass-panel p-6 md:p-10 text-center">
+            <h2 class="text-3xl font-kids text-red-500 mb-6"><i class="fa-brands fa-youtube"></i> Video Belajar Seru</h2>
+            <p class="mb-6">Tonton video ini dulu yuk biar makin paham tentang Flowchart!</p>
+            <div class="aspect-w-16 aspect-h-9 max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg border-4 border-white">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/QsxesHdgfk8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: PUZZLE (MERAKIT BENTUK DAN TEKS) -->
+    <section id="puzzle" class="container mx-auto mt-12 px-4">
+        <div class="glass-panel p-6 md:p-10 border-4 border-purple-400 bg-purple-50">
+            <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+                <h2 class="text-3xl font-kids text-purple-600"><i class="fa-solid fa-puzzle-piece"></i> Misi Puzzle Flowchart</h2>
+                <div class="flex gap-3">
+                    <div class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-xl shadow" id="puzzle-score-display">Skor: 0</div>
+                    <div class="bg-purple-600 text-white px-4 py-2 rounded-full font-bold text-xl shadow" id="level-indicator">Level 1 / 15</div>
                 </div>
             </div>
-        </section>
+            
+            <p class="mb-4 text-gray-700"><b>Cara Main:</b> Pilih <b>Bentuk</b> lalu klik pada kotak kosong. Setelah itu, pilih <b>Kalimat</b> lalu klik pada kotak yang sama! Hati-hati, ada kalimat jebakan! Susun agar ceritanya benar.</p>
 
-        <!-- Bagian Baru: Puzzle Interaktif -->
-        <section id="puzzle" class="scroll-mt-24">
-            <div class="bg-orange-100 rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-orange-400 relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 text-orange-200 text-9xl opacity-30 pointer-events-none"><i class="fas fa-puzzle-piece"></i></div>
-                
-                <div class="text-center mb-10 relative z-10">
-                    <div class="inline-block bg-orange-500 text-white font-bold px-4 py-1 rounded-full mb-3 shadow-md" id="puzzle-level-indicator">Level 1 / 10</div>
-                    <h2 id="puzzle-title" class="text-3xl md:text-4xl font-black text-gray-800 mb-4">Puzzle Logika: Memasak Mie Instan 🍜</h2>
-                    <p class="text-lg text-gray-700 font-semibold bg-white inline-block px-6 py-2 rounded-full shadow-sm">
-                        Cara Main: <b>Klik/Sentuh</b> blok di bawah, lalu <b>Klik</b> kotak kosong di sebelah kanan untuk menyusunnya!
-                    </p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row gap-8 relative z-10">
-                    <!-- Area Pilihan (Bank) -->
-                    <div class="flex-1 bg-white p-6 rounded-3xl shadow-inner border-2 border-orange-200">
-                        <h3 class="text-xl font-bold text-center text-orange-600 mb-4">Acak Blok Tersedia</h3>
-                        <div id="puzzle-bank" class="flex flex-wrap justify-center gap-4 min-h-[300px] content-start">
-                            <!-- Blok akan di-generate via JavaScript secara acak -->
+            <div class="bg-white rounded-xl p-4 shadow-inner mb-6" id="puzzle-play-area">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- Bank Bentuk -->
+                    <div class="bg-gray-100 p-4 rounded-xl border-2 border-gray-200">
+                        <h4 class="font-bold text-center mb-3 text-gray-600"><i class="fa-solid fa-shapes"></i> 1. Pilih Bentuk</h4>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button onclick="selectTool('shape', 'oval')" id="tool-shape-oval" class="tool-btn relative w-24 h-12 bg-red-200 border-2 border-red-500 rounded-[50px] hover:bg-red-300 transition shadow-sm"></button>
+                            <button onclick="selectTool('shape', 'jajargenjang')" id="tool-shape-jajargenjang" class="tool-btn relative w-24 h-12 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang hover:bg-blue-300 transition shadow-sm"></button>
+                            <button onclick="selectTool('shape', 'persegi')" id="tool-shape-persegi" class="tool-btn relative w-24 h-12 bg-green-200 border-2 border-green-500 rounded-md hover:bg-green-300 transition shadow-sm"></button>
+                            <button onclick="selectTool('shape', 'belah_ketupat')" id="tool-shape-belah_ketupat" class="tool-btn relative w-16 h-16 bg-yellow-200 border-2 border-yellow-500 rotate-45 hover:bg-yellow-300 transition shadow-sm mx-4"></button>
                         </div>
                     </div>
 
-                    <!-- Area Susun (Target) -->
-                    <div class="flex-1 bg-white p-6 rounded-3xl shadow-inner border-2 border-orange-200 flex flex-col items-center">
-                        <h3 class="text-xl font-bold text-center text-orange-600 mb-4">Susun Flowchart Di Sini</h3>
-                        
-                        <!-- Tempat kotak dinamis -->
-                        <div id="puzzle-target" class="w-full flex flex-col items-center gap-1.5 relative">
-                            <!-- Slot akan dibuat oleh JavaScript sesuai kebutuhan tiap level -->
-                        </div>
-                        
-                        <div class="mt-8 text-center w-full">
-                            <button onclick="checkPuzzle()" id="btn-check-puzzle" class="bg-green-500 hover:bg-green-600 text-white font-extrabold text-xl py-3 px-8 rounded-full shadow-lg border-b-4 border-green-700 btn-game w-full md:w-auto transition-transform">
-                                Cek Jawaban Puzzle <i class="fas fa-check-circle ml-2"></i>
-                            </button>
-                            <button onclick="nextPuzzle()" id="btn-next-puzzle" class="hidden bg-blue-500 hover:bg-blue-600 text-white font-extrabold text-xl py-3 px-8 rounded-full shadow-lg border-b-4 border-blue-700 btn-game w-full md:w-auto transition-transform mx-auto">
-                                Lanjut Level Berikut <i class="fas fa-arrow-right ml-2"></i>
-                            </button>
-                            <div id="puzzle-feedback" class="mt-4 font-bold text-lg hidden px-4 py-2 rounded-xl"></div>
+                    <!-- Bank Teks -->
+                    <div class="bg-gray-100 p-4 rounded-xl border-2 border-gray-200">
+                        <h4 class="font-bold text-center mb-3 text-gray-600"><i class="fa-solid fa-font"></i> 2. Pilih Kalimat</h4>
+                        <div id="text-bank" class="flex flex-wrap justify-center gap-2">
+                            <!-- Tombol teks diisi oleh JS -->
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Bagian 5: Kuis Interaktif -->
-        <section id="kuis" class="scroll-mt-24">
-            <div class="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-yellow-400 relative overflow-hidden">
-                <!-- Hiasan Background Kuis -->
-                <div class="absolute -top-10 -right-10 text-yellow-200 text-9xl opacity-30 pointer-events-none"><i class="fas fa-gamepad"></i></div>
+                <!-- Area Susun Flowchart -->
+                <div class="bg-purple-100 p-6 rounded-xl border-2 border-purple-200 flex flex-col items-center overflow-x-auto" id="flowchart-board">
+                    <!-- Slot diisi oleh JS -->
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-4" id="puzzle-action-container">
+                <button onclick="checkPuzzle()" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-full text-xl btn-bounce shadow-lg w-full md:w-auto">
+                    <i class="fa-solid fa-check-circle"></i> Cek Jawaban!
+                </button>
+            </div>
+
+            <!-- Hasil Akhir Puzzle -->
+            <div id="puzzle-result-container" class="hidden bg-white rounded-xl p-8 shadow-md border-2 border-purple-200 text-center mt-6">
+                <h3 class="text-4xl font-kids text-purple-600 mb-4">Semua Puzzle Selesai! 🎉</h3>
+                <p class="text-2xl mb-4">Total Skor Puzzle Kamu:</p>
+                <div class="text-6xl font-bold text-yellow-500 mb-6" id="final-puzzle-score">0</div>
+                <p class="text-lg text-gray-600 font-semibold mb-6">Luar biasa! Kamu berhasil menaklukkan kalimat jebakan dan menyusun logika dengan benar!</p>
+                <button onclick="restartPuzzle()" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-xl btn-bounce">
+                    <i class="fa-solid fa-rotate-right"></i> Main Puzzle Lagi
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: KUIS HOTS -->
+    <section id="kuis" class="container mx-auto mt-12 px-4 mb-20">
+        <div class="glass-panel p-6 md:p-10 border-4 border-orange-400 bg-orange-50">
+            <h2 class="text-3xl font-kids text-orange-600 mb-6 text-center"><i class="fa-solid fa-medal"></i> Kuis Tantangan Otak</h2>
+            
+            <div id="quiz-container" class="bg-white rounded-xl p-6 shadow-md border-2 border-orange-200">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-orange-200 text-orange-800 px-3 py-1 rounded-full font-bold text-sm" id="question-counter">Soal 1 / 15</span>
+                    <span class="font-bold text-gray-600">Skor: <span id="current-score">0</span></span>
+                </div>
                 
-                <div id="quiz-intro" class="text-center relative z-10">
-                    <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">Waktunya Kuis Seru! 🏆</h2>
-                    <p class="text-xl text-gray-600 mb-8">Uji pengetahuanmu dengan 15 pertanyaan seru. Siap menjadi Master Flowchart?</p>
-                    <button onclick="startQuiz()" class="bg-blue-500 hover:bg-blue-600 text-white font-extrabold text-2xl py-4 px-12 rounded-full shadow-lg border-b-8 border-blue-700 btn-game">
-                        Mulai Kuis <i class="fas fa-play ml-2"></i>
-                    </button>
-                </div>
-
-                <!-- Area Kuis (Disembunyikan pada awalnya) -->
-                <div id="quiz-area" class="hidden relative z-10 max-w-3xl mx-auto">
-                    <div class="flex justify-between items-center mb-6">
-                        <span class="bg-yellow-200 text-yellow-800 font-bold py-1 px-4 rounded-full text-sm" id="question-tracker">Soal 1 / 15</span>
-                        <span class="bg-green-200 text-green-800 font-bold py-1 px-4 rounded-full text-sm"><i class="fas fa-star text-yellow-500"></i> Skor: <span id="score-display">0</span></span>
-                    </div>
-
-                    <div class="bg-gray-50 border-2 border-gray-200 rounded-3xl p-6 md:p-10 mb-8 shadow-inner">
-                        <h3 id="question-text" class="text-2xl md:text-3xl font-extrabold text-gray-800 text-center leading-relaxed">
-                            <!-- Teks Pertanyaan akan muncul di sini -->
-                        </h3>
-                    </div>
-
-                    <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Pilihan jawaban akan di-generate JavaScript -->
-                    </div>
-                </div>
-
-                <!-- Area Hasil Kuis -->
-                <div id="result-area" class="hidden text-center relative z-10">
-                    <div class="text-8xl mb-6" id="result-emoji">🤩</div>
-                    <h3 class="text-4xl font-black text-gray-800 mb-2" id="result-title">Luar Biasa!</h3>
-                    <p class="text-2xl text-gray-600 mb-8">Skor Akhir Kamu: <strong class="text-blue-600 text-4xl" id="final-score">15</strong> / 15</p>
-                    <p id="result-message" class="text-xl text-gray-500 mb-8 font-semibold"></p>
-                    
-                    <button onclick="resetQuiz()" class="bg-green-500 hover:bg-green-600 text-white font-extrabold text-xl py-4 px-10 rounded-full shadow-lg border-b-6 border-green-700 btn-game">
-                        Main Lagi <i class="fas fa-redo ml-2"></i>
-                    </button>
+                <h3 id="question-text" class="text-xl md:text-2xl font-semibold mb-6">Pertanyaan muncul di sini...</h3>
+                
+                <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Opsi jawaban akan dimuat di sini -->
                 </div>
             </div>
-        </section>
 
-    </main>
+            <!-- Hasil Kuis -->
+            <div id="result-container" class="hidden bg-white rounded-xl p-8 shadow-md border-2 border-orange-200 text-center">
+                <h3 class="text-4xl font-kids text-orange-600 mb-4">Kuis Selesai! 🎉</h3>
+                <p class="text-2xl mb-4">Skor Akhir Kamu:</p>
+                <div class="text-6xl font-bold text-green-500 mb-6" id="final-score">100</div>
+                <p id="score-message" class="text-lg text-gray-600 font-semibold mb-6">Luar biasa! Kamu adalah master Flowchart!</p>
+                <button onclick="restartQuiz()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl btn-bounce">
+                    <i class="fa-solid fa-rotate-right"></i> Main Lagi
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-400 text-center py-8">
-        <p class="font-semibold">© 2026 Belajar Coding Kelas 4 - Flowchart Fun.</p>
-        <p class="text-sm mt-2">Dibuat khusus untuk calon programmer hebat masa depan!</p>
+    <footer class="bg-gray-800 text-white text-center py-6 mt-10">
+        <p class="font-semibold">Dibuat dengan ❤️ untuk Pembelajaran Anak SD Kelas 4</p>
     </footer>
 
-    <!-- Tambahan: Firebase Script untuk Menyimpan Nilai Otomatis -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- JAVASCRIPT -->
+    <script>
+        // ==========================================
+        // DATA PUZZLE (15 LEVEL)
+        // ==========================================
+        const puzzles = [
+            {
+                title: "1. Membuat Susu Cokelat",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan gelas & susu" },
+                    { shape: "persegi", text: "Tuang air & aduk" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Panggang di oven", "Tambahkan garam"]
+            },
+            {
+                title: "2. Menyalakan Televisi",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Ambil remote" },
+                    { shape: "persegi", text: "Tekan tombol Power" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Buka kulkas", "Nyalakan kompor gas"]
+            },
+            {
+                title: "3. Mencuci Tangan",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Basahi tangan" },
+                    { shape: "persegi", text: "Gunakan sabun" },
+                    { shape: "persegi", text: "Bilas air bersih" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Gunakan minyak goreng", "Siram dengan pasir"]
+            },
+            {
+                title: "4. Makan Siang",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Makan nasi" },
+                    { shape: "belah_ketupat", text: "Masih lapar?" },
+                    { shape: "persegi", text: "Tambah nasi" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Bermain HP", "Pergi tidur siang"]
+            },
+            {
+                title: "5. Membuang Sampah",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Pegang sampah" },
+                    { shape: "belah_ketupat", text: "Ada tong sampah?" },
+                    { shape: "persegi", text: "Buang ke tong" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Lempar ke sungai", "Simpan di saku"]
+            },
+            {
+                title: "6. Menyeberang Jalan",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Tengok kanan kiri" },
+                    { shape: "belah_ketupat", text: "Jalanan aman?" },
+                    { shape: "persegi", text: "Berjalan menyeberang" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Berlari tutup mata", "Main bola di jalan"]
+            },
+            {
+                title: "7. Lampu Belajar Mati",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "belah_ketupat", text: "Kabel dicolok?" },
+                    { shape: "persegi", text: "Colokkan kabel" },
+                    { shape: "persegi", text: "Nyalakan saklar" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Siram air ke lampu", "Sembunyikan lampu"]
+            },
+            {
+                title: "8. Membeli Pensil",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Bawa uang" },
+                    { shape: "belah_ketupat", text: "Uang cukup?" },
+                    { shape: "persegi", text: "Bayar di kasir" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Pinjam kasir", "Lari bawa pensil"]
+            },
+            {
+                title: "9. Menggosok Gigi",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan sikat & odol" },
+                    { shape: "persegi", text: "Sikat seluruh gigi" },
+                    { shape: "persegi", text: "Kumur-kumur" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Sikat rambut", "Gunakan sabun mandi"]
+            },
+            {
+                title: "10. Mengerjakan PR",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Buka buku PR" },
+                    { shape: "belah_ketupat", text: "Soal susah?" },
+                    { shape: "persegi", text: "Tanya Orang Tua" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Kerjakan tahun depan", "Robek buku PR"]
+            },
+            {
+                title: "11. Membuat Mie Rebus",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Rebus air panci" },
+                    { shape: "belah_ketupat", text: "Air mendidih?" },
+                    { shape: "persegi", text: "Masukkan mie" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Panggang di kuali", "Buang air rebusan"]
+            },
+            {
+                title: "12. Mengirim Surat",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Tulis surat" },
+                    { shape: "jajargenjang", text: "Siapkan perangko" },
+                    { shape: "persegi", text: "Kirim di Pos" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Ketik pesan WA", "Bakar suratnya"]
+            },
+            {
+                title: "13. Sepeda Kempes",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Ambil sepeda" },
+                    { shape: "belah_ketupat", text: "Ban kempes?" },
+                    { shape: "persegi", text: "Pompa ban" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Isi bensin sepeda", "Ganti ban traktor"]
+            },
+            {
+                title: "14. Menanam Bunga",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Gali tanah" },
+                    { shape: "jajargenjang", text: "Masukkan bibit" },
+                    { shape: "persegi", text: "Siram dengan air" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Siram dengan sirup", "Cabut akar tanaman"]
+            },
+            {
+                title: "15. Menjemur Pakaian",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "belah_ketupat", text: "Hari Hujan?" },
+                    { shape: "persegi", text: "Tunggu reda" },
+                    { shape: "persegi", text: "Jemur pakaian" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Pakai payung untuk baju", "Jemur di dalam kulkas"]
+            }
+        ];
 
-        // Setup Firebase 
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'koding-school-v1';
-        let firebaseConfig = {};
-        try { firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {}; } catch(e) {}
-        
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        let currentLevel = 0;
+        let puzzleScore = 0;
+        let selectedTool = null; 
+        let puzzleSlots = []; 
+        let availableTexts = [];
 
-        // Fungsi global untuk dipanggil oleh kuis saat selesai
-        window.saveScoreToDatabase = async function(finalScore) {
-            // 1. Ambil data identitas siswa dari parameter URL (Dikirim oleh Portal)
-            const urlParams = new URLSearchParams(window.location.search);
-            const nama = urlParams.get('nama');
-            const kelas = urlParams.get('kelas');
-            const absen = urlParams.get('absen');
+        // Fungsi mengacak array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
-            // Jika siswa membuka file langsung tanpa portal, kita lewati proses simpan
-            if(!nama || !kelas || !absen) {
-                console.log("Mode Latihan Bebas (Tidak Disimpan ke Database). Akses dari Portal untuk menyimpan nilai.");
+        // Inisialisasi Level Puzzle
+        function loadPuzzleLevel() {
+            const levelData = puzzles[currentLevel];
+            document.getElementById('puzzle-title').innerText = levelData.title;
+            document.getElementById('level-indicator').innerText = `Level ${currentLevel + 1} / 15`;
+            
+            // Siapkan slot kosong
+            puzzleSlots = Array(levelData.steps.length).fill().map(() => ({ shape: null, text: null, textId: null }));
+            
+            // Siapkan teks acak (Jawaban benar)
+            availableTexts = levelData.steps.map((s, index) => ({ id: index.toString(), text: s.text }));
+            
+            // Tambahkan Kalimat Pengecoh (Distractors)
+            if (levelData.distractors) {
+                levelData.distractors.forEach((dist, idx) => {
+                    availableTexts.push({ id: `dist_${idx}`, text: dist });
+                });
+            }
+
+            // Acak semua teks
+            availableTexts = shuffleArray(availableTexts);
+
+            selectedTool = null;
+            updateToolSelectionUI();
+            renderPuzzleBoard();
+            renderTextBank();
+        }
+
+        // Pilih Bentuk atau Teks
+        function selectTool(type, value, textId = null) {
+            selectedTool = { type, value, textId };
+            updateToolSelectionUI();
+        }
+
+        // Update tampilan highlight tombol yang dipilih
+        function updateToolSelectionUI() {
+            // Reset Shape Buttons
+            document.querySelectorAll('.tool-btn').forEach(btn => {
+                btn.classList.remove('ring-4', 'ring-purple-500', 'ring-offset-2');
+            });
+            // Reset Text Buttons
+            document.querySelectorAll('.text-tool-btn').forEach(btn => {
+                btn.classList.remove('ring-4', 'ring-purple-500', 'ring-offset-2', 'bg-purple-200');
+                btn.classList.add('bg-white');
+            });
+
+            if (selectedTool) {
+                if (selectedTool.type === 'shape') {
+                    document.getElementById(`tool-shape-${selectedTool.value}`).classList.add('ring-4', 'ring-purple-500', 'ring-offset-2');
+                } else if (selectedTool.type === 'text') {
+                    const btn = document.getElementById(`tool-text-${selectedTool.textId}`);
+                    if(btn) {
+                        btn.classList.remove('bg-white');
+                        btn.classList.add('ring-4', 'ring-purple-500', 'ring-offset-2', 'bg-purple-200');
+                    }
+                }
+            }
+        }
+
+        // Merender tombol teks yang tersedia
+        function renderTextBank() {
+            const bankContainer = document.getElementById('text-bank');
+            bankContainer.innerHTML = '';
+            
+            if (availableTexts.length === 0) {
+                bankContainer.innerHTML = '<span class="text-gray-400 italic text-sm">Semua kalimat sudah dipakai.</span>';
                 return;
             }
 
-            try {
-                // 2. Login otomatis
-                if (!auth.currentUser) {
-                    if (typeof __initial_auth_token !== 'undefined') {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
+            availableTexts.forEach(item => {
+                const btn = document.createElement('button');
+                btn.id = `tool-text-${item.id}`;
+                btn.className = "text-tool-btn bg-white border-2 border-gray-300 text-gray-700 px-3 py-2 rounded-lg text-sm font-semibold shadow-sm hover:bg-gray-50 transition";
+                btn.innerText = item.text;
+                btn.onclick = () => selectTool('text', item.text, item.id);
+                bankContainer.appendChild(btn);
+            });
+        }
+
+        // Merender Area Slot Jawaban
+        function renderPuzzleBoard() {
+            const board = document.getElementById('flowchart-board');
+            board.innerHTML = '';
+
+            puzzleSlots.forEach((slot, index) => {
+                // Container Slot & Panah Bawah
+                const slotWrapper = document.createElement('div');
+                slotWrapper.className = 'flex flex-col items-center relative';
+
+                // Kotak Utama Slot (Klik untuk menempatkan shape/text)
+                const box = document.createElement('div');
+                box.className = "w-48 h-24 relative flex items-center justify-center cursor-pointer transition-all duration-300 rounded-lg group";
+                
+                // Styling dasar jika kosong
+                if (!slot.shape) {
+                    box.classList.add('border-2', 'border-dashed', 'border-gray-400', 'bg-white', 'hover:bg-purple-50');
                 }
 
-                // 3. Susun data yang akan disetor ke database
-                const scoreData = {
-                    nama: nama,
-                    kelas: kelas,
-                    absen: parseInt(absen),
-                    materi: "Flowchart Kelas 4",
-                    nilai: finalScore,
-                    timestamp: new Date().toISOString()
-                };
+                // Inject Background Shape HTML jika ada shape
+                if (slot.shape) {
+                    box.innerHTML += getShapeHTML(slot.shape);
+                }
 
-                // 4. Kirim ke Firestore (Aturan Lokasi Data Wajib)
-                const scoresRef = collection(db, 'artifacts', appId, 'public', 'data', 'scores');
-                await addDoc(scoresRef, scoreData);
-                
-                console.log("Nilai berhasil tersimpan otomatis di database!");
-                
-                // Beri tahu siswa di layar
-                const msgBox = document.getElementById('result-message');
-                msgBox.innerHTML += `<br><span class="text-green-600 font-bold"><i class="fas fa-cloud-upload-alt"></i> Nilai otomatis tersimpan atas nama ${nama} (Absen: ${absen})</span>`;
+                // Inject Text jika ada
+                if (slot.text) {
+                    // Beri z-index tinggi agar teks di atas shape
+                    let textClass = "relative z-10 text-center font-bold text-sm px-4 leading-tight ";
+                    // Penyesuaian agar teks belah ketupat tidak kepotong
+                    if (slot.shape === 'belah_ketupat') textClass += "text-[10px] w-24"; 
+                    
+                    box.innerHTML += `<span class="${textClass} text-gray-900">${slot.text}</span>`;
+                } else if (!slot.shape && !slot.text) {
+                    box.innerHTML += `<span class="text-gray-400 text-xs text-center p-2"><i class="fa-solid fa-plus"></i><br>Klik di sini</span>`;
+                }
 
-            } catch(e) {
-                console.error("Gagal menyimpan nilai:", e);
+                // Event Listener Klik Slot
+                box.onclick = () => applyToolToSlot(index);
+                
+                // Tombol Hapus (Muncul saat di-hover jika slot tidak kosong)
+                if (slot.shape || slot.text) {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = "absolute -top-2 -right-2 bg-red-500 text-white w-6 h-6 rounded-full text-xs hidden group-hover:block z-20 hover:bg-red-600 shadow";
+                    deleteBtn.innerHTML = '<i class="fa-solid fa-times"></i>';
+                    deleteBtn.onclick = (e) => {
+                        e.stopPropagation(); // Cegah box.onclick terpanggil
+                        clearSlot(index);
+                    };
+                    box.appendChild(deleteBtn);
+                }
+
+                box.id = `slot-box-${index}`;
+                slotWrapper.appendChild(box);
+
+                // Tambah panah (kecuali kotak terakhir)
+                if (index < puzzleSlots.length - 1) {
+                    const arrow = document.createElement('div');
+                    arrow.className = "text-purple-400 text-2xl my-2 animate-pulse";
+                    arrow.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+                    slotWrapper.appendChild(arrow);
+                }
+
+                board.appendChild(slotWrapper);
+            });
+        }
+
+        // Dapatkan HTML untuk background bentuk
+        function getShapeHTML(shapeType) {
+            switch(shapeType) {
+                case 'oval': 
+                    return '<div class="absolute inset-0 bg-red-200 border-2 border-red-500 rounded-[50px] shadow-sm"></div>';
+                case 'persegi': 
+                    return '<div class="absolute inset-0 bg-green-200 border-2 border-green-500 rounded-md shadow-sm"></div>';
+                case 'jajargenjang': 
+                    return '<div class="absolute inset-0 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang shadow-sm"></div>';
+                case 'belah_ketupat': 
+                    return '<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-yellow-200 border-2 border-yellow-500 rotate-45 shadow-sm"></div>';
+                default: 
+                    return '';
             }
-        };
-    </script>
+        }
 
-    <!-- Logika JavaScript untuk Kuis -->
-    <script>
-        // Data Soal (15 Pertanyaan) dengan Pilihan HOTS
+        // Menerapkan alat yang dipilih ke slot
+        function applyToolToSlot(index) {
+            if (!selectedTool) {
+                // Notifikasi lembut
+                Swal.fire({
+                    toast: true, position: 'top-end', icon: 'info', title: 'Pilih Bentuk atau Kalimat dulu di sebelah kiri!',
+                    showConfirmButton: false, timer: 2000, timerProgressBar: true
+                });
+                return;
+            }
+
+            let slot = puzzleSlots[index];
+
+            if (selectedTool.type === 'shape') {
+                slot.shape = selectedTool.value;
+            } 
+            else if (selectedTool.type === 'text') {
+                // Jika slot sudah ada teksnya, kembalikan teks lama ke bank
+                if (slot.text) {
+                    availableTexts.push({ id: slot.textId, text: slot.text });
+                }
+                
+                // Masukkan teks baru
+                slot.text = selectedTool.value;
+                slot.textId = selectedTool.textId;
+                
+                // Hapus dari bank
+                availableTexts = availableTexts.filter(item => item.id !== selectedTool.textId);
+            }
+
+            // Bersihkan seleksi dan render ulang
+            selectedTool = null;
+            updateToolSelectionUI();
+            renderTextBank();
+            renderPuzzleBoard();
+        }
+
+        // Menghapus isi slot (kembalikan teks ke bank)
+        function clearSlot(index) {
+            let slot = puzzleSlots[index];
+            if (slot.text) {
+                availableTexts.push({ id: slot.textId, text: slot.text });
+            }
+            puzzleSlots[index] = { shape: null, text: null, textId: null };
+            
+            selectedTool = null;
+            updateToolSelectionUI();
+            renderTextBank();
+            renderPuzzleBoard();
+        }
+
+        // Cek Jawaban Puzzle
+        function checkPuzzle() {
+            const levelData = puzzles[currentLevel];
+            let isAllCorrect = true;
+
+            // Cek apakah ada yang masih kosong
+            const hasEmpty = puzzleSlots.some(slot => !slot.shape || !slot.text);
+            if (hasEmpty) {
+                Swal.fire('Oops!', 'Lengkapi semua kotak dan isi kalimatnya ya!', 'warning');
+                return;
+            }
+
+            // Cek kebenaran tiap slot
+            puzzleSlots.forEach((slot, index) => {
+                const correctStep = levelData.steps[index];
+                const boxElement = document.getElementById(`slot-box-${index}`);
+                
+                if (slot.shape === correctStep.shape && slot.text === correctStep.text) {
+                    boxElement.classList.add('ring-4', 'ring-green-400', 'ring-offset-2');
+                } else {
+                    isAllCorrect = false;
+                    boxElement.classList.add('shake-animation', 'ring-4', 'ring-red-400', 'ring-offset-2');
+                    setTimeout(() => {
+                        boxElement.classList.remove('shake-animation', 'ring-4', 'ring-red-400', 'ring-offset-2');
+                    }, 600);
+                }
+            });
+
+            if (isAllCorrect) {
+                // Tambah skor untuk level yang benar (+100)
+                puzzleScore += 100;
+                document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                
+                if (currentLevel < puzzles.length - 1) {
+                    Swal.fire({
+                        title: 'Hebat Sekali! 🌟',
+                        text: 'Susunan flowchart kamu sempurna! (+100 Poin)',
+                        icon: 'success',
+                        confirmButtonText: 'Lanjut Level Berikutnya',
+                        confirmButtonColor: '#10b981'
+                    }).then(() => {
+                        currentLevel++;
+                        loadPuzzleLevel();
+                    });
+                } else {
+                    // Semua Level Selesai
+                    document.getElementById('puzzle-play-area').classList.add('hidden');
+                    document.getElementById('puzzle-action-container').classList.add('hidden');
+                    document.getElementById('puzzle-result-container').classList.remove('hidden');
+                    document.getElementById('final-puzzle-score').innerText = puzzleScore;
+                    
+                    Swal.fire({
+                        title: 'SELAMAT! 🎉',
+                        text: `Kamu menyelesaikan semua puzzle dengan total skor ${puzzleScore}!`,
+                        icon: 'success',
+                        confirmButtonText: 'Horeee!',
+                        confirmButtonColor: '#10b981'
+                    });
+                }
+            } else {
+                // Kurangi skor jika salah cek (-15 poin), minimum skor adalah 0
+                puzzleScore = Math.max(0, puzzleScore - 15);
+                document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
+                
+                Swal.fire('Ada yang salah!', 'Skor kamu dikurangi 15 poin. Hati-hati dengan kalimat jebakan! Periksa lagi pasangan Bentuk dan Kalimatnya.', 'error');
+            }
+        }
+
+        // Restart (Main Ulang) Puzzle
+        function restartPuzzle() {
+            currentLevel = 0;
+            puzzleScore = 0;
+            document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
+            
+            document.getElementById('puzzle-result-container').classList.add('hidden');
+            document.getElementById('puzzle-play-area').classList.remove('hidden');
+            document.getElementById('puzzle-action-container').classList.remove('hidden');
+            
+            loadPuzzleLevel();
+        }
+
+        // ==========================================
+        // DATA KUIS HOTS
+        // ==========================================
         const quizData = [
             {
-                question: "Apa definisi paling tepat mengenai 'Flowchart' dalam pemrograman?",
-                options: [
-                    "Langkah-langkah penyelesaian masalah yang ditulis menggunakan kalimat paragraf panjang", 
-                    "Bagan alir yang menggunakan simbol khusus untuk menunjukkan urutan logis penyelesaian masalah", 
-                    "Kode bahasa pemrograman rumit yang diketik langsung ke dalam komputer", 
-                    "Kumpulan gambar bebas dan warna-warni untuk menghias tampilan sebuah aplikasi"
-                ],
+                question: "Budi ingin membuat flowchart 'Cara Memasak Mie'. Bentuk apa yang paling tepat untuk langkah 'Masukkan mie ke dalam panci'?",
+                options: ["Terminal (Oval)", "Persegi (Kotak)", "Belah Ketupat", "Lingkaran"],
+                answer: 1 // Persegi
+            },
+            {
+                question: "Siti melihat bentuk Belah Ketupat dalam flowchart 'Bermain Hujan'. Tulisan apa yang paling cocok di dalam belah ketupat tersebut?",
+                options: ["Gunakan payung", "Apakah hari sedang hujan?", "Mulai bermain", "Selesai"],
+                answer: 1 // Apakah hari sedang hujan?
+            },
+            {
+                question: "Andi membuat algoritma tebak angka. Jika tebakan salah, ia harus mencoba lagi. Jika benar, permainan selesai. Mengapa Andi HARUS menggunakan bentuk belah ketupat?",
+                options: ["Karena belah ketupat digunakan untuk menulis hasil tebakan.", "Karena ia butuh bentuk untuk membuat keputusan (tebakan benar atau salah).", "Karena bentuknya keren untuk game.", "Karena belah ketupat artinya 'Selesai'."],
+                answer: 1 
+            },
+            {
+                question: "Di sebuah restoran robot, ada perintah 'Siapkan piring dan sendok'. Dalam flowchart, perintah menyiapkan bahan (input) menggunakan bentuk...",
+                options: ["Jajargenjang", "Oval", "Belah Ketupat", "Garis Lurus"],
+                answer: 0 // Jajargenjang
+            },
+            {
+                question: "Apa yang akan terjadi pada program komputer jika kita TIDAK memberikan bentuk Oval (Terminal) 'Selesai' di akhir flowchart?",
+                options: ["Komputer akan berjalan lebih cepat.", "Komputer bisa kebingungan dan terus mengulang perintah tanpa henti (error).", "Layar komputer akan mati sendiri.", "Program akan langsung mencetak kertas."],
                 answer: 1
             },
             {
-                question: "Mengapa kita menggunakan bentuk Oval (Kapsul) dalam flowchart?",
-                options: [
-                    "Hanya untuk menandai titik awal (Mulai) dan titik akhir (Selesai) dari sebuah program", 
-                    "Untuk menghitung angka atau memproses sebuah kegiatan yang berulang-ulang", 
-                    "Untuk menerima informasi dan data yang diketik oleh pengguna komputer", 
-                    "Sebagai penghubung jika flowchart terlalu panjang dan harus pindah ke halaman lain"
-                ],
-                answer: 0
+                question: "Nina menyusun langkah: (1) Mulai, (2) Ambil buku, (3) Baca buku, (4) Selesai. Langkah mana yang harus dimasukkan ke dalam bentuk Persegi (Proses)?",
+                options: ["Mulai", "Ambil buku", "Baca buku", "Selesai"],
+                answer: 2 // Baca buku
             },
             {
-                question: "Bentuk Kotak (Persegi Panjang) sangat penting dalam flowchart. Apa fungsinya?",
-                options: [
-                    "Menentukan apakah sebuah program harus berhenti atau lanjut ke tahap berikutnya", 
-                    "Memasukkan data dari luar, seperti mengetik password atau menekan tombol", 
-                    "Melakukan sebuah perhitungan atau tindakan / proses tertentu secara berurutan", 
-                    "Menandai awal dari sebuah urutan kegiatan agar komputer siap bekerja"
-                ],
+                question: "Jika kamu membuat mesin penjual minuman otomatis. Saat mesin mengecek 'Apakah uang pembeli cukup?', panah dari bentuk Belah Ketupat harus bercabang menjadi dua. Apa arti dua cabang itu?",
+                options: ["Satu arah untuk koin, satu arah untuk kertas.", "Satu arah jika jawaban 'Ya', satu arah jika jawaban 'Tidak'.", "Satu arah untuk minuman dingin, satu untuk panas.", "Satu untuk masuk, satu untuk keluar."],
+                answer: 1
+            },
+            {
+                question: "Anton salah menggambar flowchart. Ia menaruh tulisan 'Mulai' di dalam bentuk Jajargenjang. Mengapa ini dianggap salah?",
+                options: ["Karena Jajargenjang warnanya biru.", "Karena 'Mulai' adalah proses yang harusnya di Persegi.", "Karena Jajargenjang untuk Input/Output, sedangkan 'Mulai' harusnya Oval (Terminal).", "Karena tulisannya terlalu pendek."],
                 answer: 2
             },
             {
-                question: "Manakah pernyataan yang BENAR tentang penggunaan bentuk Jajargenjang?",
-                options: [
-                    "Menggambarkan kegiatan yang membutuhkan waktu sangat lama untuk diproses komputer", 
-                    "Menunjukkan proses Input (memasukkan data) dan Output (menampilkan hasil ke layar)", 
-                    "Mengevaluasi jawaban dari pertanyaan Ya atau Tidak untuk mengambil keputusan", 
-                    "Mengawali sebuah sistem sebelum data dimasukkan oleh programmer"
-                ],
+                question: "Bentuk panah (garis alir) dalam flowchart berfungsi untuk...",
+                options: ["Menghias diagram agar tidak sepi.", "Menunjukkan arah dan urutan langkah yang harus dilakukan komputer.", "Memotong bentuk yang terlalu besar.", "Membuat komputer menggambar garis."],
                 answer: 1
             },
             {
-                question: "Dalam membuat flowchart merebus air, kita harus mengecek: 'Apakah air sudah mendidih?'. Bentuk apa yang paling tepat untuk logika ini dan mengapa?",
-                options: [
-                    "Belah Ketupat, karena bentuk ini membagi jalan menjadi dua pilihan keputusan (Ya atau Tidak)", 
-                    "Kotak, karena mengecek air yang direbus adalah sebuah proses kegiatan fisik", 
-                    "Jajargenjang, karena kita sedang menunggu hasil (output) berupa air yang mendidih", 
-                    "Oval, karena jika air sudah mendidih maka proses merebus air otomatis selesai"
-                ],
-                answer: 0
-            },
-            {
-                question: "Garis alir (Tanda Panah) tidak boleh sembarangan digambar. Apa fungsi utamanya?",
-                options: [
-                    "Mengelompokkan bentuk-bentuk flowchart yang memiliki kemiripan fungsi", 
-                    "Menunjukkan arah urutan langkah eksekusi yang harus dipatuhi oleh sistem", 
-                    "Menandai proses mana yang paling penting dan harus dikerjakan paling pertama", 
-                    "Menghubungkan dua aplikasi yang berbeda agar bisa berjalan bersamaan tanpa error"
-                ],
-                answer: 1
-            },
-            {
-                question: "Seorang programmer yang ahli selalu membuat flowchart sebelum mulai coding. Mengapa langkah ini krusial?",
-                options: [
-                    "Agar komputer bisa otomatis membuatkan program murni dari gambar bagan tersebut", 
-                    "Untuk merencanakan alur logika agar mencegah terjadinya kesalahan (error) saat menulis kode", 
-                    "Supaya kode program yang diketik nantinya menjadi lebih pendek dan tidak memakan memori", 
-                    "Karena bahasa pemrograman komputer hanya bisa mendeteksi bentuk gambar, bukan teks"
-                ],
-                answer: 1
-            },
-            {
-                question: "Aksi 'Aduk teh hingga gula larut' dalam flowchart pembuatan teh manis digambarkan menggunakan bentuk apa?",
-                options: [
-                    "Kotak, karena mengaduk adalah murni sebuah tindakan atau proses kegiatan", 
-                    "Jajargenjang, karena kita memberikan input (memasukkan) sendok ke dalam gelas", 
-                    "Belah Ketupat, karena kita harus mengambil keputusan berapa kali harus mengaduk", 
-                    "Oval, karena mengaduk adalah hal pertama yang harus dilakukan agar teh manis"
-                ],
-                answer: 0
-            },
-            {
-                question: "Bagaimana standar arah membaca alur sebuah flowchart yang baik dan benar?",
-                options: [
-                    "Dari bentuk yang ukurannya paling besar menuju ke bentuk yang paling kecil", 
-                    "Bebas dari mana saja asalkan mengikuti arah tanda panah dengan teliti dan runut", 
-                    "Umumnya terstruktur dari arah atas turun ke bawah, dan dari kiri ke kanan", 
-                    "Selalu bermula dari tengah (pusat) kemudian menyebar ke segala arah secara bersamaan"
-                ],
+                question: "Dalam game Super Mario, jika Mario menyentuh musuh, nyawanya berkurang. Logika 'Apakah menyentuh musuh?' digambar dengan...",
+                options: ["Persegi", "Oval", "Belah Ketupat", "Jajargenjang"],
                 answer: 2
             },
             {
-                question: "Apa perbedaan paling mendasar antara bentuk Kotak (Proses) dan Belah Ketupat (Keputusan)?",
-                options: [
-                    "Kotak hanya memiliki 1 jalan keluar, sedangkan Belah Ketupat minimal memiliki 2 jalan keluar (misal: Ya/Tidak)", 
-                    "Kotak digunakan untuk menampilkan hasil perhitungan, sedangkan Belah Ketupat untuk memulai perhitungan", 
-                    "Kotak berisi perintah teks panjang, sedangkan Belah Ketupat hanya berisi angka matematika", 
-                    "Kotak digunakan hanya di awal pembuatan program, sedangkan Belah Ketupat khusus di akhir program"
-                ],
-                answer: 0
+                question: "Kamu disuruh membuat flowchart 'Cara Mengecas HP'. Jika digabungkan, pasangan Bentuk dan Tulisan yang BENAR adalah...",
+                options: ["Belah Ketupat -> 'Colokkan kabel ke listrik'", "Persegi -> 'Baterai HP penuh?'", "Jajargenjang -> 'Ambil Charger'", "Oval -> 'Menunggu baterai penuh'"],
+                answer: 2
             },
             {
-                question: "Logika Program: 'Jika Hujan -> Bawa Payung', 'Jika Cerah -> Pakai Topi'. Bentuk flowchart yang cocok untuk menyeleksi kondisi cuaca tersebut adalah...",
-                options: [
-                    "Belah ketupat, karena sistem harus mengecek kondisi cuaca untuk memilih jalur tindakan selanjutnya", 
-                    "Kotak, karena aktivitas memakai payung atau memakai topi adalah sebuah kegiatan rutinitas", 
-                    "Jajargenjang, karena kondisi cuaca (hujan/cerah) adalah sebuah input dari alam semesta", 
-                    "Oval, karena jika cuaca terlalu buruk maka kita akan langsung mengakhiri rencana perjalanan"
-                ],
-                answer: 0
-            },
-            {
-                question: "Langkah 'Tampilkan nilai ujian di layar monitor' merupakan contoh proses Output. Maka digambar dengan bentuk...",
-                options: [
-                    "Jajargenjang, karena bentuk ini khusus digunakan untuk interaksi Input data dan Output informasi", 
-                    "Kotak, karena menampilkan nilai di layar monitor membutuhkan proses perhitungan yang rumit", 
-                    "Belah Ketupat, karena siswa harus mengecek apakah nilainya di atas KKM atau harus remidial", 
-                    "Oval, karena setelah nilai ujian ditampilkan maka program pendidikan tersebut pasti selesai"
-                ],
-                answer: 0
-            },
-            {
-                question: "Dalam sebuah sistem, jika password yang diinput ternyata 'Salah', maka pengguna disuruh mengetik ulang. Bagaimana menggambarnya di flowchart?",
-                options: [
-                    "Membuat bentuk Oval (Selesai) di tengah jalan untuk menghentikan paksa program", 
-                    "Menarik garis panah (dari opsi 'Tidak') berputar kembali ke langkah input password sebelumnya", 
-                    "Membuat dua gambar flowchart yang terpisah; satu untuk password benar, satu untuk salah", 
-                    "Mengubah bentuk Kotak input menjadi Belah Ketupat agar sistem mengabaikan password yang salah"
-                ],
+                question: "Flowchart sangat berguna bagi programmer komputer. Menurutmu, apa alasan utamanya?",
+                options: ["Agar kode program terlihat panjang dan sulit.", "Untuk merencanakan logika dan memecahkan masalah sebelum mulai mengetik kode.", "Sebagai pengganti buku gambar.", "Agar keyboard komputer tidak cepat rusak."],
                 answer: 1
             },
             {
-                question: "Analisis urutan flowchart memasak mie instan berikut. Manakah urutan yang secara logika paling tepat?",
-                options: [
-                    "Mulai -> Masukkan Mie -> Rebus Air -> Selesai", 
-                    "Mulai -> Rebus Air -> Air Mendidih? (Ya) -> Masukkan Mie -> Selesai", 
-                    "Mulai -> Air Mendidih? (Ya) -> Rebus Air -> Masukkan Mie -> Selesai", 
-                    "Mulai -> Makan Mie -> Rebus Air -> Buang Air -> Selesai"
-                ],
+                question: "Sebuah pabrik cokelat menggunakan flowchart. Ada langkah 'Tampilkan jumlah cokelat di layar'. Langkah (Output) ini menggunakan bentuk...",
+                options: ["Jajargenjang", "Belah Ketupat", "Persegi", "Oval"],
+                answer: 0
+            },
+            {
+                question: "Apa bedanya Persegi dan Jajargenjang?",
+                options: ["Persegi untuk memulai, Jajargenjang untuk mengakhiri.", "Persegi untuk proses/kegiatan, Jajargenjang untuk input barang/tampilkan hasil.", "Persegi untuk komputer, Jajargenjang untuk manusia.", "Tidak ada bedanya, boleh ditukar sesuka hati."],
                 answer: 1
             },
             {
-                question: "Apa tujuan utama (kompetensi dasar) siswa kelas 4 SD belajar logika flowchart?",
-                options: [
-                    "Mampu menghafal puluhan bahasa pemrograman komputer tingkat tinggi seperti orang dewasa", 
-                    "Melatih cara berpikir komputasional yang logis, runtut, dan sistematis dalam memecahkan masalah", 
-                    "Agar keterampilan menggambar bentuk-bentuk geometri di buku tulis menjadi jauh lebih rapi", 
-                    "Untuk meningkatkan kecepatan komputer / laptop saat menjalankan game yang berukuran berat"
-                ],
+                question: "Jika cuaca mendung, bawa payung. Jika cerah, pakai topi. Proses 'memilih' berdasarkan cuaca ini merupakan contoh dari...",
+                options: ["Terminal (Awal/Akhir)", "Decision (Keputusan/Belah Ketupat)", "Proses Berulang (Loop)", "Input Data"],
                 answer: 1
             }
         ];
 
-        // Variabel State Kuis
-        let currentQuestionIndex = 0;
+        let currentQuestion = 0;
         let score = 0;
-        let synth; // Untuk efek suara Tone.js
-        let audioInitialized = false;
 
-        // Elemen DOM
-        const introArea = document.getElementById('quiz-intro');
-        const quizArea = document.getElementById('quiz-area');
-        const resultArea = document.getElementById('result-area');
-        const questionText = document.getElementById('question-text');
-        const optionsContainer = document.getElementById('options-container');
-        const questionTracker = document.getElementById('question-tracker');
-        const scoreDisplay = document.getElementById('score-display');
-
-        // Fungsi Memulai Kuis
-        async function startQuiz() {
-            // Inisialisasi Audio Context Tone.js (harus dari gesture user)
-            if (!audioInitialized) {
-                await Tone.start();
-                synth = new Tone.Synth().toDestination();
-                audioInitialized = true;
-            }
-
-            // Mainkan suara mulai
-            synth.triggerAttackRelease("C5", "8n");
-
-            currentQuestionIndex = 0;
-            score = 0;
-            updateScore();
-            
-            introArea.classList.add('hidden');
-            resultArea.classList.add('hidden');
-            quizArea.classList.remove('hidden');
-            
-            loadQuestion();
-        }
-
-        // Fungsi Load Pertanyaan
         function loadQuestion() {
-            const currentQ = quizData[currentQuestionIndex];
+            const q = quizData[currentQuestion];
+            document.getElementById('question-counter').innerText = `Soal ${currentQuestion + 1} / 15`;
+            document.getElementById('question-text').innerText = q.question;
             
-            // Update Tracker
-            questionTracker.innerText = `Soal ${currentQuestionIndex + 1} / ${quizData.length}`;
-            questionText.innerText = currentQ.question;
-            
-            // Bersihkan opsi sebelumnya
-            optionsContainer.innerHTML = '';
-            
-            // Render tombol pilihan
-            currentQ.options.forEach((option, index) => {
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = ''; // Bersihkan opsi sebelumnya
+
+            q.options.forEach((opt, index) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left bg-white hover:bg-blue-50 border-2 border-gray-300 hover:border-blue-500 rounded-2xl p-4 font-bold text-gray-700 transition-all shadow-sm btn-game text-lg md:text-xl";
-                btn.innerText = option;
-                btn.onclick = () => selectAnswer(index, btn);
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-orange-200 hover:bg-orange-100 hover:border-orange-400 transition font-medium text-lg btn-bounce bg-white";
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index, btn);
                 optionsContainer.appendChild(btn);
             });
         }
 
-        // Fungsi Pilih Jawaban
-        function selectAnswer(selectedIndex, btnElement) {
-            // Nonaktifkan semua tombol agar tidak diklik dua kali
-            const allButtons = optionsContainer.querySelectorAll('button');
-            allButtons.forEach(btn => {
-                btn.disabled = true;
-                btn.classList.remove('hover:bg-blue-50', 'hover:border-blue-500');
-            });
+        function checkAnswer(selectedIndex, btnElement) {
+            // Matikan semua tombol agar tidak diklik dua kali
+            const buttons = document.querySelectorAll('#options-container button');
+            buttons.forEach(b => b.disabled = true);
 
-            const correctIndex = quizData[currentQuestionIndex].answer;
-            
+            const correctIndex = quizData[currentQuestion].answer;
+
             if (selectedIndex === correctIndex) {
-                // Jawaban Benar
-                btnElement.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
-                btnElement.innerHTML += ' <i class="fas fa-check-circle float-right text-2xl text-green-500"></i>';
-                score++;
-                updateScore();
-                // Efek suara benar (Nada ceria)
-                if(synth) {
-                    const now = Tone.now();
-                    synth.triggerAttackRelease("C4", "8n", now);
-                    synth.triggerAttackRelease("E4", "8n", now + 0.1);
-                    synth.triggerAttackRelease("G4", "4n", now + 0.2);
-                }
+                // Benar
+                btnElement.classList.remove('border-orange-200', 'bg-white');
+                btnElement.classList.add('bg-green-500', 'text-white', 'border-green-600');
+                score += 10;
+                document.getElementById('current-score').innerText = score;
+                
+                // Sound effect kecil (menggunakan AudioContext dasar browser agar ringan)
+                playTone(600, "sine", 0.1); 
+                setTimeout(() => playTone(800, "sine", 0.15), 100);
+
             } else {
-                // Jawaban Salah
-                btnElement.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
-                btnElement.innerHTML += ' <i class="fas fa-times-circle float-right text-2xl text-red-500"></i>';
+                // Salah
+                btnElement.classList.remove('border-orange-200', 'bg-white');
+                btnElement.classList.add('bg-red-500', 'text-white', 'border-red-600', 'shake-animation');
                 
-                // Tunjukkan yang benar
-                allButtons[correctIndex].classList.add('bg-green-100', 'border-green-500');
-                
-                // Efek suara salah (Nada rendah)
-                if(synth) synth.triggerAttackRelease("C3", "4n");
+                // Tunjukkan jawaban benar
+                buttons[correctIndex].classList.remove('border-orange-200', 'bg-white');
+                buttons[correctIndex].classList.add('bg-green-300', 'border-green-500');
+
+                playTone(300, "sawtooth", 0.3);
             }
 
-            // Tunggu sebentar lalu lanjut soal
+            // Lanjut soal
             setTimeout(() => {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < quizData.length) {
+                currentQuestion++;
+                if (currentQuestion < quizData.length) {
                     loadQuestion();
                 } else {
-                    showResults();
+                    showResult();
                 }
             }, 1500);
         }
 
-        // Fungsi Update Skor Visual
-        function updateScore() {
-            scoreDisplay.innerText = score;
-        }
-
-        // Fungsi Tampilkan Hasil Akhir
-        function showResults() {
-            quizArea.classList.add('hidden');
-            resultArea.classList.remove('hidden');
+        function showResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            const resultBox = document.getElementById('result-container');
+            resultBox.classList.remove('hidden');
             
-            document.getElementById('final-score').innerText = score;
+            const finalScoreElem = document.getElementById('final-score');
+            finalScoreElem.innerText = score;
             
-            // --- MODIFIKASI: PANGGIL FUNGSI SIMPAN KE DATABASE ---
-            if (typeof window.saveScoreToDatabase === 'function') {
-                window.saveScoreToDatabase(score);
-            }
-            
-            const emoji = document.getElementById('result-emoji');
-            const title = document.getElementById('result-title');
-            const message = document.getElementById('result-message');
-            
-            // Kustomisasi pesan berdasarkan skor
-            if (score === 15) {
-                emoji.innerText = '🏆';
-                title.innerText = 'Sempurna!';
-                message.innerText = 'Kamu adalah Master Flowchart sejati! Siap untuk mulai coding nyata!';
-                // Suara kemenangan
-                if(synth){
-                    const now = Tone.now();
-                    synth.triggerAttackRelease("C4", "8n", now);
-                    synth.triggerAttackRelease("E4", "8n", now + 0.1);
-                    synth.triggerAttackRelease("G4", "8n", now + 0.2);
-                    synth.triggerAttackRelease("C5", "2n", now + 0.3);
-                }
-            } else if (score >= 10) {
-                emoji.innerText = '🌟';
-                title.innerText = 'Bagus Sekali!';
-                message.innerText = 'Kamu sudah sangat paham dasar-dasar flowchart. Sedikit lagi jadi sempurna!';
-                if(synth) synth.triggerAttackRelease("G4", "2n");
+            const message = document.getElementById('score-message');
+            if(score === 150) {
+                message.innerText = "SEMPURNA! Kamu adalah Programmer Cilik Jenius! 🏆";
+                confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+            } else if (score >= 100) {
+                message.innerText = "Luar biasa! Pemahaman logikamu sangat bagus! 🌟";
+                confetti();
             } else {
-                emoji.innerText = '💪';
-                title.innerText = 'Tetap Semangat!';
-                message.innerText = 'Mari baca materinya lagi dan coba kuisnya sekali lagi ya!';
-                if(synth) synth.triggerAttackRelease("E4", "4n");
+                message.innerText = "Tetap semangat! Coba baca materinya lagi dan mainkan puzzlenya ya! 💪";
             }
         }
 
-        // Fungsi Reset Kuis
-        function resetQuiz() {
-            if(synth) synth.triggerAttackRelease("C4", "8n");
-            introArea.classList.remove('hidden');
-            resultArea.classList.add('hidden');
-            quizArea.classList.add('hidden');
-            window.scrollTo({ top: document.getElementById('kuis').offsetTop - 50, behavior: 'smooth' });
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('current-score').innerText = score;
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            loadQuestion();
         }
 
-        // ==========================================
-        // LOGIKA GAME PUZZLE FLOWCHART (10 LEVEL)
-        // ==========================================
-        
-        // Gaya warna (tema) untuk mempercepat penulisan data
-        const pStyle = {
-            start: "bg-green-400 border-green-500 text-white",
-            end: "bg-red-400 border-red-500 text-white",
-            io: "bg-yellow-400 border-yellow-500 text-yellow-900", // Jajargenjang
-            process: "bg-blue-400 border-blue-500 text-white" // Kotak
+        // Simple Tone Generator untuk SFX (Tanpa Library Eksternal)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(frequency, type, duration) {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.type = type;
+            oscillator.frequency.value = frequency;
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.start();
+            gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+            oscillator.stop(audioCtx.currentTime + duration);
+        }
+
+        // Inisialisasi Saat Halaman Dimuat
+        window.onload = () => {
+            loadPuzzleLevel();
+            loadQuestion();
         };
-
-        // Data 10 Level Puzzle (HOTS, kehidupan sehari-hari)
-        const allPuzzles = [
-            {
-                title: "Memasak Mie Instan 🍜",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Siapkan Panci & Air", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Rebus Air", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Masukkan Mie", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Mie Matang", type: "jajar", color: pStyle.io },
-                    { id: 6, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Menggosok Gigi 🪥",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Ambil Sikat & Odol", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Sikat Gigi Rata", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Kumur-kumur", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Mencuci Tangan Bersih 🧼",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Buka Keran Air", type: "kotak", color: pStyle.process },
-                    { id: 3, text: "Tuang Sabun", type: "jajar", color: pStyle.io },
-                    { id: 4, text: "Gosok Sela Tangan", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Bilas & Keringkan", type: "kotak", color: pStyle.process },
-                    { id: 6, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Jajan Es Krim 🍦",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Bawa Uang Jajan", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Pilih Rasa Cokelat", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Bayar di Kasir", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Terima Es Krim", type: "jajar", color: pStyle.io },
-                    { id: 6, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Membuat Teh Manis Hangat ☕",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Siapkan Teh & Gula", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Tuang Air Panas", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Aduk Sampai Larut", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Menanam Bunga Matahari 🌻",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Siapkan Pot & Tanah", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Buat Lubang Kecil", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Taruh Biji & Tutup", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Siram Sedikit Air", type: "kotak", color: pStyle.process },
-                    { id: 6, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Menonton TV di Rumah 📺",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Ambil Remote", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Tekan Tombol Power", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Pilih Channel Kartun", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Membuang Sampah 🗑️",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Kumpulkan Sampah", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Jalan ke Tong Sampah", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Masukkan ke Tong", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Tidur Malam 🛌",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Ganti Baju Tidur", type: "kotak", color: pStyle.process },
-                    { id: 3, text: "Matikan Lampu", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Baca Doa", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            },
-            {
-                title: "Berangkat Ke Sekolah 🎒",
-                data: [
-                    { id: 1, text: "Mulai", type: "oval", color: pStyle.start },
-                    { id: 2, text: "Siapkan Tas & Buku", type: "jajar", color: pStyle.io },
-                    { id: 3, text: "Pakai Seragam", type: "kotak", color: pStyle.process },
-                    { id: 4, text: "Pamit ke Orang Tua", type: "kotak", color: pStyle.process },
-                    { id: 5, text: "Jalan ke Sekolah", type: "kotak", color: pStyle.process },
-                    { id: 6, text: "Selesai", type: "oval", color: pStyle.end }
-                ]
-            }
-        ];
-
-        let currentPuzzleIndex = 0;
-        let selectedPuzzleBlock = null;
-
-        // Fungsi Membangun Ulang Puzzle Berdasarkan Level
-        function initPuzzle() {
-            const puzzle = allPuzzles[currentPuzzleIndex];
-            
-            // 1. Update Teks UI
-            document.getElementById('puzzle-level-indicator').innerText = `Level ${currentPuzzleIndex + 1} / ${allPuzzles.length}`;
-            document.getElementById('puzzle-title').innerText = `${puzzle.title}`;
-            
-            // 2. Reset Tombol dan Feedback
-            document.getElementById('btn-check-puzzle').classList.remove('hidden');
-            document.getElementById('btn-next-puzzle').classList.add('hidden');
-            const feedback = document.getElementById('puzzle-feedback');
-            feedback.classList.add('hidden');
-            feedback.className = "mt-4 font-bold text-lg hidden px-4 py-2 rounded-xl"; // hapus efek animasi bekas sblmnya
-            
-            // 3. Generate Kotak (Slot Target) Secara Dinamis
-            const targetContainer = document.getElementById('puzzle-target');
-            targetContainer.innerHTML = '';
-            
-            puzzle.data.forEach((_, index) => {
-                // Buat Kotak Kosong
-                const slot = document.createElement('div');
-                slot.className = "puzzle-slot w-48 h-16 bg-gray-100 border-4 border-dashed border-gray-300 rounded-xl flex justify-center items-center cursor-pointer hover:bg-orange-50 transition-colors relative";
-                slot.dataset.slot = index + 1;
-                slot.addEventListener('click', () => handleSlotClick(slot));
-                targetContainer.appendChild(slot);
-                
-                // Buat Tanda Panah (kecuali di paling bawah)
-                if (index < puzzle.data.length - 1) {
-                    const arrow = document.createElement('i');
-                    arrow.className = "fas fa-arrow-down text-gray-400 my-0.5";
-                    targetContainer.appendChild(arrow);
-                }
-            });
-
-            // 4. Generate Blok Acak di Bank
-            const bank = document.getElementById('puzzle-bank');
-            bank.innerHTML = ''; // Bersihkan bank
-            
-            const shuffled = [...puzzle.data].sort(() => Math.random() - 0.5);
-            shuffled.forEach(item => {
-                const block = document.createElement('div');
-                block.className = `puzzle-block cursor-pointer transition-all duration-200 shadow-md border-4 flex items-center justify-center font-bold text-center p-2 z-20 w-40 hover:scale-105 ${item.color}`;
-                
-                // Bentuk CSS
-                if(item.type === 'oval') block.classList.add('rounded-full', 'h-12');
-                else if(item.type === 'jajar') block.classList.add('-skew-x-12', 'h-14');
-                else if(item.type === 'kotak') block.classList.add('rounded-lg', 'h-14');
-
-                block.dataset.id = item.id;
-                
-                if(item.type === 'jajar') {
-                    block.innerHTML = `<span class="skew-x-12 text-sm leading-tight pointer-events-none">${item.text}</span>`;
-                } else {
-                    block.innerHTML = `<span class="text-sm leading-tight pointer-events-none">${item.text}</span>`;
-                }
-
-                block.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    handleBlockClick(block);
-                });
-                
-                bank.appendChild(block);
-            });
-            
-            selectedPuzzleBlock = null;
-        }
-
-        // Menangani ketika siswa memilih sebuah blok
-        function handleBlockClick(block) {
-            if (!audioInitialized && typeof Tone !== 'undefined') {
-                Tone.start().then(() => {
-                    synth = new Tone.Synth().toDestination();
-                    audioInitialized = true;
-                });
-            }
-
-            if(synth) synth.triggerAttackRelease("G5", "32n");
-
-            if(block.parentElement.id !== 'puzzle-bank') {
-                document.getElementById('puzzle-bank').appendChild(block);
-                block.classList.remove('ring-4', 'ring-purple-600', 'scale-110');
-                if(selectedPuzzleBlock === block) selectedPuzzleBlock = null;
-                return;
-            }
-
-            if (selectedPuzzleBlock === block) {
-                block.classList.remove('ring-4', 'ring-purple-600', 'scale-110');
-                selectedPuzzleBlock = null;
-            } else {
-                if (selectedPuzzleBlock) selectedPuzzleBlock.classList.remove('ring-4', 'ring-purple-600', 'scale-110');
-                selectedPuzzleBlock = block;
-                block.classList.add('ring-4', 'ring-purple-600', 'scale-110');
-            }
-        }
-
-        // Menangani ditaruh di slot
-        function handleSlotClick(slot) {
-            if (selectedPuzzleBlock) {
-                if (slot.children.length === 0) {
-                    if(synth) synth.triggerAttackRelease("C6", "16n");
-                    selectedPuzzleBlock.classList.remove('ring-4', 'ring-purple-600', 'scale-110');
-                    slot.appendChild(selectedPuzzleBlock);
-                    selectedPuzzleBlock = null;
-                } else {
-                    if(synth) synth.triggerAttackRelease("C3", "32n");
-                }
-            }
-        }
-
-        // Mengecek susunan
-        function checkPuzzle() {
-            const slots = document.querySelectorAll('.puzzle-slot');
-            let isCorrect = true;
-            let isFull = true;
-
-            slots.forEach((slot, index) => {
-                slot.classList.remove('border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50');
-
-                if(slot.children.length === 0) {
-                    isFull = false;
-                    isCorrect = false;
-                } else {
-                    const blockId = parseInt(slot.children[0].dataset.id);
-                    if (blockId !== index + 1) {
-                        isCorrect = false;
-                        slot.classList.add('border-red-500', 'bg-red-50');
-                    } else {
-                        slot.classList.add('border-green-500', 'bg-green-50');
-                    }
-                }
-            });
-
-            const feedback = document.getElementById('puzzle-feedback');
-            feedback.classList.remove('hidden');
-
-            if (!isFull) {
-                feedback.className = "mt-4 font-bold text-lg text-orange-700 bg-orange-100 border border-orange-300 inline-block px-6 py-2 rounded-xl animate-pulse";
-                feedback.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i> Ups! Masih ada kotak kosong. Susun semua blok ya!';
-                if(synth) synth.triggerAttackRelease("C3", "8n");
-            } else if (!isCorrect) {
-                feedback.className = "mt-4 font-bold text-lg text-red-700 bg-red-100 border border-red-300 inline-block px-6 py-2 rounded-xl animate-bounce";
-                feedback.innerHTML = '<i class="fas fa-times-circle mr-2"></i> Yah, susunannya ada yang keliru (kotak merah). Coba ingat-ingat lagi urutannya!';
-                if(synth) synth.triggerAttackRelease("C3", "4n");
-                
-                setTimeout(() => {
-                    slots.forEach(slot => {
-                        if(slot.classList.contains('border-red-500')) {
-                             slot.classList.remove('border-red-500', 'bg-red-50');
-                        }
-                    });
-                }, 2500);
-
-            } else {
-                feedback.className = "mt-4 font-bold text-lg text-green-700 bg-green-100 border border-green-400 inline-block px-6 py-2 rounded-xl animate-bounce";
-                
-                // Cek apakah masih ada level setelah ini
-                if (currentPuzzleIndex < allPuzzles.length - 1) {
-                    feedback.innerHTML = '<i class="fas fa-star text-yellow-500 mr-2"></i> Wah Hebat! Urutannya Benar! Lanjut yuk ke level berikutnya.';
-                    document.getElementById('btn-check-puzzle').classList.add('hidden');
-                    document.getElementById('btn-next-puzzle').classList.remove('hidden');
-                } else {
-                    feedback.innerHTML = '<i class="fas fa-trophy text-yellow-500 mr-2"></i> MASTER PUZZLE! Kamu berhasil menyelesaikan semua 10 Level dengan Sempurna!';
-                    document.getElementById('btn-check-puzzle').classList.add('hidden'); // Selesai semua
-                }
-                
-                if(synth) {
-                    const now = Tone.now();
-                    synth.triggerAttackRelease("C4", "8n", now);
-                    synth.triggerAttackRelease("E4", "8n", now + 0.1);
-                    synth.triggerAttackRelease("G4", "8n", now + 0.2);
-                    synth.triggerAttackRelease("C5", "4n", now + 0.3);
-                }
-            }
-        }
-        
-        // Pindah ke level selanjutnya
-        function nextPuzzle() {
-            if (currentPuzzleIndex < allPuzzles.length - 1) {
-                currentPuzzleIndex++;
-                initPuzzle(); // Muat ulang layar dengan data level baru
-                if(synth) synth.triggerAttackRelease("G5", "16n");
-            }
-        }
-        
-        // Memastikan puzzle dibuat dan diacak saat website selesai dimuat
-        document.addEventListener('DOMContentLoaded', () => {
-            initPuzzle();
-        });
-
     </script>
 </body>
 </html>
