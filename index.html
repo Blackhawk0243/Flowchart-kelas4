@@ -61,6 +61,7 @@
                 <a href="#video" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-play"></i> Video</a>
                 <a href="#puzzle" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-puzzle-piece"></i> Puzzle</a>
                 <a href="#kuis" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-gamepad"></i> Kuis</a>
+                <a href="#penilaian" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-award"></i> Penilaian</a>
             </div>
         </div>
     </nav>
@@ -193,7 +194,14 @@
         <div class="glass-panel p-6 md:p-10 border-4 border-orange-400 bg-orange-50">
             <h2 class="text-3xl font-kids text-orange-600 mb-6 text-center"><i class="fa-solid fa-medal"></i> Kuis Tantangan Otak</h2>
             
-            <div id="quiz-container" class="bg-white rounded-xl p-6 shadow-md border-2 border-orange-200">
+            <!-- Gembok Kuis (Hanya terbuka jika puzzle selesai) -->
+            <div id="quiz-locked-overlay" class="bg-white rounded-xl p-10 shadow-md border-2 border-orange-200 text-center flex flex-col items-center justify-center">
+                <i class="fa-solid fa-lock text-6xl text-gray-400 mb-4 animate-pulse"></i>
+                <h3 class="text-2xl font-bold text-gray-700 mb-2">Kuis Masih Terkunci!</h3>
+                <p class="text-gray-500 font-medium">Selesaikan ke-15 Level Puzzle terlebih dahulu untuk membuka Kuis ini ya.</p>
+            </div>
+
+            <div id="quiz-container" class="hidden bg-white rounded-xl p-6 shadow-md border-2 border-orange-200">
                 <div class="flex justify-between items-center mb-4">
                     <span class="bg-orange-200 text-orange-800 px-3 py-1 rounded-full font-bold text-sm" id="question-counter">Soal 1 / 15</span>
                     <span class="font-bold text-gray-600">Skor: <span id="current-score">0</span></span>
@@ -215,6 +223,72 @@
                 <button onclick="restartQuiz()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl btn-bounce">
                     <i class="fa-solid fa-rotate-right"></i> Main Kuis Lagi
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: PENILAIAN / RAPOR -->
+    <section id="penilaian" class="container mx-auto mt-12 px-4 mb-20">
+        <div class="glass-panel p-6 md:p-10 border-4 border-blue-400 bg-blue-50">
+            <h2 class="text-3xl font-kids text-blue-600 mb-6 text-center"><i class="fa-solid fa-award"></i> Menu Penilaian & Rapor</h2>
+            
+            <p class="text-center text-gray-700 mb-8 max-w-2xl mx-auto font-medium bg-white p-3 rounded-lg border border-blue-200 shadow-sm">
+                <i class="fa-solid fa-circle-info text-blue-500 mr-2"></i> Area ini merekam kemajuan belajarmu. Pastikan kamu menyelesaikan semua <b>15 Level Puzzle</b> dan <b>15 Soal Kuis HOTS</b> untuk mendapatkan nilai maksimal!
+            </p>
+
+            <div class="bg-white rounded-xl p-8 shadow-md border-2 border-blue-200 max-w-2xl mx-auto">
+                <div class="space-y-6">
+                    <!-- Progress Puzzle -->
+                    <div class="flex justify-between items-center border-b-2 border-dashed border-gray-200 pb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-puzzle-piece"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl text-gray-800">Misi Puzzle (15 Level)</h4>
+                                <p class="text-sm text-gray-500" id="status-puzzle">Status: <span class="text-red-500 font-semibold">Belum Selesai</span></p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-3xl font-bold text-purple-600" id="rapor-skor-puzzle">0</p>
+                            <p class="text-xs text-gray-500">Maks: 100</p>
+                        </div>
+                    </div>
+
+                    <!-- Progress Kuis -->
+                    <div class="flex justify-between items-center border-b-2 border-dashed border-gray-200 pb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl text-gray-800">Kuis HOTS (15 Soal)</h4>
+                                <p class="text-sm text-gray-500" id="status-kuis">Status: <span class="text-red-500 font-semibold">Belum Selesai</span></p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-3xl font-bold text-orange-600" id="rapor-skor-kuis">0</p>
+                            <p class="text-xs text-gray-500">Maks: 100</p>
+                        </div>
+                    </div>
+
+                    <!-- Total Keseluruhan -->
+                    <div class="bg-blue-100 p-6 rounded-xl flex justify-between items-center border-2 border-blue-300">
+                        <div>
+                            <h4 class="font-bold text-2xl text-blue-800">NILAI RATA-RATA</h4>
+                            <p class="text-sm text-blue-600">Gabungan Puzzle & Kuis (Maks 100)</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-5xl font-black text-blue-700" id="rapor-total-skor">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center hidden" id="btn-cetak-rapor">
+                    <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-xl btn-bounce shadow-lg w-full md:w-auto">
+                        <i class="fa-solid fa-print"></i> Cetak Rapor Nilai
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -396,9 +470,45 @@
 
         let currentLevel = 0;
         let puzzleScore = 0;
+        let puzzleScoreFloat = 0;
         let selectedTool = null; 
         let puzzleSlots = []; 
         let availableTexts = [];
+
+        // --- VARIABEL UNTUK PENILAIAN/RAPOR ---
+        let isPuzzleDone = false;
+        let isQuizDone = false;
+        let finalQuizScoreValue = 0;
+
+        function updateRapor() {
+            // Update Puzzle
+            if (isPuzzleDone) {
+                document.getElementById('status-puzzle').innerHTML = 'Status: <span class="text-green-500 font-semibold">Selesai ✓</span>';
+            } else {
+                document.getElementById('status-puzzle').innerHTML = 'Status: <span class="text-red-500 font-semibold">Belum Selesai</span>';
+            }
+            document.getElementById('rapor-skor-puzzle').innerText = puzzleScore;
+
+            // Update Kuis
+            if (isQuizDone) {
+                document.getElementById('status-kuis').innerHTML = 'Status: <span class="text-green-500 font-semibold">Selesai ✓</span>';
+            } else {
+                document.getElementById('status-kuis').innerHTML = 'Status: <span class="text-red-500 font-semibold">Belum Selesai</span>';
+            }
+            document.getElementById('rapor-skor-kuis').innerText = finalQuizScoreValue;
+
+            // Update Total (Rata-rata Maks 100)
+            const total = Math.round((puzzleScore + finalQuizScoreValue) / 2);
+            document.getElementById('rapor-total-skor').innerText = total;
+
+            // Munculkan tombol cetak jika keduanya selesai
+            if (isPuzzleDone && isQuizDone) {
+                document.getElementById('btn-cetak-rapor').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-cetak-rapor').classList.add('hidden');
+            }
+        }
+        // --------------------------------------
 
         // Fungsi mengacak array
         function shuffleArray(array) {
@@ -666,15 +776,17 @@
             });
 
             if (isAllCorrect) {
-                // Tambah skor jika benar
-                puzzleScore += 100;
+                // Tambah skor jika benar (Maks 100)
+                puzzleScoreFloat += (100 / puzzles.length);
+                puzzleScore = Math.round(puzzleScoreFloat);
+                if (puzzleScore > 100) puzzleScore = 100;
                 document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
                 confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
                 
                 if (currentLevel < puzzles.length - 1) {
                     Swal.fire({
                         title: 'Hebat Sekali! 🌟',
-                        text: 'Susunan flowchart kamu sempurna! (+100 Poin)',
+                        text: 'Susunan flowchart kamu sempurna!',
                         icon: 'success',
                         confirmButtonText: 'Lanjut Level Berikutnya',
                         confirmButtonColor: '#10b981'
@@ -684,6 +796,13 @@
                     });
                 } else {
                     // Semua Level (1-15) telah tamat
+                    isPuzzleDone = true;
+                    updateRapor();
+
+                    // Buka Gembok Kuis
+                    document.getElementById('quiz-locked-overlay').classList.add('hidden');
+                    document.getElementById('quiz-container').classList.remove('hidden');
+
                     document.getElementById('puzzle-play-area').classList.add('hidden');
                     document.getElementById('puzzle-action-container').classList.add('hidden');
                     document.getElementById('puzzle-result-container').classList.remove('hidden');
@@ -691,18 +810,22 @@
                     
                     Swal.fire({
                         title: 'SELAMAT! 🎉',
-                        text: `Kamu menyelesaikan semua puzzle dengan total skor ${puzzleScore}!`,
+                        text: `Kamu menyelesaikan semua puzzle dengan total skor ${puzzleScore}!\nSekarang KUIS telah DIBUKA!`,
                         icon: 'success',
-                        confirmButtonText: 'Horeee!',
+                        confirmButtonText: 'Mainkan Kuis Sekarang',
                         confirmButtonColor: '#10b981'
+                    }).then(() => {
+                        window.location.hash = "#kuis"; // Otomatis gulir ke bagian kuis
                     });
                 }
             } else {
-                // Kurangi skor jika ada yang salah cek (-15 poin)
-                puzzleScore = Math.max(0, puzzleScore - 15);
+                // Kurangi skor jika ada yang salah cek (-1 poin karena skala sekarang per level 6 poin)
+                puzzleScoreFloat = Math.max(0, puzzleScoreFloat - 1);
+                puzzleScore = Math.round(puzzleScoreFloat);
                 document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
+                updateRapor(); // Update secara real-time
                 
-                Swal.fire('Ada yang salah!', 'Skor dikurangi 15 poin. Hati-hati dengan kalimat jebakan! Periksa lagi urutan Bentuk dan Kalimatnya.', 'error');
+                Swal.fire('Ada yang salah!', 'Skor dikurangi 1 poin. Perhatikan URUTAN langkah dan BENTUK yang tepat! Jangan sampai bentuk Jajargenjang tertukar posisinya dengan Persegi.', 'error');
             }
         }
 
@@ -710,6 +833,14 @@
         function restartPuzzle() {
             currentLevel = 0;
             puzzleScore = 0;
+            puzzleScoreFloat = 0;
+            isPuzzleDone = false;
+            updateRapor();
+
+            // Kunci Kuis Kembali
+            document.getElementById('quiz-locked-overlay').classList.remove('hidden');
+            document.getElementById('quiz-container').classList.add('hidden');
+
             document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
             
             document.getElementById('puzzle-result-container').classList.add('hidden');
@@ -742,6 +873,7 @@
 
         let currentQuestion = 0;
         let score = 0;
+        let quizScoreFloat = 0;
 
         function loadQuestion() {
             const q = quizData[currentQuestion];
@@ -768,7 +900,12 @@
             if (selectedIndex === correctIndex) {
                 btnElement.classList.remove('border-orange-200', 'bg-white');
                 btnElement.classList.add('bg-green-500', 'text-white', 'border-green-600');
-                score += 10;
+                
+                // Tambah Poin (Skala 100)
+                quizScoreFloat += (100 / quizData.length);
+                score = Math.round(quizScoreFloat);
+                if (score > 100) score = 100;
+                
                 document.getElementById('current-score').innerText = score;
                 playTone(600, "sine", 0.1); 
                 setTimeout(() => playTone(800, "sine", 0.15), 100);
@@ -795,11 +932,17 @@
             const resultBox = document.getElementById('result-container');
             resultBox.classList.remove('hidden');
             document.getElementById('final-score').innerText = score;
+            
+            // Rekam Hasil ke Rapor
+            isQuizDone = true;
+            finalQuizScoreValue = score;
+            updateRapor();
+
             const message = document.getElementById('score-message');
-            if(score === 150) {
+            if(score === 100) {
                 message.innerText = "SEMPURNA! Kamu adalah Programmer Cilik Jenius! 🏆";
                 confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
-            } else if (score >= 100) {
+            } else if (score >= 70) {
                 message.innerText = "Luar biasa! Pemahaman logikamu sangat bagus! 🌟";
                 confetti();
             } else {
@@ -810,6 +953,11 @@
         function restartQuiz() {
             currentQuestion = 0;
             score = 0;
+            quizScoreFloat = 0;
+            isQuizDone = false;
+            finalQuizScoreValue = 0;
+            updateRapor();
+
             document.getElementById('current-score').innerText = score;
             document.getElementById('result-container').classList.add('hidden');
             document.getElementById('quiz-container').classList.remove('hidden');
