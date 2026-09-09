@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f0fdf4; overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f0fdf4; overflow-x: hidden; scroll-behavior: smooth; }
         h1, h2, h3, .font-kids { font-family: 'Fredoka', sans-serif; }
         
         .glass-panel {
@@ -28,6 +28,7 @@
         }
 
         .btn-bounce:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .btn-bounce:active { transform: translateY(0px); }
         .btn-bounce { transition: all 0.3s ease; }
 
         /* Animasi Salah */
@@ -51,6 +52,7 @@
 </head>
 <body class="text-gray-800">
 
+    <!-- Navbar -->
     <nav class="bg-green-500 text-white p-4 sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto flex flex-wrap justify-between items-center">
             <div class="text-2xl font-bold font-kids flex items-center gap-2">
@@ -58,19 +60,21 @@
             </div>
             <div class="flex gap-4 mt-2 sm:mt-0 overflow-x-auto text-sm sm:text-base font-semibold">
                 <a href="#materi" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-book-open"></i> Materi</a>
-                <a href="#video" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-play"></i> Video</a>
-                <a href="#puzzle" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-puzzle-piece"></i> Puzzle</a>
+                <a href="#puzzle" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-puzzle-piece"></i> Puzzle Solo</a>
+                <a href="#duel" class="hover:bg-yellow-500 bg-yellow-400 px-3 py-2 rounded-lg transition text-yellow-900 shadow"><i class="fa-solid fa-khanda"></i> Duel Mode</a>
                 <a href="#kuis" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-gamepad"></i> Kuis</a>
                 <a href="#penilaian" class="hover:bg-green-600 px-3 py-2 rounded-lg transition"><i class="fa-solid fa-award"></i> Penilaian</a>
             </div>
         </div>
     </nav>
 
+    <!-- Header Hero -->
     <header class="container mx-auto mt-10 px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-green-600 mb-4 animate-bounce">Petualangan Flowchart! 🚀</h1>
         <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Mari belajar cara komputer berpikir menggunakan bentuk dan gambar yang seru. Cocok untuk programmer cilik kelas 4!</p>
     </header>
 
+    <!-- SECTION 1: MATERI -->
     <section id="materi" class="container mx-auto mt-12 px-4">
         <div class="glass-panel p-6 md:p-10">
             <h2 class="text-3xl font-kids text-blue-600 mb-6 text-center"><i class="fa-solid fa-shapes"></i> Apa itu Flowchart?</h2>
@@ -81,32 +85,28 @@
 
             <h3 class="text-2xl font-kids text-purple-600 mb-4"><i class="fa-solid fa-toolbox"></i> Bentuk dan Fungsinya</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
                 <!-- Oval -->
                 <div class="bg-white p-4 rounded-xl shadow-md border-2 border-red-200 text-center hover:shadow-lg transition">
                     <div class="w-32 h-16 bg-red-200 border-2 border-red-500 rounded-[50px] mx-auto mb-4 flex items-center justify-center font-bold text-red-700">Mulai / Selesai</div>
                     <h4 class="font-bold text-xl mb-2 text-red-600">Terminal (Oval)</h4>
                     <p class="text-sm">Digunakan di paling <b>awal</b> (Mulai) dan di paling <b>akhir</b> (Selesai) sebuah cerita/program.</p>
                 </div>
-
                 <!-- Jajargenjang -->
                 <div class="bg-white p-4 rounded-xl shadow-md border-2 border-blue-200 text-center hover:shadow-lg transition">
                     <div class="w-32 h-16 bg-blue-200 border-2 border-blue-500 mx-auto mb-4 flex items-center justify-center font-bold text-blue-700 shape-btn-jajargenjang">Input / Output</div>
                     <h4 class="font-bold text-xl mb-2 text-blue-600">Jajargenjang</h4>
                     <p class="text-sm">Untuk <b>menyiapkan alat/bahan</b> (Input) atau <b>menampilkan hasil</b> (Output).</p>
                 </div>
-
                 <!-- Persegi -->
                 <div class="bg-white p-4 rounded-xl shadow-md border-2 border-green-200 text-center hover:shadow-lg transition">
                     <div class="w-32 h-16 bg-green-200 border-2 border-green-500 rounded-md mx-auto mb-4 flex items-center justify-center font-bold text-green-700">Proses</div>
                     <h4 class="font-bold text-xl mb-2 text-green-600">Persegi (Kotak)</h4>
                     <p class="text-sm">Untuk menunjukkan sebuah <b>kegiatan, aksi, atau proses</b> yang sedang dilakukan.</p>
                 </div>
-
                 <!-- Belah Ketupat -->
                 <div class="bg-white p-4 rounded-xl shadow-md border-2 border-yellow-200 text-center hover:shadow-lg transition">
                     <div class="w-20 h-20 bg-yellow-200 border-2 border-yellow-500 mx-auto mb-4 flex items-center justify-center rotate-45">
-                        <span class="rotate-[-45deg] font-bold text-yellow-700 text-xs">Pilihan?</span>
+                        <span class="rotate-[-45deg] font-bold text-yellow-700 text-[10px]">Pilihan?</span>
                     </div>
                     <h4 class="font-bold text-xl mb-2 text-yellow-600">Belah Ketupat</h4>
                     <p class="text-sm">Untuk membuat <b>keputusan atau pertanyaan</b> (Ya atau Tidak).</p>
@@ -115,90 +115,178 @@
         </div>
     </section>
 
+    <!-- SECTION 2: VIDEO -->
     <section id="video" class="container mx-auto mt-12 px-4">
         <div class="glass-panel p-6 md:p-10 text-center">
             <h2 class="text-3xl font-kids text-red-500 mb-6"><i class="fa-brands fa-youtube"></i> Video Belajar Seru</h2>
-            <p class="mb-6">Tonton video ini dulu yuk biar makin paham tentang Flowchart!</p>
             <div class="aspect-w-16 aspect-h-9 max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg border-4 border-white">
                 <iframe width="100%" height="400" src="https://www.youtube.com/embed/QsxesHdgfk8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </section>
 
+    <!-- SECTION 3: DUEL MODE (MULTI-PLAYER LOKAL) -->
+    <section id="duel" class="container mx-auto mt-12 px-4">
+        <div class="glass-panel p-6 md:p-10 border-4 border-yellow-400 bg-yellow-50 relative overflow-hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-4xl font-kids text-yellow-600 mb-2"><i class="fa-solid fa-khanda"></i> MODE DUEL 1 vs 1</h2>
+                <p class="text-gray-700 font-medium">Bermain di 1 Laptop yang sama! Siapa yang paling cepat dan akurat menyusun logika?</p>
+                <p class="text-sm font-bold text-red-500 mt-2 bg-white inline-block px-4 py-1 rounded-full border border-red-200 shadow-sm">
+                    <i class="fa-solid fa-stopwatch"></i> Setiap Blok Langsung Dicek! Benar = +10 Detik | Salah = -20 Detik
+                </p>
+            </div>
+
+            <!-- Tombol Mulai Duel -->
+            <div id="duel-start-overlay" class="absolute inset-0 bg-white/90 backdrop-blur-sm z-30 flex flex-col items-center justify-center rounded-xl">
+                <i class="fa-solid fa-gamepad text-6xl text-yellow-500 mb-4 animate-bounce"></i>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Siap Bertarung?</h3>
+                <button onclick="startDuel()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-full text-2xl btn-bounce shadow-xl border-4 border-yellow-300">
+                    MULAI DUEL SEKARANG!
+                </button>
+            </div>
+
+            <!-- Arena Duel (Split Screen) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- ARENA PEMAIN 1 -->
+                <div id="duel-arena-1" class="bg-white rounded-xl border-4 border-blue-400 shadow-lg flex flex-col opacity-50 pointer-events-none transition-all">
+                    <!-- Header P1 -->
+                    <div class="bg-blue-500 text-white p-4 rounded-t-lg flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-xl"><i class="fa-solid fa-user-astronaut"></i> Pemain 1</h3>
+                            <p class="text-sm font-semibold text-blue-100" id="duel-level-1">Level 1 / 5</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-black bg-blue-700 px-3 py-1 rounded-lg" id="duel-time-1">07:00</div>
+                            <p class="text-xs mt-1">Skor: <span id="duel-score-1" class="font-bold text-yellow-300">0</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 flex-1 flex flex-col bg-blue-50/50">
+                        <h4 class="font-bold text-center text-blue-800 mb-4 text-lg" id="duel-title-1">Memuat...</h4>
+                        
+                        <!-- Tool Bank P1 -->
+                        <div class="mb-4">
+                            <div class="flex justify-center gap-2 mb-2">
+                                <button onclick="selectDuelTool(1, 'shape', 'oval')" id="duel-p1-shape-oval" class="tool-p1 relative w-16 h-8 bg-red-200 border-2 border-red-500 rounded-[50px] shadow-sm hover:bg-red-300"></button>
+                                <button onclick="selectDuelTool(1, 'shape', 'jajargenjang')" id="duel-p1-shape-jajargenjang" class="tool-p1 relative w-16 h-8 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang shadow-sm hover:bg-blue-300"></button>
+                                <button onclick="selectDuelTool(1, 'shape', 'persegi')" id="duel-p1-shape-persegi" class="tool-p1 relative w-16 h-8 bg-green-200 border-2 border-green-500 rounded-md shadow-sm hover:bg-green-300"></button>
+                                <button onclick="selectDuelTool(1, 'shape', 'belah_ketupat')" id="duel-p1-shape-belah_ketupat" class="tool-p1 relative w-10 h-10 bg-yellow-200 border-2 border-yellow-500 rotate-45 shadow-sm mx-2 hover:bg-yellow-300"></button>
+                            </div>
+                            <div id="duel-text-bank-1" class="flex flex-wrap justify-center gap-1 min-h-[80px]">
+                                <!-- Texts P1 -->
+                            </div>
+                        </div>
+
+                        <!-- Board P1 -->
+                        <div class="bg-white flex-1 rounded-lg border-2 border-blue-200 p-4 flex flex-col items-center overflow-y-auto max-h-[400px]" id="duel-board-1">
+                            <!-- Slots P1 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARENA PEMAIN 2 -->
+                <div id="duel-arena-2" class="bg-white rounded-xl border-4 border-rose-400 shadow-lg flex flex-col opacity-50 pointer-events-none transition-all">
+                    <!-- Header P2 -->
+                    <div class="bg-rose-500 text-white p-4 rounded-t-lg flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-xl"><i class="fa-solid fa-user-ninja"></i> Pemain 2</h3>
+                            <p class="text-sm font-semibold text-rose-100" id="duel-level-2">Level 1 / 5</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-black bg-rose-700 px-3 py-1 rounded-lg" id="duel-time-2">07:00</div>
+                            <p class="text-xs mt-1">Skor: <span id="duel-score-2" class="font-bold text-yellow-300">0</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 flex-1 flex flex-col bg-rose-50/50">
+                        <h4 class="font-bold text-center text-rose-800 mb-4 text-lg" id="duel-title-2">Memuat...</h4>
+                        
+                        <!-- Tool Bank P2 -->
+                        <div class="mb-4">
+                            <div class="flex justify-center gap-2 mb-2">
+                                <button onclick="selectDuelTool(2, 'shape', 'oval')" id="duel-p2-shape-oval" class="tool-p2 relative w-16 h-8 bg-red-200 border-2 border-red-500 rounded-[50px] shadow-sm hover:bg-red-300"></button>
+                                <button onclick="selectDuelTool(2, 'shape', 'jajargenjang')" id="duel-p2-shape-jajargenjang" class="tool-p2 relative w-16 h-8 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang shadow-sm hover:bg-blue-300"></button>
+                                <button onclick="selectDuelTool(2, 'shape', 'persegi')" id="duel-p2-shape-persegi" class="tool-p2 relative w-16 h-8 bg-green-200 border-2 border-green-500 rounded-md shadow-sm hover:bg-green-300"></button>
+                                <button onclick="selectDuelTool(2, 'shape', 'belah_ketupat')" id="duel-p2-shape-belah_ketupat" class="tool-p2 relative w-10 h-10 bg-yellow-200 border-2 border-yellow-500 rotate-45 shadow-sm mx-2 hover:bg-yellow-300"></button>
+                            </div>
+                            <div id="duel-text-bank-2" class="flex flex-wrap justify-center gap-1 min-h-[80px]">
+                                <!-- Texts P2 -->
+                            </div>
+                        </div>
+
+                        <!-- Board P2 -->
+                        <div class="bg-white flex-1 rounded-lg border-2 border-rose-200 p-4 flex flex-col items-center overflow-y-auto max-h-[400px]" id="duel-board-2">
+                            <!-- Slots P2 -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: PUZZLE SOLO (15 LEVEL) -->
     <section id="puzzle" class="container mx-auto mt-12 px-4">
         <div class="glass-panel p-6 md:p-10 border-4 border-purple-400 bg-purple-50">
             <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
-                <h2 class="text-3xl font-kids text-purple-600"><i class="fa-solid fa-puzzle-piece"></i> Misi Puzzle Flowchart</h2>
+                <h2 class="text-3xl font-kids text-purple-600"><i class="fa-solid fa-puzzle-piece"></i> Latihan Puzzle Solo (15 Level)</h2>
                 <div class="flex gap-3">
-                    <div class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-xl shadow border-2 border-yellow-500" id="puzzle-score-display">Skor: 0</div>
+                    <div class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-xl shadow" id="puzzle-score-display">Skor: 0</div>
                     <div class="bg-purple-600 text-white px-4 py-2 rounded-full font-bold text-xl shadow" id="level-indicator">Level 1 / 15</div>
                 </div>
             </div>
             
             <p class="mb-4 text-gray-700 font-medium bg-white p-3 rounded-lg border border-purple-200">
-                <i class="fa-solid fa-circle-info text-purple-500 mr-2"></i><b>Cara Main:</b> Pilih <b>Bentuk</b> lalu klik pada kotak kosong. Setelah itu, pilih <b>Kalimat</b> lalu klik pada kotak yang sama! Hati-hati, ada kalimat jebakan!
+                <i class="fa-solid fa-circle-info text-purple-500 mr-2"></i><b>Cara Main:</b> Pilih <b>Bentuk</b> lalu klik kotak kosong. Lalu pilih <b>Kalimat</b> dan taruh di kotak yang sama! (Awas ada kalimat jebakan).
             </p>
 
-            <!-- Area Bermain -->
             <div class="bg-white rounded-xl p-4 shadow-inner mb-6" id="puzzle-play-area">
                 <h3 class="font-bold text-2xl text-center text-purple-700 mb-4" id="puzzle-title">Memuat...</h3>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                     <!-- Bank Bentuk -->
                     <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                        <h4 class="font-bold text-center mb-4 text-gray-600"><i class="fa-solid fa-shapes text-red-400"></i> 1. Pilih Bentuk</h4>
+                        <h4 class="font-bold text-center mb-4 text-gray-600">1. Pilih Bentuk</h4>
                         <div class="flex flex-wrap justify-center gap-4">
-                            <button onclick="selectTool('shape', 'oval')" id="tool-shape-oval" class="tool-btn relative w-24 h-12 bg-red-200 border-2 border-red-500 rounded-[50px] hover:bg-red-300 transition shadow-sm" title="Oval (Mulai/Selesai)"></button>
-                            <button onclick="selectTool('shape', 'jajargenjang')" id="tool-shape-jajargenjang" class="tool-btn relative w-24 h-12 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang hover:bg-blue-300 transition shadow-sm" title="Jajargenjang (Input/Output)"></button>
-                            <button onclick="selectTool('shape', 'persegi')" id="tool-shape-persegi" class="tool-btn relative w-24 h-12 bg-green-200 border-2 border-green-500 rounded-md hover:bg-green-300 transition shadow-sm" title="Persegi (Proses)"></button>
-                            <button onclick="selectTool('shape', 'belah_ketupat')" id="tool-shape-belah_ketupat" class="tool-btn relative w-12 h-12 bg-yellow-200 border-2 border-yellow-500 rotate-45 hover:bg-yellow-300 transition shadow-sm mx-4" title="Belah Ketupat (Pilihan)"></button>
+                            <button onclick="selectTool('shape', 'oval')" id="tool-shape-oval" class="tool-btn relative w-24 h-12 bg-red-200 border-2 border-red-500 rounded-[50px] shadow-sm"></button>
+                            <button onclick="selectTool('shape', 'jajargenjang')" id="tool-shape-jajargenjang" class="tool-btn relative w-24 h-12 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang shadow-sm"></button>
+                            <button onclick="selectTool('shape', 'persegi')" id="tool-shape-persegi" class="tool-btn relative w-24 h-12 bg-green-200 border-2 border-green-500 rounded-md shadow-sm"></button>
+                            <button onclick="selectTool('shape', 'belah_ketupat')" id="tool-shape-belah_ketupat" class="tool-btn relative w-12 h-12 bg-yellow-200 border-2 border-yellow-500 rotate-45 shadow-sm mx-4"></button>
                         </div>
                     </div>
-
                     <!-- Bank Teks -->
                     <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                        <h4 class="font-bold text-center mb-4 text-gray-600"><i class="fa-solid fa-font text-blue-400"></i> 2. Pilih Kalimat</h4>
-                        <div id="text-bank" class="flex flex-wrap justify-center gap-2">
-                            <!-- Tombol teks diisi oleh JS -->
-                        </div>
+                        <h4 class="font-bold text-center mb-4 text-gray-600">2. Pilih Kalimat</h4>
+                        <div id="text-bank" class="flex flex-wrap justify-center gap-2"></div>
                     </div>
                 </div>
 
-                <!-- Area Susun Flowchart -->
-                <div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200 flex flex-col items-center overflow-x-auto min-h-[300px]" id="flowchart-board">
-                    <!-- Slot diisi oleh JS -->
-                </div>
+                <div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200 flex flex-col items-center overflow-x-auto min-h-[300px]" id="flowchart-board"></div>
             </div>
 
-            <!-- Area Aksi Puzzle -->
             <div class="flex justify-center gap-4" id="puzzle-action-container">
                 <button onclick="checkPuzzle()" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-full text-xl btn-bounce shadow-lg w-full md:w-auto">
-                    <i class="fa-solid fa-check-circle"></i> Cek Jawaban!
+                    <i class="fa-solid fa-check-circle"></i> Cek Keseluruhan!
                 </button>
             </div>
 
-            <!-- Hasil Akhir Puzzle (Tampil saat semua level tamat) -->
             <div id="puzzle-result-container" class="hidden bg-white rounded-xl p-8 shadow-md border-2 border-purple-200 text-center mt-6">
                 <h3 class="text-4xl font-kids text-purple-600 mb-4">Semua Puzzle Selesai! 🎉</h3>
-                <p class="text-2xl mb-4">Total Skor Puzzle Kamu:</p>
                 <div class="text-6xl font-bold text-yellow-500 mb-6" id="final-puzzle-score">0</div>
-                <p class="text-lg text-gray-600 font-semibold mb-6">Luar biasa! Kamu berhasil menaklukkan kalimat jebakan dan menyusun logika dengan benar!</p>
-                <button onclick="restartPuzzle()" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-xl btn-bounce">
-                    <i class="fa-solid fa-rotate-right"></i> Main Puzzle Lagi
-                </button>
             </div>
         </div>
     </section>
 
+    <!-- SECTION 5: KUIS HOTS -->
     <section id="kuis" class="container mx-auto mt-12 px-4 mb-20">
         <div class="glass-panel p-6 md:p-10 border-4 border-orange-400 bg-orange-50">
             <h2 class="text-3xl font-kids text-orange-600 mb-6 text-center"><i class="fa-solid fa-medal"></i> Kuis Tantangan Otak</h2>
             
-            <!-- Gembok Kuis (Hanya terbuka jika puzzle selesai) -->
             <div id="quiz-locked-overlay" class="bg-white rounded-xl p-10 shadow-md border-2 border-orange-200 text-center flex flex-col items-center justify-center">
                 <i class="fa-solid fa-lock text-6xl text-gray-400 mb-4 animate-pulse"></i>
                 <h3 class="text-2xl font-bold text-gray-700 mb-2">Kuis Masih Terkunci!</h3>
-                <p class="text-gray-500 font-medium">Selesaikan ke-15 Level Puzzle terlebih dahulu untuk membuka Kuis ini ya.</p>
+                <p class="text-gray-500 font-medium">Selesaikan ke-15 Level Latihan Puzzle Solo terlebih dahulu untuk membuka Kuis ini ya.</p>
             </div>
 
             <div id="quiz-container" class="hidden bg-white rounded-xl p-6 shadow-md border-2 border-orange-200">
@@ -206,88 +294,41 @@
                     <span class="bg-orange-200 text-orange-800 px-3 py-1 rounded-full font-bold text-sm" id="question-counter">Soal 1 / 15</span>
                     <span class="font-bold text-gray-600">Skor: <span id="current-score">0</span></span>
                 </div>
-                
                 <h3 id="question-text" class="text-xl md:text-2xl font-semibold mb-6">Pertanyaan muncul di sini...</h3>
-                
-                <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Opsi jawaban akan dimuat di sini -->
-                </div>
+                <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
 
-            <!-- Hasil Kuis -->
             <div id="result-container" class="hidden bg-white rounded-xl p-8 shadow-md border-2 border-orange-200 text-center">
                 <h3 class="text-4xl font-kids text-orange-600 mb-4">Kuis Selesai! 🎉</h3>
-                <p class="text-2xl mb-4">Skor Akhir Kamu:</p>
                 <div class="text-6xl font-bold text-green-500 mb-6" id="final-score">100</div>
-                <p id="score-message" class="text-lg text-gray-600 font-semibold mb-6">Luar biasa! Kamu adalah master Flowchart!</p>
-                <button onclick="restartQuiz()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl btn-bounce">
-                    <i class="fa-solid fa-rotate-right"></i> Main Kuis Lagi
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: PENILAIAN / RAPOR -->
+    <!-- SECTION 6: PENILAIAN / RAPOR -->
     <section id="penilaian" class="container mx-auto mt-12 px-4 mb-20">
         <div class="glass-panel p-6 md:p-10 border-4 border-blue-400 bg-blue-50">
-            <h2 class="text-3xl font-kids text-blue-600 mb-6 text-center"><i class="fa-solid fa-award"></i> Menu Penilaian & Rapor</h2>
-            
-            <p class="text-center text-gray-700 mb-8 max-w-2xl mx-auto font-medium bg-white p-3 rounded-lg border border-blue-200 shadow-sm">
-                <i class="fa-solid fa-circle-info text-blue-500 mr-2"></i> Area ini merekam kemajuan belajarmu. Pastikan kamu menyelesaikan semua <b>15 Level Puzzle</b> dan <b>15 Soal Kuis HOTS</b> untuk mendapatkan nilai maksimal!
-            </p>
-
+            <h2 class="text-3xl font-kids text-blue-600 mb-6 text-center"><i class="fa-solid fa-award"></i> Menu Penilaian (Solo)</h2>
             <div class="bg-white rounded-xl p-8 shadow-md border-2 border-blue-200 max-w-2xl mx-auto">
                 <div class="space-y-6">
-                    <!-- Progress Puzzle -->
                     <div class="flex justify-between items-center border-b-2 border-dashed border-gray-200 pb-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-2xl">
-                                <i class="fa-solid fa-puzzle-piece"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl text-gray-800">Misi Puzzle (15 Level)</h4>
-                                <p class="text-sm text-gray-500" id="status-puzzle">Status: <span class="text-red-500 font-semibold">Belum Selesai</span></p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-3xl font-bold text-purple-600" id="rapor-skor-puzzle">0</p>
-                            <p class="text-xs text-gray-500">Maks: 100</p>
-                        </div>
-                    </div>
-
-                    <!-- Progress Kuis -->
-                    <div class="flex justify-between items-center border-b-2 border-dashed border-gray-200 pb-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-2xl">
-                                <i class="fa-solid fa-gamepad"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl text-gray-800">Kuis HOTS (15 Soal)</h4>
-                                <p class="text-sm text-gray-500" id="status-kuis">Status: <span class="text-red-500 font-semibold">Belum Selesai</span></p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-3xl font-bold text-orange-600" id="rapor-skor-kuis">0</p>
-                            <p class="text-xs text-gray-500">Maks: 100</p>
-                        </div>
-                    </div>
-
-                    <!-- Total Keseluruhan -->
-                    <div class="bg-blue-100 p-6 rounded-xl flex justify-between items-center border-2 border-blue-300">
                         <div>
-                            <h4 class="font-bold text-2xl text-blue-800">NILAI RATA-RATA</h4>
-                            <p class="text-sm text-blue-600">Gabungan Puzzle & Kuis (Maks 100)</p>
+                            <h4 class="font-bold text-xl text-gray-800">Puzzle Solo (15 Level)</h4>
+                            <p class="text-sm" id="status-puzzle">Status: <span class="text-red-500">Belum Selesai</span></p>
                         </div>
-                        <div class="text-right">
-                            <p class="text-5xl font-black text-blue-700" id="rapor-total-skor">0</p>
-                        </div>
+                        <p class="text-3xl font-bold text-purple-600" id="rapor-skor-puzzle">0</p>
                     </div>
-                </div>
-
-                <div class="mt-8 text-center hidden" id="btn-cetak-rapor">
-                    <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-xl btn-bounce shadow-lg w-full md:w-auto">
-                        <i class="fa-solid fa-print"></i> Cetak Rapor Nilai
-                    </button>
+                    <div class="flex justify-between items-center border-b-2 border-dashed border-gray-200 pb-4">
+                        <div>
+                            <h4 class="font-bold text-xl text-gray-800">Kuis HOTS (15 Soal)</h4>
+                            <p class="text-sm" id="status-kuis">Status: <span class="text-red-500">Belum Selesai</span></p>
+                        </div>
+                        <p class="text-3xl font-bold text-orange-600" id="rapor-skor-kuis">0</p>
+                    </div>
+                    <div class="bg-blue-100 p-6 rounded-xl flex justify-between items-center border-2 border-blue-300">
+                        <h4 class="font-bold text-2xl text-blue-800">NILAI RATA-RATA</h4>
+                        <p class="text-5xl font-black text-blue-700" id="rapor-total-skor">0</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -298,703 +339,8 @@
         <p class="font-semibold text-sm">Dibuat dengan ❤️ untuk Pembelajaran Anak SD Kelas 4</p>
     </footer>
 
+    <!-- AUDIO CONTEXT -->
     <script>
-        // ==========================================
-        // DATA PUZZLE (15 LEVEL) + DISTRACTORS
-        // ==========================================
-        const puzzles = [
-            {
-                title: "1. Membuat Susu Cokelat",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan gelas, susu, dan air" },
-                    { shape: "persegi", text: "Masukkan bubuk susu ke gelas" },
-                    { shape: "persegi", text: "Tuang air panas" },
-                    { shape: "persegi", text: "Aduk hingga rata" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Panggang di oven", "Tambahkan kecap asin"]
-            },
-            {
-                title: "2. Menyalakan Televisi",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Ambil remote TV" },
-                    { shape: "persegi", text: "Colokkan kabel TV ke listrik" },
-                    { shape: "persegi", text: "Tekan tombol Power di remote" },
-                    { shape: "jajargenjang", text: "TV menyala menampilkan gambar" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Buka pintu kulkas", "Nyalakan kompor gas"]
-            },
-            {
-                title: "3. Mencuci Tangan",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Nyalakan keran air" },
-                    { shape: "persegi", text: "Basahi tangan dengan air" },
-                    { shape: "persegi", text: "Gunakan sabun dan gosok sela jari" },
-                    { shape: "persegi", text: "Bilas dengan air bersih" },
-                    { shape: "persegi", text: "Matikan keran air" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Gunakan minyak goreng", "Siram tangan dengan pasir"]
-            },
-            {
-                title: "4. Makan Siang",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Ambil piring dan sendok" },
-                    { shape: "persegi", text: "Ambil nasi dan lauk" },
-                    { shape: "persegi", text: "Makan dengan perlahan" },
-                    { shape: "belah_ketupat", text: "Masih lapar?" },
-                    { shape: "persegi", text: "Tambah porsi nasi" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Bermain game di HP", "Pergi tidur siang"]
-            },
-            {
-                title: "5. Membuang Sampah",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Pegang sampah di tangan" },
-                    { shape: "persegi", text: "Cari letak tempat sampah" },
-                    { shape: "belah_ketupat", text: "Tong sampah ketemu?" },
-                    { shape: "persegi", text: "Buka tutup tong sampah" },
-                    { shape: "persegi", text: "Buang sampah ke dalam" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Lempar ke sungai", "Simpan di saku celana"]
-            },
-            {
-                title: "6. Menyeberang Jalan",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Cari Zebra Cross terdekat" },
-                    { shape: "persegi", text: "Tengok ke kanan" },
-                    { shape: "persegi", text: "Tengok ke kiri" },
-                    { shape: "belah_ketupat", text: "Jalanan aman dari kendaraan?" },
-                    { shape: "persegi", text: "Berjalan menyeberang hati-hati" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Berlari tutup mata", "Main bola di tengah jalan"]
-            },
-            {
-                title: "7. Lampu Belajar Mati",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Tekan saklar lampu" },
-                    { shape: "belah_ketupat", text: "Lampu tetap tidak menyala?" },
-                    { shape: "persegi", text: "Periksa kabel listrik" },
-                    { shape: "persegi", text: "Colokkan kabel ke stopkontak" },
-                    { shape: "jajargenjang", text: "Lampu menyala terang" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Siram air ke lampu", "Sembunyikan lampu di lemari"]
-            },
-            {
-                title: "8. Membeli Pensil",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Pergi ke toko alat tulis" },
-                    { shape: "persegi", text: "Pilih pensil yang bagus di rak" },
-                    { shape: "persegi", text: "Bawa pensil ke kasir" },
-                    { shape: "jajargenjang", text: "Serahkan uang bayaran" },
-                    { shape: "jajargenjang", text: "Terima pensil dan kembalian" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Pinjam uang kasir", "Lari keluar membawa pensil"]
-            },
-            {
-                title: "9. Menggosok Gigi",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan sikat dan pasta gigi (odol)" },
-                    { shape: "persegi", text: "Oleskan odol ke sikat gigi" },
-                    { shape: "persegi", text: "Sikat gigi bagian depan & dalam" },
-                    { shape: "persegi", text: "Kumur-kumur dengan air" },
-                    { shape: "persegi", text: "Cuci sikat gigi sampai bersih" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Menyisir rambut", "Gunakan sabun cuci piring"]
-            },
-            {
-                title: "10. Mengerjakan PR",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan buku PR dan alat tulis" },
-                    { shape: "persegi", text: "Baca soal nomor satu" },
-                    { shape: "belah_ketupat", text: "Soal ini terlalu sulit?" },
-                    { shape: "persegi", text: "Tanya bantuan ke Orang Tua" },
-                    { shape: "persegi", text: "Tulis jawaban di buku" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Kerjakan tahun depan saja", "Robek buku PR-nya"]
-            },
-            {
-                title: "11. Membuat Mie Rebus",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan bungkus mie, air, panci" },
-                    { shape: "persegi", text: "Rebus air di dalam panci" },
-                    { shape: "belah_ketupat", text: "Apakah air sudah mendidih?" },
-                    { shape: "persegi", text: "Masukkan mie dan bumbu" },
-                    { shape: "persegi", text: "Tuang mie matang ke mangkuk" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Panggang mie di kuali", "Buang air rebusan ke lantai"]
-            },
-            {
-                title: "12. Mengirim Surat",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan kertas, pena, dan amplop" },
-                    { shape: "persegi", text: "Tulis isi pesan di kertas" },
-                    { shape: "persegi", text: "Masukkan kertas ke dalam amplop" },
-                    { shape: "persegi", text: "Tempelkan perangko di ujung amplop" },
-                    { shape: "persegi", text: "Masukkan surat ke kotak pos" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Ketik pesan lewat WhatsApp", "Bakar surat tersebut"]
-            },
-            {
-                title: "13. Sepeda Kempes",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Keluarkan sepeda dari garasi" },
-                    { shape: "persegi", text: "Periksa tekanan ban dengan jari" },
-                    { shape: "belah_ketupat", text: "Apakah ban terasa kempes?" },
-                    { shape: "jajargenjang", text: "Ambil pompa angin" },
-                    { shape: "persegi", text: "Pompa ban sampai keras" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Isi bensin sepeda", "Ganti dengan ban traktor"]
-            },
-            {
-                title: "14. Menanam Bunga",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan pot, tanah, dan bibit" },
-                    { shape: "persegi", text: "Masukkan tanah ke dalam pot" },
-                    { shape: "persegi", text: "Buat lubang kecil di tengah tanah" },
-                    { shape: "persegi", text: "Tanam bibit bunga dan tutup akar" },
-                    { shape: "persegi", text: "Siram dengan sedikit air" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Siram menggunakan sirup", "Cabut akar tanaman lain"]
-            },
-            {
-                title: "15. Menjemur Pakaian",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Bawa keranjang pakaian basah" },
-                    { shape: "belah_ketupat", text: "Apakah cuaca sedang cerah?" },
-                    { shape: "persegi", text: "Peras sisa air dari pakaian" },
-                    { shape: "persegi", text: "Gantung pakaian di tali jemuran" },
-                    { shape: "persegi", text: "Pasang jepitan agar tidak terbang" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Pakaikan payung untuk baju", "Jemur di dalam kulkas"]
-            }
-        ];
-
-        let currentLevel = 0;
-        let puzzleScore = 0;
-        let puzzleScoreFloat = 0;
-        let selectedTool = null; 
-        let puzzleSlots = []; 
-        let availableTexts = [];
-
-        // --- VARIABEL UNTUK PENILAIAN/RAPOR ---
-        let isPuzzleDone = false;
-        let isQuizDone = false;
-        let finalQuizScoreValue = 0;
-
-        function updateRapor() {
-            // Update Puzzle
-            if (isPuzzleDone) {
-                document.getElementById('status-puzzle').innerHTML = 'Status: <span class="text-green-500 font-semibold">Selesai ✓</span>';
-            } else {
-                document.getElementById('status-puzzle').innerHTML = 'Status: <span class="text-red-500 font-semibold">Belum Selesai</span>';
-            }
-            document.getElementById('rapor-skor-puzzle').innerText = puzzleScore;
-
-            // Update Kuis
-            if (isQuizDone) {
-                document.getElementById('status-kuis').innerHTML = 'Status: <span class="text-green-500 font-semibold">Selesai ✓</span>';
-            } else {
-                document.getElementById('status-kuis').innerHTML = 'Status: <span class="text-red-500 font-semibold">Belum Selesai</span>';
-            }
-            document.getElementById('rapor-skor-kuis').innerText = finalQuizScoreValue;
-
-            // Update Total (Rata-rata Maks 100)
-            const total = Math.round((puzzleScore + finalQuizScoreValue) / 2);
-            document.getElementById('rapor-total-skor').innerText = total;
-
-            // Munculkan tombol cetak jika keduanya selesai
-            if (isPuzzleDone && isQuizDone) {
-                document.getElementById('btn-cetak-rapor').classList.remove('hidden');
-            } else {
-                document.getElementById('btn-cetak-rapor').classList.add('hidden');
-            }
-        }
-        // --------------------------------------
-
-        // Fungsi mengacak array
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        // Inisialisasi Level Puzzle
-        function loadPuzzleLevel() {
-            const levelData = puzzles[currentLevel];
-            document.getElementById('puzzle-title').innerText = levelData.title;
-            document.getElementById('level-indicator').innerText = `Level ${currentLevel + 1} / 15`;
-            
-            // Siapkan slot kosong sesuai jumlah langkah
-            puzzleSlots = Array(levelData.steps.length).fill().map(() => ({ shape: null, text: null, textId: null }));
-            
-            // Siapkan teks acak (Jawaban benar)
-            availableTexts = levelData.steps.map((s, index) => ({ id: `correct_${index}`, text: s.text }));
-            
-            // Tambahkan Kalimat Pengecoh (Distractors) jika ada
-            if (levelData.distractors) {
-                levelData.distractors.forEach((dist, idx) => {
-                    availableTexts.push({ id: `dist_${idx}`, text: dist });
-                });
-            }
-
-            // Acak urutan teks
-            availableTexts = shuffleArray(availableTexts);
-
-            selectedTool = null;
-            updateToolSelectionUI();
-            renderPuzzleBoard();
-            renderTextBank();
-        }
-
-        // Pilih Bentuk atau Teks dari Bank
-        function selectTool(type, value, textId = null) {
-            selectedTool = { type, value, textId };
-            updateToolSelectionUI();
-        }
-
-        // Update tampilan highlight tombol yang sedang dipilih
-        function updateToolSelectionUI() {
-            // Reset Shape Buttons
-            document.querySelectorAll('.tool-btn').forEach(btn => {
-                btn.classList.remove('ring-4', 'ring-purple-500', 'ring-offset-2');
-            });
-            // Reset Text Buttons
-            document.querySelectorAll('.text-tool-btn').forEach(btn => {
-                btn.classList.remove('ring-4', 'ring-purple-500', 'ring-offset-2', 'bg-purple-100');
-                btn.classList.add('bg-white');
-            });
-
-            if (selectedTool) {
-                if (selectedTool.type === 'shape') {
-                    document.getElementById(`tool-shape-${selectedTool.value}`).classList.add('ring-4', 'ring-purple-500', 'ring-offset-2');
-                } else if (selectedTool.type === 'text') {
-                    const btn = document.getElementById(`tool-text-${selectedTool.textId}`);
-                    if(btn) {
-                        btn.classList.remove('bg-white');
-                        btn.classList.add('ring-4', 'ring-purple-500', 'ring-offset-2', 'bg-purple-100');
-                    }
-                }
-            }
-        }
-
-        // Merender tombol teks yang tersedia
-        function renderTextBank() {
-            const bankContainer = document.getElementById('text-bank');
-            bankContainer.innerHTML = '';
-            
-            if (availableTexts.length === 0) {
-                bankContainer.innerHTML = '<span class="text-gray-400 italic text-sm">Semua kalimat di bank sudah dipakai.</span>';
-                return;
-            }
-
-            availableTexts.forEach(item => {
-                const btn = document.createElement('button');
-                btn.id = `tool-text-${item.id}`;
-                btn.className = "text-tool-btn bg-white border-2 border-gray-300 text-gray-700 px-3 py-2 rounded-lg text-sm font-semibold shadow-sm hover:bg-gray-100 transition";
-                btn.innerText = item.text;
-                btn.onclick = () => selectTool('text', item.text, item.id);
-                bankContainer.appendChild(btn);
-            });
-        }
-
-        // Mendapatkan HTML murni untuk Latar Belakang Bentuk Geometri (Z-index 0)
-        function getShapeHTML(shapeType) {
-            switch(shapeType) {
-                case 'oval': 
-                    return '<div class="absolute inset-0 bg-red-200 border-2 border-red-500 rounded-[50px] shadow-sm z-0"></div>';
-                case 'persegi': 
-                    return '<div class="absolute inset-0 bg-green-200 border-2 border-green-500 rounded-md shadow-sm z-0"></div>';
-                case 'jajargenjang': 
-                    return '<div class="absolute inset-0 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang shadow-sm z-0"></div>';
-                case 'belah_ketupat': 
-                    return '<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] bg-yellow-200 border-2 border-yellow-500 rotate-45 shadow-sm z-0"></div>';
-                default: 
-                    return '';
-            }
-        }
-
-        // Merender Area Kotak Jawaban
-        function renderPuzzleBoard() {
-            const board = document.getElementById('flowchart-board');
-            board.innerHTML = ''; // Hapus isi lama agar tidak menumpuk
-
-            puzzleSlots.forEach((slot, index) => {
-                const slotWrapper = document.createElement('div');
-                slotWrapper.className = 'flex flex-col items-center relative';
-
-                // Kotak Utama (Clickable)
-                const box = document.createElement('div');
-                box.className = "w-48 h-24 relative flex items-center justify-center cursor-pointer transition-all duration-300 rounded-lg group";
-                box.id = `slot-box-${index}`;
-                
-                // Style Dasar (Garis Putus-putus jika kosong)
-                if (!slot.shape) {
-                    box.classList.add('border-2', 'border-dashed', 'border-gray-400', 'bg-white', 'hover:bg-purple-100');
-                } else {
-                    box.classList.add('border-transparent'); // Hilangkan garis putus jika terisi
-                }
-
-                // 1. INJECT SHAPE BACKGROUND (Jika sudah dipilih bentuknya)
-                if (slot.shape) {
-                    box.innerHTML += getShapeHTML(slot.shape);
-                }
-
-                // 2. INJECT TEXT / PROMPT
-                if (slot.text) {
-                    // Jika ada teks, tampilkan di atas bentuk (z-index 10)
-                    let textClass = "relative z-10 text-center font-bold text-sm px-4 leading-tight text-gray-900 break-words w-full flex items-center justify-center ";
-                    
-                    // Supaya teks di belah ketupat muat & tidak kepotong
-                    if (slot.shape === 'belah_ketupat') {
-                        textClass += "text-[10px] max-w-[85px] h-[85px]"; 
-                    }
-                    
-                    box.innerHTML += `<span class="${textClass}">${slot.text}</span>`;
-                } else {
-                    // Jika belum ada teks, berikan instruksi bantuan yang jelas (z-index 10)
-                    let promptClass = "relative z-10 text-gray-500 text-xs text-center p-2 font-semibold";
-                    let promptText = !slot.shape 
-                        ? '<i class="fa-solid fa-plus text-lg mb-1"></i><br>1. Taruh Bentuk<br>2. Taruh Kalimat' 
-                        : '<i class="fa-solid fa-font text-lg text-blue-500 mb-1"></i><br>Klik di sini untuk<br>mengisi kalimat';
-                    
-                    box.innerHTML += `<span class="${promptClass}">${promptText}</span>`;
-                }
-
-                // 3. EVENT LISTENER KLIK KOTAK (Untuk memasukkan shape/text)
-                box.onclick = () => applyToolToSlot(index);
-                
-                // 4. TOMBOL HAPUS (Muncul jika disorot / dihover)
-                if (slot.shape || slot.text) {
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = "absolute -top-3 -right-3 bg-red-500 text-white w-8 h-8 rounded-full text-sm hidden group-hover:flex items-center justify-center z-20 hover:bg-red-600 shadow-md border-2 border-white";
-                    deleteBtn.innerHTML = '<i class="fa-solid fa-times"></i>';
-                    deleteBtn.onclick = (e) => {
-                        e.stopPropagation(); // Mencegah terpicunya box.onclick
-                        clearSlot(index);
-                    };
-                    box.appendChild(deleteBtn);
-                }
-
-                slotWrapper.appendChild(box);
-
-                // Tambahkan tanda panah ke bawah (Kecuali untuk kotak yang paling akhir)
-                if (index < puzzleSlots.length - 1) {
-                    const arrow = document.createElement('div');
-                    arrow.className = "text-purple-400 text-3xl my-2 animate-pulse";
-                    arrow.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
-                    slotWrapper.appendChild(arrow);
-                }
-
-                board.appendChild(slotWrapper);
-            });
-        }
-
-        // Menerapkan (Meletakkan) alat yang sedang dipilih ke dalam kotak
-        function applyToolToSlot(index) {
-            if (!selectedTool) {
-                // Notifikasi lembut
-                Swal.fire({
-                    toast: true, position: 'top-end', icon: 'info', title: 'Pilih Bentuk atau Kalimat dulu di sebelah kiri!',
-                    showConfirmButton: false, timer: 2000, timerProgressBar: true
-                });
-                return;
-            }
-
-            let slot = puzzleSlots[index];
-
-            if (selectedTool.type === 'shape') {
-                slot.shape = selectedTool.value;
-            } 
-            else if (selectedTool.type === 'text') {
-                // Jika kotak sudah berisi teks sebelumnya, kembalikan teks lama tersebut ke "Bank Teks"
-                if (slot.text) {
-                    availableTexts.push({ id: slot.textId, text: slot.text });
-                }
-                
-                // Masukkan teks yang baru dipilih ke dalam kotak
-                slot.text = selectedTool.value;
-                slot.textId = selectedTool.textId;
-                
-                // Hapus teks tersebut dari daftar "Bank Teks"
-                availableTexts = availableTexts.filter(item => item.id !== selectedTool.textId);
-            }
-
-            // Bersihkan seleksi setelah ditaruh dan render ulang tampilannya
-            selectedTool = null;
-            updateToolSelectionUI();
-            renderTextBank();
-            renderPuzzleBoard();
-        }
-
-        // Menghapus isi kotak (mengembalikan teks ke bank dan membuang bentuknya)
-        function clearSlot(index) {
-            let slot = puzzleSlots[index];
-            
-            // Kembalikan ke bank teks jika ada
-            if (slot.text) {
-                availableTexts.push({ id: slot.textId, text: slot.text });
-            }
-            
-            // Kosongkan kotak
-            puzzleSlots[index] = { shape: null, text: null, textId: null };
-            
-            selectedTool = null;
-            updateToolSelectionUI();
-            renderTextBank();
-            renderPuzzleBoard();
-        }
-
-        // Cek Kebenaran Puzzle saat tombol "Cek Jawaban" diklik
-        function checkPuzzle() {
-            const levelData = puzzles[currentLevel];
-            let isAllCorrect = true;
-
-            // Pastikan semua kotak terisi penuh (Bentuk dan Teks tidak boleh kosong)
-            const hasEmpty = puzzleSlots.some(slot => !slot.shape || !slot.text);
-            if (hasEmpty) {
-                Swal.fire('Oops!', 'Lengkapi semua kotak! Pastikan setiap kotak memiliki Bentuk DAN Kalimat ya.', 'warning');
-                return;
-            }
-
-            // Pengecekan per kotak
-            puzzleSlots.forEach((slot, index) => {
-                const correctStep = levelData.steps[index];
-                const boxElement = document.getElementById(`slot-box-${index}`);
-                
-                if (slot.shape === correctStep.shape && slot.text === correctStep.text) {
-                    // Jawaban Benar (Beri efek hijau)
-                    boxElement.classList.add('ring-4', 'ring-green-400', 'ring-offset-2');
-                } else {
-                    // Jawaban Salah (Beri efek goyang dan merah)
-                    isAllCorrect = false;
-                    boxElement.classList.add('shake-animation', 'ring-4', 'ring-red-400', 'ring-offset-2');
-                    setTimeout(() => {
-                        boxElement.classList.remove('shake-animation', 'ring-4', 'ring-red-400', 'ring-offset-2');
-                    }, 600);
-                }
-            });
-
-            if (isAllCorrect) {
-                // Tambah skor jika benar (Maks 100)
-                puzzleScoreFloat += (100 / puzzles.length);
-                puzzleScore = Math.round(puzzleScoreFloat);
-                if (puzzleScore > 100) puzzleScore = 100;
-                document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-                
-                if (currentLevel < puzzles.length - 1) {
-                    Swal.fire({
-                        title: 'Hebat Sekali! 🌟',
-                        text: 'Susunan flowchart kamu sempurna!',
-                        icon: 'success',
-                        confirmButtonText: 'Lanjut Level Berikutnya',
-                        confirmButtonColor: '#10b981'
-                    }).then(() => {
-                        currentLevel++;
-                        loadPuzzleLevel();
-                    });
-                } else {
-                    // Semua Level (1-15) telah tamat
-                    isPuzzleDone = true;
-                    updateRapor();
-
-                    // Buka Gembok Kuis
-                    document.getElementById('quiz-locked-overlay').classList.add('hidden');
-                    document.getElementById('quiz-container').classList.remove('hidden');
-
-                    document.getElementById('puzzle-play-area').classList.add('hidden');
-                    document.getElementById('puzzle-action-container').classList.add('hidden');
-                    document.getElementById('puzzle-result-container').classList.remove('hidden');
-                    document.getElementById('final-puzzle-score').innerText = puzzleScore;
-                    
-                    Swal.fire({
-                        title: 'SELAMAT! 🎉',
-                        text: `Kamu menyelesaikan semua puzzle dengan total skor ${puzzleScore}!\nSekarang KUIS telah DIBUKA!`,
-                        icon: 'success',
-                        confirmButtonText: 'Mainkan Kuis Sekarang',
-                        confirmButtonColor: '#10b981'
-                    }).then(() => {
-                        window.location.hash = "#kuis"; // Otomatis gulir ke bagian kuis
-                    });
-                }
-            } else {
-                // Kurangi skor jika ada yang salah cek (-1 poin karena skala sekarang per level 6 poin)
-                puzzleScoreFloat = Math.max(0, puzzleScoreFloat - 1);
-                puzzleScore = Math.round(puzzleScoreFloat);
-                document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
-                updateRapor(); // Update secara real-time
-                
-                Swal.fire('Ada yang salah!', 'Skor dikurangi 1 poin. Perhatikan URUTAN langkah dan BENTUK yang tepat! Jangan sampai bentuk Jajargenjang tertukar posisinya dengan Persegi.', 'error');
-            }
-        }
-
-        // Main Ulang Puzzle dari awal
-        function restartPuzzle() {
-            currentLevel = 0;
-            puzzleScore = 0;
-            puzzleScoreFloat = 0;
-            isPuzzleDone = false;
-            updateRapor();
-
-            // Kunci Kuis Kembali
-            document.getElementById('quiz-locked-overlay').classList.remove('hidden');
-            document.getElementById('quiz-container').classList.add('hidden');
-
-            document.getElementById('puzzle-score-display').innerText = `Skor: ${puzzleScore}`;
-            
-            document.getElementById('puzzle-result-container').classList.add('hidden');
-            document.getElementById('puzzle-play-area').classList.remove('hidden');
-            document.getElementById('puzzle-action-container').classList.remove('hidden');
-            
-            loadPuzzleLevel();
-        }
-
-        // ==========================================
-        // DATA KUIS HOTS (Tetap Sama)
-        // ==========================================
-        const quizData = [
-            { question: "Budi ingin membuat flowchart 'Cara Memasak Mie'. Bentuk apa yang paling tepat untuk langkah 'Masukkan mie ke dalam panci'?", options: ["Terminal (Oval)", "Persegi (Kotak)", "Belah Ketupat", "Lingkaran"], answer: 1 },
-            { question: "Siti melihat bentuk Belah Ketupat dalam flowchart 'Bermain Hujan'. Tulisan apa yang paling cocok di dalam belah ketupat tersebut?", options: ["Gunakan payung", "Apakah hari sedang hujan?", "Mulai bermain", "Selesai"], answer: 1 },
-            { question: "Andi membuat algoritma tebak angka. Jika tebakan salah, ia harus mencoba lagi. Jika benar, permainan selesai. Mengapa Andi HARUS menggunakan bentuk belah ketupat?", options: ["Karena belah ketupat digunakan untuk menulis hasil tebakan.", "Karena ia butuh bentuk untuk membuat keputusan (tebakan benar atau salah).", "Karena bentuknya keren untuk game.", "Karena belah ketupat artinya 'Selesai'."], answer: 1 },
-            { question: "Di sebuah restoran robot, ada perintah 'Siapkan piring dan sendok'. Dalam flowchart, perintah menyiapkan bahan (input) menggunakan bentuk...", options: ["Jajargenjang", "Oval", "Belah Ketupat", "Garis Lurus"], answer: 0 },
-            { question: "Apa yang akan terjadi pada program komputer jika kita TIDAK memberikan bentuk Oval (Terminal) 'Selesai' di akhir flowchart?", options: ["Komputer akan berjalan lebih cepat.", "Komputer bisa kebingungan dan terus mengulang perintah tanpa henti (error).", "Layar komputer akan mati sendiri.", "Program akan langsung mencetak kertas."], answer: 1 },
-            { question: "Nina menyusun langkah: (1) Mulai, (2) Ambil buku, (3) Baca buku, (4) Selesai. Langkah mana yang harus dimasukkan ke dalam bentuk Persegi (Proses)?", options: ["Mulai", "Ambil buku", "Baca buku", "Selesai"], answer: 2 },
-            { question: "Jika kamu membuat mesin penjual minuman otomatis. Saat mesin mengecek 'Apakah uang pembeli cukup?', panah dari bentuk Belah Ketupat harus bercabang menjadi dua. Apa arti dua cabang itu?", options: ["Satu arah untuk koin, satu arah untuk kertas.", "Satu arah jika jawaban 'Ya', satu arah jika jawaban 'Tidak'.", "Satu arah untuk minuman dingin, satu untuk panas.", "Satu untuk masuk, satu untuk keluar."], answer: 1 },
-            { question: "Anton salah menggambar flowchart. Ia menaruh tulisan 'Mulai' di dalam bentuk Jajargenjang. Mengapa ini dianggap salah?", options: ["Karena Jajargenjang warnanya biru.", "Karena 'Mulai' adalah proses yang harusnya di Persegi.", "Karena Jajargenjang untuk Input/Output, sedangkan 'Mulai' harusnya Oval (Terminal).", "Karena tulisannya terlalu pendek."], answer: 2 },
-            { question: "Bentuk panah (garis alir) dalam flowchart berfungsi untuk...", options: ["Menghias diagram agar tidak sepi.", "Menunjukkan arah dan urutan langkah yang harus dilakukan komputer.", "Memotong bentuk yang terlalu besar.", "Membuat komputer menggambar garis."], answer: 1 },
-            { question: "Dalam game Super Mario, jika Mario menyentuh musuh, nyawanya berkurang. Logika 'Apakah menyentuh musuh?' digambar dengan...", options: ["Persegi", "Oval", "Belah Ketupat", "Jajargenjang"], answer: 2 },
-            { question: "Kamu disuruh membuat flowchart 'Cara Mengecas HP'. Jika digabungkan, pasangan Bentuk dan Tulisan yang BENAR adalah...", options: ["Belah Ketupat -> 'Colokkan kabel ke listrik'", "Persegi -> 'Baterai HP penuh?'", "Jajargenjang -> 'Ambil Charger'", "Oval -> 'Menunggu baterai penuh'"], answer: 2 },
-            { question: "Flowchart sangat berguna bagi programmer komputer. Menurutmu, apa alasan utamanya?", options: ["Agar kode program terlihat panjang dan sulit.", "Untuk merencanakan logika dan memecahkan masalah sebelum mulai mengetik kode.", "Sebagai pengganti buku gambar.", "Agar keyboard komputer tidak cepat rusak."], answer: 1 },
-            { question: "Sebuah pabrik cokelat menggunakan flowchart. Ada langkah 'Tampilkan jumlah cokelat di layar'. Langkah (Output) ini menggunakan bentuk...", options: ["Jajargenjang", "Belah Ketupat", "Persegi", "Oval"], answer: 0 },
-            { question: "Apa bedanya Persegi dan Jajargenjang?", options: ["Persegi untuk memulai, Jajargenjang untuk mengakhiri.", "Persegi untuk proses/kegiatan, Jajargenjang untuk input barang/tampilkan hasil.", "Persegi untuk komputer, Jajargenjang untuk manusia.", "Tidak ada bedanya, boleh ditukar sesuka hati."], answer: 1 },
-            { question: "Jika cuaca mendung, bawa payung. Jika cerah, pakai topi. Proses 'memilih' berdasarkan cuaca ini merupakan contoh dari...", options: ["Terminal (Awal/Akhir)", "Decision (Keputusan/Belah Ketupat)", "Proses Berulang (Loop)", "Input Data"], answer: 1 }
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-        let quizScoreFloat = 0;
-
-        function loadQuestion() {
-            const q = quizData[currentQuestion];
-            document.getElementById('question-counter').innerText = `Soal ${currentQuestion + 1} / 15`;
-            document.getElementById('question-text').innerText = q.question;
-            
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = ''; 
-
-            q.options.forEach((opt, index) => {
-                const btn = document.createElement('button');
-                btn.className = "w-full text-left p-4 rounded-xl border-2 border-orange-200 hover:bg-orange-100 hover:border-orange-400 transition font-medium text-lg btn-bounce bg-white";
-                btn.innerText = opt;
-                btn.onclick = () => checkAnswer(index, btn);
-                optionsContainer.appendChild(btn);
-            });
-        }
-
-        function checkAnswer(selectedIndex, btnElement) {
-            const buttons = document.querySelectorAll('#options-container button');
-            buttons.forEach(b => b.disabled = true);
-            const correctIndex = quizData[currentQuestion].answer;
-
-            if (selectedIndex === correctIndex) {
-                btnElement.classList.remove('border-orange-200', 'bg-white');
-                btnElement.classList.add('bg-green-500', 'text-white', 'border-green-600');
-                
-                // Tambah Poin (Skala 100)
-                quizScoreFloat += (100 / quizData.length);
-                score = Math.round(quizScoreFloat);
-                if (score > 100) score = 100;
-                
-                document.getElementById('current-score').innerText = score;
-                playTone(600, "sine", 0.1); 
-                setTimeout(() => playTone(800, "sine", 0.15), 100);
-            } else {
-                btnElement.classList.remove('border-orange-200', 'bg-white');
-                btnElement.classList.add('bg-red-500', 'text-white', 'border-red-600', 'shake-animation');
-                buttons[correctIndex].classList.remove('border-orange-200', 'bg-white');
-                buttons[correctIndex].classList.add('bg-green-300', 'border-green-500');
-                playTone(300, "sawtooth", 0.3);
-            }
-
-            setTimeout(() => {
-                currentQuestion++;
-                if (currentQuestion < quizData.length) {
-                    loadQuestion();
-                } else {
-                    showResult();
-                }
-            }, 1500);
-        }
-
-        function showResult() {
-            document.getElementById('quiz-container').classList.add('hidden');
-            const resultBox = document.getElementById('result-container');
-            resultBox.classList.remove('hidden');
-            document.getElementById('final-score').innerText = score;
-            
-            // Rekam Hasil ke Rapor
-            isQuizDone = true;
-            finalQuizScoreValue = score;
-            updateRapor();
-
-            const message = document.getElementById('score-message');
-            if(score === 100) {
-                message.innerText = "SEMPURNA! Kamu adalah Programmer Cilik Jenius! 🏆";
-                confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
-            } else if (score >= 70) {
-                message.innerText = "Luar biasa! Pemahaman logikamu sangat bagus! 🌟";
-                confetti();
-            } else {
-                message.innerText = "Tetap semangat! Coba baca materinya lagi dan mainkan puzzlenya ya! 💪";
-            }
-        }
-
-        function restartQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            quizScoreFloat = 0;
-            isQuizDone = false;
-            finalQuizScoreValue = 0;
-            updateRapor();
-
-            document.getElementById('current-score').innerText = score;
-            document.getElementById('result-container').classList.add('hidden');
-            document.getElementById('quiz-container').classList.remove('hidden');
-            loadQuestion();
-        }
-
-        // SFX Generator Sederhana
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(frequency, type, duration) {
             if(audioCtx.state === 'suspended') audioCtx.resume();
@@ -1008,9 +354,861 @@
             gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
             oscillator.stop(audioCtx.currentTime + duration);
         }
+        
+        // Toast Alert Custom
+        const Toast = Swal.mixin({
+            toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, timerProgressBar: true
+        });
+        function showToast(msg, icon) { Toast.fire({ icon: icon, title: msg }); }
+    </script>
+
+    <!-- ==========================================
+         SCRIPT: DUEL MODE 1 VS 1
+         ========================================== -->
+    <script>
+        const duelData1 = [
+            {
+                title: "1. Membuat Teh Manis",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan Teh, Gula, Air Panas (Input)" },
+                    { shape: "persegi", text: "Aduk teh & gula di gelas (Proses)" },
+                    { shape: "jajargenjang", text: "Teh Manis siap (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Panggang gula di oven", "Beli teh di luar"]
+            },
+            {
+                title: "2. Menghitung Luas Persegi",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Masukkan nilai sisi (Input)" },
+                    { shape: "persegi", text: "Kalikan sisi x sisi (Proses)" },
+                    { shape: "jajargenjang", text: "Tampilkan Luas (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Gambar lingkaran besar", "Buang penggaris"]
+            },
+            {
+                title: "3. Pinjam Buku Perpus",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Bawa Buku & Kartu (Input)" },
+                    { shape: "belah_ketupat", text: "Boleh dipinjam? (Pilihan)" },
+                    { shape: "persegi", text: "Catat nama di komputer (Proses)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Coret buku dengan pensil", "Sembunyikan buku di tas"]
+            },
+            {
+                title: "4. Membuat Es Jeruk",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan Jeruk & Es (Input)" },
+                    { shape: "persegi", text: "Peras jeruk & aduk (Proses)" },
+                    { shape: "jajargenjang", text: "Es Jeruk Segar Jadi (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Rebus es batu", "Goreng buah jeruk"]
+            },
+            {
+                title: "5. Menyaring Air Kotor",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan botol & pasir (Input)" },
+                    { shape: "persegi", text: "Tuang air ke saringan (Proses)" },
+                    { shape: "jajargenjang", text: "Air menjadi jernih (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Masukkan sabun cuci", "Minum air kotor"]
+            }
+        ];
+
+        const duelData2 = [
+            {
+                title: "1. Membuat Roti Bakar",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan Roti & Selai (Input)" },
+                    { shape: "persegi", text: "Oles selai & bakar (Proses)" },
+                    { shape: "jajargenjang", text: "Roti Bakar hangat (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Cuci roti pakai air", "Jemur roti di genteng"]
+            },
+            {
+                title: "2. Hitung Keliling Segitiga",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Masukkan 3 sisi (Input)" },
+                    { shape: "persegi", text: "Jumlahkan 3 sisi (Proses)" },
+                    { shape: "jajargenjang", text: "Tampilkan Keliling (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Hapus angka di papan", "Lipat kertas segitiga"]
+            },
+            {
+                title: "3. Beli Snack di Mesin",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Masukkan uang kertas (Input)" },
+                    { shape: "belah_ketupat", text: "Uangnya cukup? (Pilihan)" },
+                    { shape: "persegi", text: "Mesin keluarkan snack (Proses)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Tendang mesin keras-keras", "Goyang mesinnya"]
+            },
+            {
+                title: "4. Membuat Jus Mangga",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan Mangga & Susu (Input)" },
+                    { shape: "persegi", text: "Blender mangga halus (Proses)" },
+                    { shape: "jajargenjang", text: "Jus Mangga siap (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Rebus buah mangga", "Taburkan lada hitam"]
+            },
+            {
+                title: "5. Bersihkan Jendela",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan Kain & Cairan (Input)" },
+                    { shape: "persegi", text: "Semprot & gosok kain (Proses)" },
+                    { shape: "jajargenjang", text: "Jendela mengkilap (Output)" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Lempar batu ke kaca", "Cat jendela warna hitam"]
+            }
+        ];
+
+        let p1 = { time: 420, score: 0, level: 0, activeStep: 0, slots: [], texts: [], selectedTool: null, playing: false };
+        let p2 = { time: 420, score: 0, level: 0, activeStep: 0, slots: [], texts: [], selectedTool: null, playing: false };
+        let duelInterval = null;
+
+        function shuffleArr(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function formatTime(seconds) {
+            if(seconds < 0) seconds = 0;
+            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const s = (seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function startDuel() {
+            document.getElementById('duel-start-overlay').classList.add('hidden');
+            document.getElementById('duel-arena-1').classList.remove('opacity-50', 'pointer-events-none');
+            document.getElementById('duel-arena-2').classList.remove('opacity-50', 'pointer-events-none');
+            
+            p1 = { time: 420, score: 0, level: 0, activeStep: 0, slots: [], texts: [], selectedTool: null, playing: true };
+            p2 = { time: 420, score: 0, level: 0, activeStep: 0, slots: [], texts: [], selectedTool: null, playing: true };
+            
+            loadDuelLevel(1);
+            loadDuelLevel(2);
+            updateDuelStats(1);
+            updateDuelStats(2);
+
+            if(duelInterval) clearInterval(duelInterval);
+            duelInterval = setInterval(() => {
+                if(p1.playing) {
+                    p1.time--;
+                    if(p1.time <= 0) { p1.time = 0; p1.playing = false; lockArena(1); }
+                    document.getElementById('duel-time-1').innerText = formatTime(p1.time);
+                }
+                if(p2.playing) {
+                    p2.time--;
+                    if(p2.time <= 0) { p2.time = 0; p2.playing = false; lockArena(2); }
+                    document.getElementById('duel-time-2').innerText = formatTime(p2.time);
+                }
+                if(!p1.playing && !p2.playing) {
+                    clearInterval(duelInterval);
+                    checkDuelEnd();
+                }
+            }, 1000);
+        }
+
+        function lockArena(player) {
+            document.getElementById(`duel-arena-${player}`).classList.add('opacity-50', 'pointer-events-none');
+            showToast(`Waktu Pemain ${player} Habis!`, 'warning');
+        }
+
+        function loadDuelLevel(player) {
+            const pState = player === 1 ? p1 : p2;
+            const dData = player === 1 ? duelData1 : duelData2;
+            
+            if(pState.level >= dData.length) return; // Finished
+            
+            const levelData = dData[pState.level];
+            document.getElementById(`duel-title-${player}`).innerText = levelData.title;
+            document.getElementById(`duel-level-${player}`).innerText = `Level ${pState.level + 1} / 5`;
+            
+            pState.activeStep = 0;
+            pState.slots = Array(levelData.steps.length).fill().map(() => ({ shape: null, text: null, textId: null }));
+            
+            let txts = levelData.steps.map((s, i) => ({ id: i, text: s.text }));
+            levelData.distractors.forEach((d, i) => txts.push({ id: 100+i, text: d }));
+            pState.texts = shuffleArr(txts);
+            pState.selectedTool = null;
+
+            updateDuelToolUI(player);
+            renderDuelBank(player);
+            renderDuelBoard(player);
+        }
+
+        function selectDuelTool(player, type, value, textId = null) {
+            const pState = player === 1 ? p1 : p2;
+            pState.selectedTool = { type, value, textId };
+            updateDuelToolUI(player);
+        }
+
+        function updateDuelToolUI(player) {
+            const pState = player === 1 ? p1 : p2;
+            const colorClass = player === 1 ? 'ring-blue-600' : 'ring-rose-600';
+            const bgClass = player === 1 ? 'bg-blue-100' : 'bg-rose-100';
+
+            document.querySelectorAll(`.tool-p${player}`).forEach(btn => btn.classList.remove('ring-4', colorClass));
+            document.querySelectorAll(`.text-tool-p${player}`).forEach(btn => {
+                btn.classList.remove('ring-4', colorClass, bgClass);
+                btn.classList.add('bg-white');
+            });
+
+            if (pState.selectedTool) {
+                if (pState.selectedTool.type === 'shape') {
+                    document.getElementById(`duel-p${player}-shape-${pState.selectedTool.value}`).classList.add('ring-4', colorClass);
+                } else if (pState.selectedTool.type === 'text') {
+                    const btn = document.getElementById(`duel-p${player}-text-${pState.selectedTool.textId}`);
+                    if(btn) {
+                        btn.classList.remove('bg-white');
+                        btn.classList.add('ring-4', colorClass, bgClass);
+                    }
+                }
+            }
+        }
+
+        function renderDuelBank(player) {
+            const pState = player === 1 ? p1 : p2;
+            const container = document.getElementById(`duel-text-bank-${player}`);
+            container.innerHTML = '';
+            
+            pState.texts.forEach(item => {
+                const btn = document.createElement('button');
+                btn.id = `duel-p${player}-text-${item.id}`;
+                btn.className = `text-tool-p${player} bg-white border border-gray-300 px-2 py-1 rounded text-[10px] sm:text-xs font-semibold shadow-sm hover:bg-gray-50 m-0.5 max-w-[150px] leading-tight`;
+                btn.innerText = item.text;
+                btn.onclick = () => selectDuelTool(player, 'text', item.text, item.id);
+                container.appendChild(btn);
+            });
+        }
+
+        function getShapeHTML(shapeType) {
+            switch(shapeType) {
+                case 'oval': return '<div class="absolute inset-0 bg-red-200 border-2 border-red-500 rounded-[50px]"></div>';
+                case 'persegi': return '<div class="absolute inset-0 bg-green-200 border-2 border-green-500 rounded-md"></div>';
+                case 'jajargenjang': return '<div class="absolute inset-0 bg-blue-200 border-2 border-blue-500 shape-btn-jajargenjang"></div>';
+                case 'belah_ketupat': return '<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 bg-yellow-200 border-2 border-yellow-500 rotate-45"></div>';
+                default: return '';
+            }
+        }
+
+        function renderDuelBoard(player) {
+            const pState = player === 1 ? p1 : p2;
+            const board = document.getElementById(`duel-board-${player}`);
+            board.innerHTML = '';
+
+            pState.slots.forEach((slot, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex flex-col items-center relative';
+
+                const box = document.createElement('div');
+                box.className = "w-40 sm:w-48 h-20 sm:h-24 relative flex items-center justify-center transition-all duration-300 rounded-lg group";
+                box.id = `duel-p${player}-slot-${index}`;
+
+                // Jika bukan activeStep dan belum terisi, disable
+                const isActive = (index === pState.activeStep);
+                const isCompleted = (index < pState.activeStep);
+
+                if (isActive) {
+                    box.classList.add('cursor-pointer', 'border-2', 'border-dashed', 'border-yellow-500', 'bg-yellow-50', 'animate-pulse');
+                    box.onclick = () => applyDuelSlot(player, index);
+                } else if (!isCompleted) {
+                    box.classList.add('border-2', 'border-dashed', 'border-gray-300', 'bg-gray-50', 'opacity-50');
+                }
+
+                if (slot.shape) box.innerHTML += getShapeHTML(slot.shape);
+                
+                if (slot.text) {
+                    let textClass = "relative z-10 text-center font-bold text-[10px] sm:text-xs px-2 sm:px-4 leading-tight text-gray-900";
+                    if (slot.shape === 'belah_ketupat') textClass += " w-16 sm:w-20";
+                    box.innerHTML += `<span class="${textClass}">${slot.text}</span>`;
+                } else if (isActive) {
+                    box.innerHTML += `<span class="relative z-10 text-yellow-600 text-[10px] sm:text-xs text-center font-bold">Kerjakan Blok Ini</span>`;
+                }
+
+                wrapper.appendChild(box);
+
+                if (index < pState.slots.length - 1) {
+                    const arrow = document.createElement('div');
+                    arrow.className = `text-2xl my-1 ${isCompleted ? 'text-green-500' : 'text-gray-300'}`;
+                    arrow.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+                    wrapper.appendChild(arrow);
+                }
+                board.appendChild(wrapper);
+            });
+            // Auto scroll to active step
+            const activeElem = document.getElementById(`duel-p${player}-slot-${pState.activeStep}`);
+            if(activeElem) activeElem.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        function applyDuelSlot(player, slotIndex) {
+            const pState = player === 1 ? p1 : p2;
+            if (slotIndex !== pState.activeStep) return; 
+            
+            if (!pState.selectedTool) {
+                showToast(`Pemain ${player}: Pilih Alat Dulu!`, 'info');
+                return;
+            }
+
+            const slot = pState.slots[slotIndex];
+            const tool = pState.selectedTool;
+
+            if (tool.type === 'shape') {
+                slot.shape = tool.value;
+            } else if (tool.type === 'text') {
+                if (slot.text) pState.texts.push({ id: slot.textId, text: slot.text }); // Return old
+                slot.text = tool.value;
+                slot.textId = tool.textId;
+                pState.texts = pState.texts.filter(t => t.id !== tool.textId); // Remove from bank
+            }
+
+            pState.selectedTool = null;
+            updateDuelToolUI(player);
+            renderDuelBank(player);
+            renderDuelBoard(player);
+
+            // Auto check
+            if (slot.shape && slot.text) {
+                checkDuelBlock(player, slotIndex);
+            }
+        }
+
+        function checkDuelBlock(player, slotIndex) {
+            const pState = player === 1 ? p1 : p2;
+            const dData = player === 1 ? duelData1 : duelData2;
+            const correctStep = dData[pState.level].steps[slotIndex];
+            const slot = pState.slots[slotIndex];
+            const box = document.getElementById(`duel-p${player}-slot-${slotIndex}`);
+
+            if (slot.shape === correctStep.shape && slot.text === correctStep.text) {
+                // Correct!
+                box.classList.remove('border-dashed', 'border-yellow-500', 'bg-yellow-50', 'animate-pulse');
+                box.classList.add('ring-4', 'ring-green-400');
+                
+                pState.time += 10;
+                pState.score += 20;
+                pState.activeStep++;
+                playTone(600, "sine", 0.1);
+                showToast(`Pemain ${player}: BENAR! +10 Detik`, 'success');
+
+                if (pState.activeStep >= dData[pState.level].steps.length) {
+                    // Level Clear
+                    pState.level++;
+                    pState.score += 50;
+                    if (pState.level < 5) {
+                        setTimeout(() => loadDuelLevel(player), 1000);
+                    } else {
+                        // Finished all 5
+                        pState.playing = false;
+                        document.getElementById(`duel-arena-${player}`).classList.add('opacity-70', 'pointer-events-none');
+                        Swal.fire('Tamat!', `Pemain ${player} telah menyelesaikan ke-5 Level!`, 'success');
+                    }
+                } else {
+                    renderDuelBoard(player);
+                }
+            } else {
+                // Wrong!
+                box.classList.add('shake-animation', 'ring-4', 'ring-red-500');
+                pState.time -= 20;
+                if(pState.time < 0) pState.time = 0;
+                playTone(300, "sawtooth", 0.3);
+                showToast(`Pemain ${player}: SALAH! -20 Detik`, 'error');
+
+                setTimeout(() => {
+                    // Reset
+                    pState.texts.push({ id: slot.textId, text: slot.text });
+                    slot.shape = null; slot.text = null; slot.textId = null;
+                    renderDuelBank(player);
+                    renderDuelBoard(player);
+                }, 800);
+            }
+            updateDuelStats(player);
+        }
+
+        function updateDuelStats(player) {
+            const pState = player === 1 ? p1 : p2;
+            document.getElementById(`duel-time-${player}`).innerText = formatTime(pState.time);
+            document.getElementById(`duel-score-${player}`).innerText = pState.score;
+        }
+
+        function checkDuelEnd() {
+            if(!p1.playing && !p2.playing) {
+                let msg = "";
+                if(p1.score > p2.score) msg = "PEMAIN 1 MENANG! 🏆";
+                else if(p2.score > p1.score) msg = "PEMAIN 2 MENANG! 🏆";
+                else msg = "KEDUDUKAN SERI! 🤝";
+
+                Swal.fire({
+                    title: 'DUEL SELESAI!',
+                    html: `<b>${msg}</b><br><br>Skor Akhir:<br>Pemain 1 = ${p1.score}<br>Pemain 2 = ${p2.score}`,
+                    icon: 'info',
+                    confirmButtonText: 'Tutup'
+                }).then(() => {
+                    document.getElementById('duel-start-overlay').classList.remove('hidden');
+                });
+            }
+        }
+    </script>
+
+
+    <!-- ==========================================
+         SCRIPT: PUZZLE SOLO & KUIS (PREVIOUS SYSTEM)
+         ========================================== -->
+    <script>
+        // Data Puzzle Solo 15 Level Lengkap (Diperpanjang agar HOTS)
+        const puzzles = [
+            {
+                title: "1. Membuat Susu Cokelat",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan gelas, bubuk susu, air" },
+                    { shape: "persegi", text: "Masukkan susu ke gelas" },
+                    { shape: "persegi", text: "Tuang air panas" },
+                    { shape: "persegi", text: "Aduk hingga rata" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Panggang di oven", "Tambahkan kecap asin"]
+            },
+            {
+                title: "2. Menyalakan Televisi",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Ambil remote TV" },
+                    { shape: "persegi", text: "Colokkan kabel ke listrik" },
+                    { shape: "persegi", text: "Tekan tombol Power" },
+                    { shape: "jajargenjang", text: "TV menyala" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Buka pintu kulkas", "Nyalakan kompor gas"]
+            },
+            {
+                title: "3. Mencuci Tangan",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Nyalakan keran air" },
+                    { shape: "persegi", text: "Basahi dan gosok sabun" },
+                    { shape: "persegi", text: "Bilas air bersih" },
+                    { shape: "persegi", text: "Matikan keran" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Gunakan minyak", "Siram dengan pasir"]
+            },
+            {
+                title: "4. Makan Siang",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Ambil piring & nasi" },
+                    { shape: "persegi", text: "Makan perlahan" },
+                    { shape: "belah_ketupat", text: "Masih lapar?" },
+                    { shape: "persegi", text: "Tambah porsi nasi" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Bermain game", "Tidur siang"]
+            },
+            {
+                title: "5. Membuang Sampah",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Pegang sampah" },
+                    { shape: "persegi", text: "Cari tong sampah" },
+                    { shape: "belah_ketupat", text: "Tong ketemu?" },
+                    { shape: "persegi", text: "Buka tutup & buang" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Lempar ke sungai", "Simpan di saku"]
+            },
+            {
+                title: "6. Menyeberang Jalan",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Cari Zebra Cross" },
+                    { shape: "persegi", text: "Tengok kanan kiri" },
+                    { shape: "belah_ketupat", text: "Jalanan aman?" },
+                    { shape: "persegi", text: "Berjalan hati-hati" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Lari tutup mata", "Main bola di tengah"]
+            },
+            {
+                title: "7. Lampu Belajar Mati",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Tekan saklar" },
+                    { shape: "belah_ketupat", text: "Tetap mati?" },
+                    { shape: "persegi", text: "Periksa & colok kabel" },
+                    { shape: "jajargenjang", text: "Lampu menyala" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Siram air", "Sembunyikan lampu"]
+            },
+            {
+                title: "8. Membeli Pensil",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Pergi ke toko" },
+                    { shape: "persegi", text: "Pilih pensil bagus" },
+                    { shape: "jajargenjang", text: "Serahkan uang" },
+                    { shape: "jajargenjang", text: "Terima kembalian" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Pinjam uang kasir", "Lari membawa pensil"]
+            },
+            {
+                title: "9. Menggosok Gigi",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan sikat & odol" },
+                    { shape: "persegi", text: "Oles odol ke sikat" },
+                    { shape: "persegi", text: "Sikat bagian depan & dalam" },
+                    { shape: "persegi", text: "Kumur & cuci sikat" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Sisir rambut", "Sabun cuci piring"]
+            },
+            {
+                title: "10. Mengerjakan PR",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan buku PR" },
+                    { shape: "persegi", text: "Baca soal no 1" },
+                    { shape: "belah_ketupat", text: "Soal terlalu sulit?" },
+                    { shape: "persegi", text: "Tanya Orang Tua" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Kerjakan besok", "Robek bukunya"]
+            },
+            {
+                title: "11. Membuat Mie Rebus",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan bungkus mie & air" },
+                    { shape: "persegi", text: "Rebus air di panci" },
+                    { shape: "belah_ketupat", text: "Air mendidih?" },
+                    { shape: "persegi", text: "Masukkan mie & bumbu" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Panggang di kuali", "Buang air rebusan"]
+            },
+            {
+                title: "12. Mengirim Surat",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan kertas & pena" },
+                    { shape: "persegi", text: "Tulis isi pesan" },
+                    { shape: "persegi", text: "Tempel perangko di amplop" },
+                    { shape: "persegi", text: "Masukkan ke kotak pos" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Ketik di WhatsApp", "Bakar surat"]
+            },
+            {
+                title: "13. Sepeda Kempes",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Periksa ban dengan jari" },
+                    { shape: "belah_ketupat", text: "Ban terasa kempes?" },
+                    { shape: "jajargenjang", text: "Ambil pompa angin" },
+                    { shape: "persegi", text: "Pompa sampai keras" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Isi bensin", "Ganti ban traktor"]
+            },
+            {
+                title: "14. Menanam Bunga",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan pot & tanah" },
+                    { shape: "persegi", text: "Masukkan tanah & buat lubang" },
+                    { shape: "persegi", text: "Tanam bibit" },
+                    { shape: "persegi", text: "Siram sedikit air" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Siram pakai sirup", "Cabut akar"]
+            },
+            {
+                title: "15. Menjemur Pakaian",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Bawa pakaian basah" },
+                    { shape: "belah_ketupat", text: "Cuaca cerah?" },
+                    { shape: "persegi", text: "Gantung pakaian" },
+                    { shape: "persegi", text: "Pasang jepitan baju" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Pakai payung", "Jemur di kulkas"]
+            }
+        ];
+
+        let soloLevel = 0;
+        let soloScore = 0;
+        let soloScoreFloat = 0;
+        let isPuzzleDone = false;
+        let soloSelected = null; 
+        let soloSlots = []; 
+        let soloTexts = [];
+
+        function updateRapor() {
+            if (isPuzzleDone) document.getElementById('status-puzzle').innerHTML = 'Status: <span class="text-green-500 font-semibold">Selesai ✓</span>';
+            document.getElementById('rapor-skor-puzzle').innerText = soloScore;
+
+            if (isQuizDone) document.getElementById('status-kuis').innerHTML = 'Status: <span class="text-green-500 font-semibold">Selesai ✓</span>';
+            document.getElementById('rapor-skor-kuis').innerText = finalQuizScoreValue;
+
+            const total = Math.round((soloScore + finalQuizScoreValue) / 2);
+            document.getElementById('rapor-total-skor').innerText = total;
+        }
+
+        function loadSoloLevel() {
+            const levelData = puzzles[soloLevel];
+            document.getElementById('puzzle-title').innerText = levelData.title;
+            document.getElementById('level-indicator').innerText = `Level ${soloLevel + 1} / 15`;
+            
+            soloSlots = Array(levelData.steps.length).fill().map(() => ({ shape: null, text: null, textId: null }));
+            soloTexts = levelData.steps.map((s, i) => ({ id: i, text: s.text }));
+            if (levelData.distractors) levelData.distractors.forEach((d, i) => soloTexts.push({ id: 100+i, text: d }));
+            soloTexts = shuffleArr(soloTexts);
+
+            soloSelected = null;
+            updateSoloToolUI();
+            renderSoloBoard();
+            renderSoloBank();
+        }
+
+        function selectTool(type, value, textId = null) {
+            soloSelected = { type, value, textId };
+            updateSoloToolUI();
+        }
+
+        function updateSoloToolUI() {
+            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('ring-4', 'ring-purple-500'));
+            document.querySelectorAll('.text-tool-btn').forEach(btn => {
+                btn.classList.remove('ring-4', 'ring-purple-500', 'bg-purple-100');
+                btn.classList.add('bg-white');
+            });
+            if (soloSelected) {
+                if (soloSelected.type === 'shape') document.getElementById(`tool-shape-${soloSelected.value}`).classList.add('ring-4', 'ring-purple-500');
+                else if (soloSelected.type === 'text') {
+                    const btn = document.getElementById(`tool-text-${soloSelected.textId}`);
+                    if(btn) { btn.classList.remove('bg-white'); btn.classList.add('ring-4', 'ring-purple-500', 'bg-purple-100'); }
+                }
+            }
+        }
+
+        function renderSoloBank() {
+            const bank = document.getElementById('text-bank');
+            bank.innerHTML = '';
+            soloTexts.forEach(item => {
+                const btn = document.createElement('button');
+                btn.id = `tool-text-${item.id}`;
+                btn.className = "text-tool-btn bg-white border-2 border-gray-300 px-3 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100 transition";
+                btn.innerText = item.text;
+                btn.onclick = () => selectTool('text', item.text, item.id);
+                bank.appendChild(btn);
+            });
+        }
+
+        function renderSoloBoard() {
+            const board = document.getElementById('flowchart-board');
+            board.innerHTML = '';
+            soloSlots.forEach((slot, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex flex-col items-center relative';
+                const box = document.createElement('div');
+                box.className = "w-48 h-24 relative flex items-center justify-center cursor-pointer transition-all rounded-lg group";
+                box.id = `solo-box-${index}`;
+                
+                if (!slot.shape) box.classList.add('border-2', 'border-dashed', 'border-gray-400', 'bg-white', 'hover:bg-purple-100');
+                if (slot.shape) box.innerHTML += getShapeHTML(slot.shape);
+                
+                if (slot.text) {
+                    let tCls = "relative z-10 text-center font-bold text-sm px-4 text-gray-900";
+                    if (slot.shape === 'belah_ketupat') tCls += " text-[10px] w-24";
+                    box.innerHTML += `<span class="${tCls}">${slot.text}</span>`;
+                } else {
+                    let prompt = !slot.shape ? '<i class="fa-solid fa-plus text-lg"></i><br>1. Bentuk<br>2. Teks' : '<i class="fa-solid fa-font text-blue-500"></i><br>Isi Teks';
+                    box.innerHTML += `<span class="relative z-10 text-gray-500 text-xs text-center font-semibold">${prompt}</span>`;
+                }
+
+                box.onclick = () => applySoloSlot(index);
+                
+                if (slot.shape || slot.text) {
+                    const del = document.createElement('button');
+                    del.className = "absolute -top-3 -right-3 bg-red-500 text-white w-8 h-8 rounded-full text-sm hidden group-hover:flex items-center justify-center z-20 hover:bg-red-600 shadow border-2 border-white";
+                    del.innerHTML = '<i class="fa-solid fa-times"></i>';
+                    del.onclick = (e) => { e.stopPropagation(); clearSoloSlot(index); };
+                    box.appendChild(del);
+                }
+
+                wrapper.appendChild(box);
+                if (index < soloSlots.length - 1) {
+                    const arrow = document.createElement('div');
+                    arrow.className = "text-purple-400 text-3xl my-2 animate-pulse";
+                    arrow.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+                    wrapper.appendChild(arrow);
+                }
+                board.appendChild(wrapper);
+            });
+        }
+
+        function applySoloSlot(index) {
+            if (!soloSelected) { showToast('Pilih Bentuk / Teks di kiri!', 'info'); return; }
+            let slot = soloSlots[index];
+            if (soloSelected.type === 'shape') {
+                slot.shape = soloSelected.value;
+            } else if (soloSelected.type === 'text') {
+                if (slot.text) soloTexts.push({ id: slot.textId, text: slot.text });
+                slot.text = soloSelected.value;
+                slot.textId = soloSelected.textId;
+                soloTexts = soloTexts.filter(t => t.id !== soloSelected.textId);
+            }
+            soloSelected = null; updateSoloToolUI(); renderSoloBank(); renderSoloBoard();
+        }
+
+        function clearSoloSlot(index) {
+            if (soloSlots[index].text) soloTexts.push({ id: soloSlots[index].textId, text: soloSlots[index].text });
+            soloSlots[index] = { shape: null, text: null, textId: null };
+            soloSelected = null; updateSoloToolUI(); renderSoloBank(); renderSoloBoard();
+        }
+
+        function checkPuzzle() {
+            const levelData = puzzles[soloLevel];
+            if (soloSlots.some(s => !s.shape || !s.text)) {
+                Swal.fire('Oops!', 'Lengkapi semua kotak (Bentuk & Teks) dari atas sampai bawah!', 'warning');
+                return;
+            }
+
+            let isCorrect = true;
+            soloSlots.forEach((slot, index) => {
+                const correct = levelData.steps[index];
+                const box = document.getElementById(`solo-box-${index}`);
+                if (slot.shape === correct.shape && slot.text === correct.text) {
+                    box.classList.add('ring-4', 'ring-green-400');
+                } else {
+                    isCorrect = false;
+                    box.classList.add('shake-animation', 'ring-4', 'ring-red-400');
+                    setTimeout(() => box.classList.remove('shake-animation', 'ring-4', 'ring-red-400'), 600);
+                }
+            });
+
+            if (isCorrect) {
+                soloScoreFloat += (100 / puzzles.length);
+                soloScore = Math.min(100, Math.round(soloScoreFloat));
+                document.getElementById('puzzle-score-display').innerText = `Skor: ${soloScore}`;
+                confetti();
+                
+                if (soloLevel < puzzles.length - 1) {
+                    Swal.fire({ title: 'Hebat!', icon: 'success' }).then(() => { soloLevel++; loadSoloLevel(); });
+                } else {
+                    isPuzzleDone = true; updateRapor();
+                    document.getElementById('quiz-locked-overlay').classList.add('hidden');
+                    document.getElementById('quiz-container').classList.remove('hidden');
+                    document.getElementById('puzzle-play-area').classList.add('hidden');
+                    document.getElementById('puzzle-action-container').classList.add('hidden');
+                    document.getElementById('puzzle-result-container').classList.remove('hidden');
+                    document.getElementById('final-puzzle-score').innerText = soloScore;
+                    Swal.fire('SELAMAT!', 'Puzzle selesai. Kuis Terbuka!', 'success');
+                }
+            } else {
+                soloScoreFloat = Math.max(0, soloScoreFloat - 1);
+                soloScore = Math.round(soloScoreFloat);
+                document.getElementById('puzzle-score-display').innerText = `Skor: ${soloScore}`;
+                updateRapor();
+                Swal.fire('Salah!', 'Perhatikan urutan, bentuk, dan logikanya!', 'error');
+            }
+        }
+
+        // KUIS HOTS SCRIPT (Sama seperti sebelumnya)
+        const quizData = [
+            { question: "Bentuk apa untuk 'Masukkan mie ke dalam panci'?", options: ["Terminal (Oval)", "Persegi (Kotak)", "Belah Ketupat", "Lingkaran"], answer: 1 },
+            { question: "Tulisan paling cocok di Belah Ketupat dalam 'Bermain Hujan'?", options: ["Gunakan payung", "Apakah hari sedang hujan?", "Mulai bermain", "Selesai"], answer: 1 },
+            { question: "Mengapa algoritma tebak angka menggunakan belah ketupat?", options: ["Untuk menulis hasil", "Untuk membuat keputusan (benar/salah)", "Bentuk keren", "Artinya Selesai"], answer: 1 },
+            { question: "Menyiapkan bahan piring dan sendok menggunakan bentuk...", options: ["Jajargenjang", "Oval", "Belah Ketupat", "Garis"], answer: 0 },
+            { question: "Jika tidak ada Oval 'Selesai' di akhir flowchart?", options: ["Berjalan cepat", "Komputer bingung/error", "Layar mati", "Langsung cetak"], answer: 1 },
+            { question: "Langkah mana yang masuk bentuk Persegi?", options: ["Mulai", "Ambil buku", "Baca buku", "Selesai"], answer: 2 },
+            { question: "Panah dari Belah Ketupat 'Uang cukup?' bercabang dua. Artinya?", options: ["Koin & Kertas", "Ya & Tidak", "Dingin & Panas", "Masuk & Keluar"], answer: 1 },
+            { question: "Tulisan 'Mulai' di Jajargenjang itu salah karena...", options: ["Warnanya biru", "Mulai itu proses", "Mulai harusnya Oval", "Terlalu pendek"], answer: 2 },
+            { question: "Fungsi panah dalam flowchart?", options: ["Menghias", "Menunjukkan arah urutan", "Memotong", "Menggambar garis"], answer: 1 },
+            { question: "Logika 'Menyentuh musuh?' di game Mario digambar dengan...", options: ["Persegi", "Oval", "Belah Ketupat", "Jajargenjang"], answer: 2 },
+            { question: "Pasangan Bentuk & Tulisan yang BENAR?", options: ["Belah Ketupat -> Colokkan", "Persegi -> Baterai penuh?", "Jajargenjang -> Ambil Charger", "Oval -> Menunggu"], answer: 2 },
+            { question: "Alasan utama pakai flowchart?", options: ["Agar sulit", "Merencanakan logika", "Pengganti gambar", "Keyboard awet"], answer: 1 },
+            { question: "Langkah Output 'Tampilkan jumlah cokelat' pakai bentuk...", options: ["Jajargenjang", "Belah Ketupat", "Persegi", "Oval"], answer: 0 },
+            { question: "Beda Persegi dan Jajargenjang?", options: ["Awal/Akhir", "Proses vs Input/Output", "Komputer/Manusia", "Tidak ada beda"], answer: 1 },
+            { question: "Memilih berdasarkan cuaca (Cerah/Mendung) adalah contoh...", options: ["Terminal", "Decision (Pilihan)", "Loop", "Input"], answer: 1 }
+        ];
+        
+        let quizLevel = 0, quizScoreFloat = 0;
+        let isQuizDone = false, finalQuizScoreValue = 0;
+
+        function loadQuestion() {
+            const q = quizData[quizLevel];
+            document.getElementById('question-counter').innerText = `Soal ${quizLevel + 1} / 15`;
+            document.getElementById('question-text').innerText = q.question;
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-orange-200 hover:bg-orange-100 bg-white font-medium";
+                btn.innerText = opt;
+                btn.onclick = () => checkQuiz(idx, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function checkQuiz(idx, btn) {
+            document.querySelectorAll('#options-container button').forEach(b => b.disabled = true);
+            const ans = quizData[quizLevel].answer;
+            if (idx === ans) {
+                btn.classList.add('bg-green-500', 'text-white');
+                quizScoreFloat += (100 / 15);
+                playTone(600, "sine", 0.1);
+            } else {
+                btn.classList.add('bg-red-500', 'text-white', 'shake-animation');
+                document.querySelectorAll('#options-container button')[ans].classList.add('bg-green-300');
+                playTone(300, "sawtooth", 0.3);
+            }
+            document.getElementById('current-score').innerText = Math.min(100, Math.round(quizScoreFloat));
+            setTimeout(() => {
+                quizLevel++;
+                if (quizLevel < 15) loadQuestion();
+                else showQuizResult();
+            }, 1000);
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            finalQuizScoreValue = Math.min(100, Math.round(quizScoreFloat));
+            document.getElementById('final-score').innerText = finalQuizScoreValue;
+            isQuizDone = true; updateRapor();
+            confetti();
+        }
 
         window.onload = () => {
-            loadPuzzleLevel();
+            loadSoloLevel();
             loadQuestion();
         };
     </script>
