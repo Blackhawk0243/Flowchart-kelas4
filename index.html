@@ -179,7 +179,7 @@
                         </div>
 
                         <!-- Board P1 -->
-                        <div class="bg-white flex-1 rounded-lg border-2 border-blue-200 p-4 flex flex-col items-center overflow-y-auto max-h-[400px]" id="duel-board-1">
+                        <div class="bg-white flex-1 rounded-lg border-2 border-blue-200 p-4 flex flex-col items-center overflow-y-auto max-h-[400px] relative" id="duel-board-1">
                             <!-- Slots P1 -->
                         </div>
                     </div>
@@ -216,7 +216,7 @@
                         </div>
 
                         <!-- Board P2 -->
-                        <div class="bg-white flex-1 rounded-lg border-2 border-rose-200 p-4 flex flex-col items-center overflow-y-auto max-h-[400px]" id="duel-board-2">
+                        <div class="bg-white flex-1 rounded-lg border-2 border-rose-200 p-4 flex flex-col items-center overflow-y-auto max-h-[400px] relative" id="duel-board-2">
                             <!-- Slots P2 -->
                         </div>
                     </div>
@@ -366,14 +366,15 @@
          SCRIPT: DUEL MODE 1 VS 1
          ========================================== -->
     <script>
+        // Keterangan dihapus (Input/Proses/Output) agar kalimat natural & lebih HOTS
         const duelData1 = [
             {
                 title: "1. Membuat Teh Manis",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Teh, Gula, Air Panas (Input)" },
-                    { shape: "persegi", text: "Aduk teh & gula di gelas (Proses)" },
-                    { shape: "jajargenjang", text: "Teh Manis siap (Output)" },
+                    { shape: "jajargenjang", text: "Siapkan Teh, Gula, Air Panas" },
+                    { shape: "persegi", text: "Aduk teh & gula di gelas" },
+                    { shape: "jajargenjang", text: "Teh Manis siap" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Panggang gula di oven", "Beli teh di luar"]
@@ -382,9 +383,9 @@
                 title: "2. Menghitung Luas Persegi",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Masukkan nilai sisi (Input)" },
-                    { shape: "persegi", text: "Kalikan sisi x sisi (Proses)" },
-                    { shape: "jajargenjang", text: "Tampilkan Luas (Output)" },
+                    { shape: "jajargenjang", text: "Masukkan nilai sisi" },
+                    { shape: "persegi", text: "Kalikan sisi x sisi" },
+                    { shape: "jajargenjang", text: "Tampilkan Luas" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Gambar lingkaran besar", "Buang penggaris"]
@@ -393,9 +394,9 @@
                 title: "3. Pinjam Buku Perpus",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Bawa Buku & Kartu (Input)" },
-                    { shape: "belah_ketupat", text: "Boleh dipinjam? (Pilihan)" },
-                    { shape: "persegi", text: "Catat nama di komputer (Proses)" },
+                    { shape: "jajargenjang", text: "Bawa Buku & Kartu" },
+                    { shape: "belah_ketupat", text: "Boleh dipinjam?" },
+                    { shape: "persegi", text: "Catat nama di komputer" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Coret buku dengan pensil", "Sembunyikan buku di tas"]
@@ -404,9 +405,9 @@
                 title: "4. Membuat Es Jeruk",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Jeruk & Es (Input)" },
-                    { shape: "persegi", text: "Peras jeruk & aduk (Proses)" },
-                    { shape: "jajargenjang", text: "Es Jeruk Segar Jadi (Output)" },
+                    { shape: "jajargenjang", text: "Siapkan Jeruk & Es" },
+                    { shape: "persegi", text: "Peras jeruk & aduk" },
+                    { shape: "jajargenjang", text: "Es Jeruk Segar Jadi" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Rebus es batu", "Goreng buah jeruk"]
@@ -415,9 +416,9 @@
                 title: "5. Menyaring Air Kotor",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan botol & pasir (Input)" },
-                    { shape: "persegi", text: "Tuang air ke saringan (Proses)" },
-                    { shape: "jajargenjang", text: "Air menjadi jernih (Output)" },
+                    { shape: "jajargenjang", text: "Siapkan botol & pasir" },
+                    { shape: "persegi", text: "Tuang air ke saringan" },
+                    { shape: "jajargenjang", text: "Air menjadi jernih" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Masukkan sabun cuci", "Minum air kotor"]
@@ -429,9 +430,9 @@
                 title: "1. Membuat Roti Bakar",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Roti & Selai (Input)" },
-                    { shape: "persegi", text: "Oles selai & bakar (Proses)" },
-                    { shape: "jajargenjang", text: "Roti Bakar hangat (Output)" },
+                    { shape: "jajargenjang", text: "Siapkan Roti & Selai" },
+                    { shape: "persegi", text: "Oles selai & bakar" },
+                    { shape: "jajargenjang", text: "Roti Bakar hangat" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Cuci roti pakai air", "Jemur roti di genteng"]
@@ -440,9 +441,9 @@
                 title: "2. Hitung Keliling Segitiga",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Masukkan 3 sisi (Input)" },
-                    { shape: "persegi", text: "Jumlahkan 3 sisi (Proses)" },
-                    { shape: "jajargenjang", text: "Tampilkan Keliling (Output)" },
+                    { shape: "jajargenjang", text: "Masukkan 3 sisi" },
+                    { shape: "persegi", text: "Jumlahkan 3 sisi" },
+                    { shape: "jajargenjang", text: "Tampilkan Keliling" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Hapus angka di papan", "Lipat kertas segitiga"]
@@ -451,9 +452,9 @@
                 title: "3. Beli Snack di Mesin",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Masukkan uang kertas (Input)" },
-                    { shape: "belah_ketupat", text: "Uangnya cukup? (Pilihan)" },
-                    { shape: "persegi", text: "Mesin keluarkan snack (Proses)" },
+                    { shape: "jajargenjang", text: "Masukkan uang kertas" },
+                    { shape: "belah_ketupat", text: "Uangnya cukup?" },
+                    { shape: "persegi", text: "Mesin keluarkan snack" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Tendang mesin keras-keras", "Goyang mesinnya"]
@@ -462,9 +463,9 @@
                 title: "4. Membuat Jus Mangga",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Mangga & Susu (Input)" },
-                    { shape: "persegi", text: "Blender mangga halus (Proses)" },
-                    { shape: "jajargenjang", text: "Jus Mangga siap (Output)" },
+                    { shape: "jajargenjang", text: "Siapkan Mangga & Susu" },
+                    { shape: "persegi", text: "Blender mangga halus" },
+                    { shape: "jajargenjang", text: "Jus Mangga siap" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Rebus buah mangga", "Taburkan lada hitam"]
@@ -473,9 +474,9 @@
                 title: "5. Bersihkan Jendela",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Kain & Cairan (Input)" },
-                    { shape: "persegi", text: "Semprot & gosok kain (Proses)" },
-                    { shape: "jajargenjang", text: "Jendela mengkilap (Output)" },
+                    { shape: "jajargenjang", text: "Siapkan Kain & Cairan" },
+                    { shape: "persegi", text: "Semprot & gosok kain" },
+                    { shape: "jajargenjang", text: "Jendela mengkilap" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Lempar batu ke kaca", "Cat jendela warna hitam"]
@@ -591,21 +592,6 @@
             }
         }
 
-        function renderDuelBank(player) {
-            const pState = player === 1 ? p1 : p2;
-            const container = document.getElementById(`duel-text-bank-${player}`);
-            container.innerHTML = '';
-            
-            pState.texts.forEach(item => {
-                const btn = document.createElement('button');
-                btn.id = `duel-p${player}-text-${item.id}`;
-                btn.className = `text-tool-p${player} bg-white border border-gray-300 px-2 py-1 rounded text-[10px] sm:text-xs font-semibold shadow-sm hover:bg-gray-50 m-0.5 max-w-[150px] leading-tight`;
-                btn.innerText = item.text;
-                btn.onclick = () => selectDuelTool(player, 'text', item.text, item.id);
-                container.appendChild(btn);
-            });
-        }
-
         function getShapeHTML(shapeType) {
             switch(shapeType) {
                 case 'oval': return '<div class="absolute inset-0 bg-red-200 border-2 border-red-500 rounded-[50px]"></div>';
@@ -629,7 +615,6 @@
                 box.className = "w-40 sm:w-48 h-20 sm:h-24 relative flex items-center justify-center transition-all duration-300 rounded-lg group";
                 box.id = `duel-p${player}-slot-${index}`;
 
-                // Jika bukan activeStep dan belum terisi, disable
                 const isActive = (index === pState.activeStep);
                 const isCompleted = (index < pState.activeStep);
 
@@ -660,9 +645,29 @@
                 }
                 board.appendChild(wrapper);
             });
-            // Auto scroll to active step
+
+            // Scroll Internal: ScrollHANYA pada board yang aktif (mencegah layar lompat)
             const activeElem = document.getElementById(`duel-p${player}-slot-${pState.activeStep}`);
-            if(activeElem) activeElem.scrollIntoView({ behavior: "smooth", block: "center" });
+            if(activeElem && board) {
+                // Posisi aktif - jarak aman agar terlihat di tengah board
+                const scrollPos = activeElem.offsetTop - 20;
+                board.scrollTo({ top: scrollPos, behavior: 'smooth' });
+            }
+        }
+
+        function renderDuelBank(player) {
+            const pState = player === 1 ? p1 : p2;
+            const container = document.getElementById(`duel-text-bank-${player}`);
+            container.innerHTML = '';
+            
+            pState.texts.forEach(item => {
+                const btn = document.createElement('button');
+                btn.id = `duel-p${player}-text-${item.id}`;
+                btn.className = `text-tool-p${player} bg-white border border-gray-300 px-2 py-1 rounded text-[10px] sm:text-xs font-semibold shadow-sm hover:bg-gray-50 m-0.5 max-w-[150px] leading-tight`;
+                btn.innerText = item.text;
+                btn.onclick = () => selectDuelTool(player, 'text', item.text, item.id);
+                container.appendChild(btn);
+            });
         }
 
         function applyDuelSlot(player, slotIndex) {
@@ -776,10 +781,9 @@
 
 
     <!-- ==========================================
-         SCRIPT: PUZZLE SOLO & KUIS (PREVIOUS SYSTEM)
+         SCRIPT: PUZZLE SOLO & KUIS (TETAP SAMA)
          ========================================== -->
     <script>
-        // Data Puzzle Solo 15 Level Lengkap (Diperpanjang agar HOTS)
         const puzzles = [
             {
                 title: "1. Membuat Susu Cokelat",
@@ -1141,7 +1145,7 @@
             }
         }
 
-        // KUIS HOTS SCRIPT (Sama seperti sebelumnya)
+        // KUIS HOTS SCRIPT
         const quizData = [
             { question: "Bentuk apa untuk 'Masukkan mie ke dalam panci'?", options: ["Terminal (Oval)", "Persegi (Kotak)", "Belah Ketupat", "Lingkaran"], answer: 1 },
             { question: "Tulisan paling cocok di Belah Ketupat dalam 'Bermain Hujan'?", options: ["Gunakan payung", "Apakah hari sedang hujan?", "Mulai bermain", "Selesai"], answer: 1 },
