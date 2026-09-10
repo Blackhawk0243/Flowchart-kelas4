@@ -363,40 +363,45 @@
     </script>
 
     <!-- ==========================================
-         SCRIPT: DUEL MODE 1 VS 1
+         SCRIPT: DUEL MODE 1 VS 1 (HOTS - LEBIH PANJANG)
          ========================================== -->
     <script>
-        // Keterangan dihapus (Input/Proses/Output) agar kalimat natural & lebih HOTS
+        // Pemain 1 Data Duel (6-7 Langkah HOTS)
         const duelData1 = [
             {
-                title: "1. Membuat Teh Manis",
+                title: "1. Membuat Teh Manis Panas",
                 steps: [
                     { shape: "oval", text: "Mulai" },
                     { shape: "jajargenjang", text: "Siapkan Teh, Gula, Air Panas" },
-                    { shape: "persegi", text: "Aduk teh & gula di gelas" },
-                    { shape: "jajargenjang", text: "Teh Manis siap" },
+                    { shape: "persegi", text: "Masukkan teh dan gula ke gelas" },
+                    { shape: "persegi", text: "Tuang air panas" },
+                    { shape: "persegi", text: "Aduk hingga gula larut" },
+                    { shape: "jajargenjang", text: "Teh Manis siap disajikan" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Panggang gula di oven", "Beli teh di luar"]
             },
             {
-                title: "2. Menghitung Luas Persegi",
+                title: "2. Hitung Luas Persegi Panjang",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Masukkan nilai sisi" },
-                    { shape: "persegi", text: "Kalikan sisi x sisi" },
-                    { shape: "jajargenjang", text: "Tampilkan Luas" },
+                    { shape: "jajargenjang", text: "Masukkan nilai Panjang" },
+                    { shape: "jajargenjang", text: "Masukkan nilai Lebar" },
+                    { shape: "persegi", text: "Kalikan Panjang x Lebar" },
+                    { shape: "jajargenjang", text: "Tampilkan Hasil Luas" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Gambar lingkaran besar", "Buang penggaris"]
             },
             {
-                title: "3. Pinjam Buku Perpus",
+                title: "3. Meminjam Buku Perpus",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Bawa Buku & Kartu" },
-                    { shape: "belah_ketupat", text: "Boleh dipinjam?" },
-                    { shape: "persegi", text: "Catat nama di komputer" },
+                    { shape: "jajargenjang", text: "Bawa Kartu Perpus & Buku" },
+                    { shape: "persegi", text: "Berikan ke petugas" },
+                    { shape: "belah_ketupat", text: "Peminjaman disetujui?" },
+                    { shape: "persegi", text: "Petugas mencatat di sistem" },
+                    { shape: "jajargenjang", text: "Terima buku beserta struk" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Coret buku dengan pensil", "Sembunyikan buku di tas"]
@@ -405,8 +410,10 @@
                 title: "4. Membuat Es Jeruk",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Jeruk & Es" },
-                    { shape: "persegi", text: "Peras jeruk & aduk" },
+                    { shape: "jajargenjang", text: "Siapkan Jeruk, Air, Gula, Es" },
+                    { shape: "persegi", text: "Peras jeruk ke dalam gelas" },
+                    { shape: "persegi", text: "Tambahkan air dan gula" },
+                    { shape: "persegi", text: "Masukkan es batu secukupnya" },
                     { shape: "jajargenjang", text: "Es Jeruk Segar Jadi" },
                     { shape: "oval", text: "Selesai" }
                 ],
@@ -416,23 +423,27 @@
                 title: "5. Menyaring Air Kotor",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan botol & pasir" },
-                    { shape: "persegi", text: "Tuang air ke saringan" },
-                    { shape: "jajargenjang", text: "Air menjadi jernih" },
+                    { shape: "jajargenjang", text: "Siapkan botol, kerikil, sabut, pasir" },
+                    { shape: "persegi", text: "Susun bahan di dalam botol" },
+                    { shape: "persegi", text: "Tuang air kotor ke atas saringan" },
+                    { shape: "belah_ketupat", text: "Apakah air belum jernih?" },
+                    { shape: "persegi", text: "Saring ulang air tersebut" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Masukkan sabun cuci", "Minum air kotor"]
             }
         ];
 
+        // Pemain 2 Data Duel (6-7 Langkah HOTS)
         const duelData2 = [
             {
                 title: "1. Membuat Roti Bakar",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Roti & Selai" },
-                    { shape: "persegi", text: "Oles selai & bakar" },
-                    { shape: "jajargenjang", text: "Roti Bakar hangat" },
+                    { shape: "jajargenjang", text: "Siapkan Roti & Selai Cokelat" },
+                    { shape: "persegi", text: "Oleskan selai pada roti" },
+                    { shape: "persegi", text: "Bakar roti di atas teflon" },
+                    { shape: "jajargenjang", text: "Roti Bakar hangat siap" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Cuci roti pakai air", "Jemur roti di genteng"]
@@ -441,20 +452,23 @@
                 title: "2. Hitung Keliling Segitiga",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Masukkan 3 sisi" },
-                    { shape: "persegi", text: "Jumlahkan 3 sisi" },
-                    { shape: "jajargenjang", text: "Tampilkan Keliling" },
+                    { shape: "jajargenjang", text: "Masukkan nilai Sisi A & B" },
+                    { shape: "jajargenjang", text: "Masukkan nilai Sisi C" },
+                    { shape: "persegi", text: "Jumlahkan A + B + C" },
+                    { shape: "jajargenjang", text: "Tampilkan Hasil Keliling" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Hapus angka di papan", "Lipat kertas segitiga"]
             },
             {
-                title: "3. Beli Snack di Mesin",
+                title: "3. Membeli Snack di Mesin",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Masukkan uang kertas" },
-                    { shape: "belah_ketupat", text: "Uangnya cukup?" },
-                    { shape: "persegi", text: "Mesin keluarkan snack" },
+                    { shape: "jajargenjang", text: "Siapkan uang kertas pas" },
+                    { shape: "persegi", text: "Masukkan uang ke lubang mesin" },
+                    { shape: "belah_ketupat", text: "Lampu hijau menyala?" },
+                    { shape: "persegi", text: "Tekan tombol snack pilihan" },
+                    { shape: "jajargenjang", text: "Ambil snack di laci bawah" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Tendang mesin keras-keras", "Goyang mesinnya"]
@@ -463,20 +477,24 @@
                 title: "4. Membuat Jus Mangga",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Mangga & Susu" },
-                    { shape: "persegi", text: "Blender mangga halus" },
-                    { shape: "jajargenjang", text: "Jus Mangga siap" },
+                    { shape: "jajargenjang", text: "Siapkan Mangga, Susu, Es" },
+                    { shape: "persegi", text: "Kupas dan potong buah mangga" },
+                    { shape: "persegi", text: "Masukkan semua bahan ke blender" },
+                    { shape: "persegi", text: "Nyalakan blender sampai halus" },
+                    { shape: "jajargenjang", text: "Tuang jus ke dalam gelas" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Rebus buah mangga", "Taburkan lada hitam"]
             },
             {
-                title: "5. Bersihkan Jendela",
+                title: "5. Bersihkan Jendela Kusam",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan Kain & Cairan" },
-                    { shape: "persegi", text: "Semprot & gosok kain" },
-                    { shape: "jajargenjang", text: "Jendela mengkilap" },
+                    { shape: "jajargenjang", text: "Siapkan Kain Lap & Cairan Kaca" },
+                    { shape: "persegi", text: "Semprotkan cairan ke jendela" },
+                    { shape: "belah_ketupat", text: "Masih ada noda membandel?" },
+                    { shape: "persegi", text: "Gosok lebih kuat dengan kain" },
+                    { shape: "jajargenjang", text: "Jendela kembali mengkilap" },
                     { shape: "oval", text: "Selesai" }
                 ],
                 distractors: ["Lempar batu ke kaca", "Cat jendela warna hitam"]
