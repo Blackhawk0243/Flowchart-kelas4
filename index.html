@@ -784,6 +784,29 @@
                 if(p1.score > p2.score) msg = "PEMAIN 1 MENANG! 🏆";
                 else if(p2.score > p1.score) msg = "PEMAIN 2 MENANG! 🏆";
                 else msg = "KEDUDUKAN SERI! 🤝";
+                
+                // Menampilkan popup hasil akhir duel
+                Swal.fire({
+                    title: 'DUEL SELESAI!',
+                    text: msg + ` (Skor P1: ${p1.score} vs P2: ${p2.score})`,
+                    icon: 'info',
+                    confirmButtonText: 'Tutup'
+                });
+
+                // Menampilkan kembali overlay untuk tombol Duel Ulang
+                const overlay = document.getElementById('duel-start-overlay');
+                overlay.classList.remove('hidden');
+                overlay.innerHTML = `
+                    <i class="fa-solid fa-trophy text-6xl text-yellow-500 mb-4 animate-bounce"></i>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">${msg}</h3>
+                    <p class="text-lg font-bold text-gray-600 mb-6">Skor Akhir -> Pemain 1: ${p1.score} | Pemain 2: ${p2.score}</p>
+                    <button onclick="startDuel()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-full text-2xl btn-bounce shadow-xl border-4 border-yellow-300">
+                        DUEL ULANG
+                    </button>
+                `;
+            }
+        }
+
         // ==========================================
         // SCRIPT: PUZZLE SOLO & KUIS
         // ==========================================
