@@ -226,14 +226,14 @@
         </div>
     </section>
 
-    <!-- SECTION 4: PUZZLE SOLO (15 LEVEL) -->
+    <!-- SECTION 4: PUZZLE SOLO (20 LEVEL) -->
     <section id="puzzle" class="container mx-auto mt-12 px-4">
         <div class="glass-panel p-6 md:p-10 border-4 border-purple-400 bg-purple-50">
             <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
-                <h2 class="text-3xl font-kids text-purple-600"><i class="fa-solid fa-puzzle-piece"></i> Latihan Puzzle Solo (15 Level)</h2>
+                <h2 class="text-3xl font-kids text-purple-600"><i class="fa-solid fa-puzzle-piece"></i> Latihan Puzzle Solo (20 Level)</h2>
                 <div class="flex gap-3">
                     <div class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-xl shadow" id="puzzle-score-display">Skor: 0</div>
-                    <div class="bg-purple-600 text-white px-4 py-2 rounded-full font-bold text-xl shadow" id="level-indicator">Level 1 / 15</div>
+                    <div class="bg-purple-600 text-white px-4 py-2 rounded-full font-bold text-xl shadow" id="level-indicator">Level 1 / 20</div>
                 </div>
             </div>
             
@@ -286,7 +286,7 @@
             <div id="quiz-locked-overlay" class="bg-white rounded-xl p-10 shadow-md border-2 border-orange-200 text-center flex flex-col items-center justify-center">
                 <i class="fa-solid fa-lock text-6xl text-gray-400 mb-4 animate-pulse"></i>
                 <h3 class="text-2xl font-bold text-gray-700 mb-2">Kuis Masih Terkunci!</h3>
-                <p class="text-gray-500 font-medium">Selesaikan ke-15 Level Latihan Puzzle Solo terlebih dahulu untuk membuka Kuis ini ya.</p>
+                <p class="text-gray-500 font-medium">Selesaikan ke-20 Level Latihan Puzzle Solo terlebih dahulu untuk membuka Kuis ini ya.</p>
             </div>
 
             <div id="quiz-container" class="hidden bg-white rounded-xl p-6 shadow-md border-2 border-orange-200">
@@ -313,7 +313,7 @@
                 <div class="space-y-6">
                     <div class="flex justify-between items-center border-b-2 border-dashed border-gray-200 pb-4">
                         <div>
-                            <h4 class="font-bold text-xl text-gray-800">Puzzle Solo (15 Level)</h4>
+                            <h4 class="font-bold text-xl text-gray-800">Puzzle Solo (20 Level)</h4>
                             <p class="text-sm" id="status-puzzle">Status: <span class="text-red-500">Belum Selesai</span></p>
                         </div>
                         <p class="text-3xl font-bold text-purple-600" id="rapor-skor-puzzle">0</p>
@@ -804,184 +804,258 @@
     <script>
         const puzzles = [
             {
-                title: "1. Membuat Susu Cokelat",
+                title: "1. Menanak Nasi",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan gelas, bubuk susu, air" },
-                    { shape: "persegi", text: "Masukkan susu ke gelas" },
-                    { shape: "persegi", text: "Tuang air panas" },
-                    { shape: "persegi", text: "Aduk hingga rata" },
+                    { shape: "jajargenjang", text: "Siapkan beras dan air" },
+                    { shape: "persegi", text: "Cuci beras sampai bersih" },
+                    { shape: "persegi", text: "Masukkan panci ke Magic Com" },
+                    { shape: "persegi", text: "Tekan tombol Cook" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Panggang di oven", "Tambahkan kecap asin"]
+                distractors: ["Jemur beras di genteng", "Beri garam"]
             },
             {
-                title: "2. Menyalakan Televisi",
+                title: "2. Mencuci Sepatu Sekolah",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Ambil remote TV" },
-                    { shape: "persegi", text: "Colokkan kabel ke listrik" },
-                    { shape: "persegi", text: "Tekan tombol Power" },
-                    { shape: "jajargenjang", text: "TV menyala" },
+                    { shape: "jajargenjang", text: "Siapkan sepatu & sabun" },
+                    { shape: "persegi", text: "Sikat sepatu dengan sabun" },
+                    { shape: "belah_ketupat", text: "Sepatu sudah bersih?" },
+                    { shape: "persegi", text: "Jemur di bawah matahari" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Buka pintu kulkas", "Nyalakan kompor gas"]
+                distractors: ["Setrika sepatu", "Buang sepatu"]
             },
             {
-                title: "3. Mencuci Tangan",
+                title: "3. Membeli Es Krim",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Nyalakan keran air" },
-                    { shape: "persegi", text: "Basahi dan gosok sabun" },
-                    { shape: "persegi", text: "Bilas air bersih" },
-                    { shape: "persegi", text: "Matikan keran" },
+                    { shape: "jajargenjang", text: "Bawa uang saku" },
+                    { shape: "persegi", text: "Pilih rasa es krim" },
+                    { shape: "belah_ketupat", text: "Uangmu cukup?" },
+                    { shape: "persegi", text: "Bayar ke penjual" },
+                    { shape: "jajargenjang", text: "Terima es krim" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Gunakan minyak", "Siram dengan pasir"]
+                distractors: ["Minta es krim gratis", "Lemparkan uang"]
             },
             {
-                title: "4. Makan Siang",
+                title: "4. Merapikan Tempat Tidur",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Ambil piring & nasi" },
-                    { shape: "persegi", text: "Makan perlahan" },
-                    { shape: "belah_ketupat", text: "Masih lapar?" },
-                    { shape: "persegi", text: "Tambah porsi nasi" },
+                    { shape: "jajargenjang", text: "Ambil sapu lidi kasur" },
+                    { shape: "persegi", text: "Tarik dan rapikan seprai" },
+                    { shape: "persegi", text: "Kibas kasur dengan sapu" },
+                    { shape: "persegi", text: "Tata bantal dan guling" },
+                    { shape: "jajargenjang", text: "Kamar tidur jadi rapi" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Bermain game", "Tidur siang"]
+                distractors: ["Lempar bantal ke lantai", "Siram kasur dengan air"]
             },
             {
-                title: "5. Membuang Sampah",
+                title: "5. Mengerjakan Ujian",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Pegang sampah" },
-                    { shape: "persegi", text: "Cari tong sampah" },
-                    { shape: "belah_ketupat", text: "Tong ketemu?" },
-                    { shape: "persegi", text: "Buka tutup & buang" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Lempar ke sungai", "Simpan di saku"]
-            },
-            {
-                title: "6. Menyeberang Jalan",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Cari Zebra Cross" },
-                    { shape: "persegi", text: "Tengok kanan kiri" },
-                    { shape: "belah_ketupat", text: "Jalanan aman?" },
-                    { shape: "persegi", text: "Berjalan hati-hati" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Lari tutup mata", "Main bola di tengah"]
-            },
-            {
-                title: "7. Lampu Belajar Mati",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Tekan saklar" },
-                    { shape: "belah_ketupat", text: "Tetap mati?" },
-                    { shape: "persegi", text: "Periksa & colok kabel" },
-                    { shape: "jajargenjang", text: "Lampu menyala" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Siram air", "Sembunyikan lampu"]
-            },
-            {
-                title: "8. Membeli Pensil",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Pergi ke toko" },
-                    { shape: "persegi", text: "Pilih pensil bagus" },
-                    { shape: "jajargenjang", text: "Serahkan uang" },
-                    { shape: "jajargenjang", text: "Terima kembalian" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Pinjam uang kasir", "Lari membawa pensil"]
-            },
-            {
-                title: "9. Menggosok Gigi",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan sikat & odol" },
-                    { shape: "persegi", text: "Oles odol ke sikat" },
-                    { shape: "persegi", text: "Sikat bagian depan & dalam" },
-                    { shape: "persegi", text: "Kumur & cuci sikat" },
-                    { shape: "oval", text: "Selesai" }
-                ],
-                distractors: ["Sisir rambut", "Sabun cuci piring"]
-            },
-            {
-                title: "10. Mengerjakan PR",
-                steps: [
-                    { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan buku PR" },
-                    { shape: "persegi", text: "Baca soal no 1" },
+                    { shape: "jajargenjang", text: "Siapkan pensil & penghapus" },
+                    { shape: "persegi", text: "Baca soal ujian" },
                     { shape: "belah_ketupat", text: "Soal terlalu sulit?" },
-                    { shape: "persegi", text: "Tanya Orang Tua" },
+                    { shape: "persegi", text: "Kerjakan yang mudah dulu" },
+                    { shape: "persegi", text: "Kumpulkan kertas ujian" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Kerjakan besok", "Robek bukunya"]
+                distractors: ["Tidur di dalam kelas", "Menyontek milik teman"]
             },
             {
-                title: "11. Membuat Mie Rebus",
+                title: "6. Praktek Tumbuh Kacang Hijau",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan bungkus mie & air" },
-                    { shape: "persegi", text: "Rebus air di panci" },
-                    { shape: "belah_ketupat", text: "Air mendidih?" },
-                    { shape: "persegi", text: "Masukkan mie & bumbu" },
+                    { shape: "jajargenjang", text: "Siapkan gelas, kapas, kacang" },
+                    { shape: "persegi", text: "Basahi kapas dengan air" },
+                    { shape: "persegi", text: "Taruh kacang di atas kapas" },
+                    { shape: "persegi", text: "Tunggu beberapa hari" },
+                    { shape: "jajargenjang", text: "Tumbuh tunas kecil" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Panggang di kuali", "Buang air rebusan"]
+                distractors: ["Rebus kacang hijau", "Kasih pupuk kandang"]
             },
             {
-                title: "12. Mengirim Surat",
+                title: "7. Meminjam Mainan Teman",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan kertas & pena" },
-                    { shape: "persegi", text: "Tulis isi pesan" },
-                    { shape: "persegi", text: "Tempel perangko di amplop" },
-                    { shape: "persegi", text: "Masukkan ke kotak pos" },
+                    { shape: "persegi", text: "Datangi rumah teman" },
+                    { shape: "persegi", text: "Minta izin meminjam" },
+                    { shape: "belah_ketupat", text: "Teman mengizinkan?" },
+                    { shape: "persegi", text: "Bermain dengan hati-hati" },
+                    { shape: "persegi", text: "Ucapkan terima kasih" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Ketik di WhatsApp", "Bakar surat"]
+                distractors: ["Rebut mainannya", "Bawa pulang diam-diam"]
             },
             {
-                title: "13. Sepeda Kempes",
+                title: "8. Mengecas Baterai HP",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "persegi", text: "Periksa ban dengan jari" },
-                    { shape: "belah_ketupat", text: "Ban terasa kempes?" },
-                    { shape: "jajargenjang", text: "Ambil pompa angin" },
-                    { shape: "persegi", text: "Pompa sampai keras" },
+                    { shape: "jajargenjang", text: "Ambil kabel charger" },
+                    { shape: "persegi", text: "Colokkan ke stopkontak" },
+                    { shape: "belah_ketupat", text: "Baterai penuh 100%?" },
+                    { shape: "persegi", text: "Cabut kabel charger" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Isi bensin", "Ganti ban traktor"]
+                distractors: ["Rendam HP di air", "Pukul layar HP"]
             },
             {
-                title: "14. Menanam Bunga",
+                title: "9. Menyelamatkan Kucing di Pohon",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Siapkan pot & tanah" },
-                    { shape: "persegi", text: "Masukkan tanah & buat lubang" },
-                    { shape: "persegi", text: "Tanam bibit" },
-                    { shape: "persegi", text: "Siram sedikit air" },
+                    { shape: "jajargenjang", text: "Lihat kucing terjebak" },
+                    { shape: "persegi", text: "Panggil orang dewasa" },
+                    { shape: "jajargenjang", text: "Ambil tangga kayu" },
+                    { shape: "persegi", text: "Turunkan kucing perlahan" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Siram pakai sirup", "Cabut akar"]
+                distractors: ["Lempari batu", "Gergaji pohonnya"]
             },
             {
-                title: "15. Menjemur Pakaian",
+                title: "10. Membuat Pesawat Kertas",
                 steps: [
                     { shape: "oval", text: "Mulai" },
-                    { shape: "jajargenjang", text: "Bawa pakaian basah" },
-                    { shape: "belah_ketupat", text: "Cuaca cerah?" },
-                    { shape: "persegi", text: "Gantung pakaian" },
-                    { shape: "persegi", text: "Pasang jepitan baju" },
+                    { shape: "jajargenjang", text: "Siapkan selembar kertas" },
+                    { shape: "persegi", text: "Lipat kertas menjadi dua" },
+                    { shape: "persegi", text: "Bentuk sayap pesawat" },
+                    { shape: "belah_ketupat", text: "Bentuknya sudah mirip?" },
+                    { shape: "persegi", text: "Terbangkan ke udara" },
                     { shape: "oval", text: "Selesai" }
                 ],
-                distractors: ["Pakai payung", "Jemur di kulkas"]
+                distractors: ["Gunting jadi kecil-kecil", "Bakar kertasnya"]
+            },
+            {
+                title: "11. Bermain Petak Umpet",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Kumpul bersama teman" },
+                    { shape: "persegi", text: "Tentukan siapa yang berjaga" },
+                    { shape: "persegi", text: "Tutup mata & hitung 10" },
+                    { shape: "belah_ketupat", text: "Selesai menghitung?" },
+                    { shape: "persegi", text: "Cari teman yang sembunyi" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Pulang ke rumah", "Menangis sendirian"]
+            },
+            {
+                title: "12. Mengembalikan Buku Perpus",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Bawa buku pinjaman" },
+                    { shape: "persegi", text: "Serahkan ke petugas" },
+                    { shape: "belah_ketupat", text: "Terlambat mengembalikan?" },
+                    { shape: "persegi", text: "Buku dikembalikan ke rak" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Coret-coret bukunya", "Jual buku ke teman"]
+            },
+            {
+                title: "13. Mengirim Pesan WhatsApp",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Buka aplikasi WhatsApp" },
+                    { shape: "persegi", text: "Ketik isi pesan" },
+                    { shape: "belah_ketupat", text: "Ada jaringan internet?" },
+                    { shape: "persegi", text: "Tekan tombol Kirim" },
+                    { shape: "jajargenjang", text: "Pesan terkirim" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Cuci HP dengan sabun", "Ketik pakai pulpen"]
+            },
+            {
+                title: "14. Membuat Telur Mata Sapi",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan Telur, Minyak, Wajan" },
+                    { shape: "persegi", text: "Panaskan minyak di wajan" },
+                    { shape: "persegi", text: "Pecahkan telur ke wajan" },
+                    { shape: "belah_ketupat", text: "Telur sudah matang?" },
+                    { shape: "persegi", text: "Angkat dan tiriskan" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Rebus dengan kulitnya", "Taburkan gula pasir"]
+            },
+            {
+                title: "15. Mandi Pagi",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Bawa handuk ke kamar mandi" },
+                    { shape: "persegi", text: "Siram badan dengan air" },
+                    { shape: "persegi", text: "Gosok badan pakai sabun" },
+                    { shape: "persegi", text: "Bilas sampai bersih" },
+                    { shape: "persegi", text: "Keringkan dengan handuk" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Pakai baju basah-basah", "Gosok gigi pakai sabun"]
+            },
+            {
+                title: "16. Menghapus File Komputer",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "persegi", text: "Pilih file tidak terpakai" },
+                    { shape: "belah_ketupat", text: "Yakin ingin menghapus?" },
+                    { shape: "persegi", text: "Tekan tombol Delete" },
+                    { shape: "jajargenjang", text: "Masuk ke Recycle Bin" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Cabut kabel monitor", "Siram keyboard dengan air"]
+            },
+            {
+                title: "17. Menjemput Teman Bersepeda",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan sepeda dan helm" },
+                    { shape: "persegi", text: "Kayuh sepeda ke rumah teman" },
+                    { shape: "persegi", text: "Ketuk pintu rumahnya" },
+                    { shape: "belah_ketupat", text: "Teman ada di rumah?" },
+                    { shape: "persegi", text: "Berangkat main bersama" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Berteriak keras-keras", "Bawa lari sepedanya"]
+            },
+            {
+                title: "18. Menyapu Lantai Kamar",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Ambil sapu dan pengki" },
+                    { shape: "persegi", text: "Sapu kotoran ke satu titik" },
+                    { shape: "belah_ketupat", text: "Lantai sudah bersih?" },
+                    { shape: "persegi", text: "Masukkan kotoran ke pengki" },
+                    { shape: "persegi", text: "Buang ke tempat sampah" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Tiup kotorannya", "Sembunyikan di bawah karpet"]
+            },
+            {
+                title: "19. Membuat Es Teh Manis",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan Teh, Gula, Es Batu" },
+                    { shape: "persegi", text: "Seduh teh dengan air" },
+                    { shape: "persegi", text: "Aduk hingga gula larut" },
+                    { shape: "persegi", text: "Masukkan es batu" },
+                    { shape: "jajargenjang", text: "Es teh siap diminum" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Rebus es batu di kompor", "Tambahkan garam dapur"]
+            },
+            {
+                title: "20. Mengerjakan PR Matematika",
+                steps: [
+                    { shape: "oval", text: "Mulai" },
+                    { shape: "jajargenjang", text: "Siapkan buku dan pensil" },
+                    { shape: "persegi", text: "Baca dan hitung soal" },
+                    { shape: "belah_ketupat", text: "Masih ada soal tersisa?" },
+                    { shape: "persegi", text: "Lanjut ke soal berikutnya" },
+                    { shape: "jajargenjang", text: "Buku siap dikumpulkan" },
+                    { shape: "oval", text: "Selesai" }
+                ],
+                distractors: ["Sobek kertas bukunya", "Warnai dengan krayon"]
             }
         ];
 
@@ -1007,7 +1081,7 @@
         function loadSoloLevel() {
             const levelData = puzzles[soloLevel];
             document.getElementById('puzzle-title').innerText = levelData.title;
-            document.getElementById('level-indicator').innerText = `Level ${soloLevel + 1} / 15`;
+            document.getElementById('level-indicator').innerText = `Level ${soloLevel + 1} / 20`;
             
             soloSlots = Array(levelData.steps.length).fill().map(() => ({ shape: null, text: null, textId: null }));
             soloTexts = levelData.steps.map((s, i) => ({ id: i, text: s.text }));
